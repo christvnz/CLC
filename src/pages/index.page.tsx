@@ -23,7 +23,8 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
-      <Container>
+
+      <Container className="navMargin">
         <Link href={`/${page.featuredBlogPost.slug}`}>
           <ArticleHero article={page.featuredBlogPost} />
         </Link>

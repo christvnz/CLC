@@ -28,5 +28,5 @@
       "incremental": true
     },
     "exclude": ["node_modules"],
-    "include": ["**/*.ts", "**/*.tsx", "@types/**/*.d.ts"]
+    "include": ["**/*.ts", "**/*.tsx", "@types/**/*.d.ts", "scripts/build-search.js", "src/components/features/Search/CustomSearchBox.jsx", "src/components/features/Search/CustomHit.jsx", "src/components/features/Search/index.jsx"]
   }
