@@ -37,6 +37,34 @@ const Header = () => {
               <Logo />
             </div>
           </Link>
+          <Link href="/">
+            <div
+              aria-label="Navigate to home page"
+              className={HeaderStyles.header__logoContainerLinkWord}>
+              Home
+            </div>
+          </Link>
+          <Link href="/food">
+            <div
+              aria-label="Navigate to home page"
+              className={HeaderStyles.header__logoContainerLinkWord}>
+              Food
+            </div>
+          </Link>
+          <Link href="/lifestyle">
+            <div
+              aria-label="Navigate to lifestyle page"
+              className={HeaderStyles.header__logoContainerLinkWord}>
+              LifeStyle
+            </div>
+          </Link>
+          <Link href="/about">
+            <div
+              aria-label="Navigate to lifestyle page"
+              className={HeaderStyles.header__logoContainerLinkWord}>
+              About
+            </div>
+          </Link>
           <Search />
         </div>
       </header>
