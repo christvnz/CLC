@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown';
 import PublishedDateAndReadingTime from '@src/components/features/PublishedDateAndReadingTime';
 
 export default function RecentPost({ post }) {
-  console.log('post', post);
   return (
     <article className={RecentPostListStyles.contentList__post}>
       <PublishedDateAndReadingTime date={post.publishedDate} readingTime={post.readingTime} />

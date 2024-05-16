@@ -39,7 +39,6 @@ async function getPaginatedPosts(page) {
               spaceId
             }
             internalName
-          
             slug
             readingTime
             publishedDate
@@ -48,7 +47,6 @@ async function getPaginatedPosts(page) {
             content {
               json 
             }
-          
           }
       }
     }`;
