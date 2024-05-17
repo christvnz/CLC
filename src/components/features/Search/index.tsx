@@ -4,6 +4,7 @@ import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, Hits, SearchBox } from 'react-instantsearch-dom';
 import Styles from '@src/styles/InstantSearch.module.css';
 import RecentPost from '@src/components/features/RecentPostList/RecentPost';
+import CustomSearchBox from './CustomSearchBox';
 
 let searchClient;
 if (process.env.NEXT_PUBLIC_ALGOLIA_APP_ID && process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY) {
@@ -42,7 +43,7 @@ const SearchModal = ({ isOpen, closeModal }) => {
           ✖
         </button>
         <InstantSearch searchClient={searchClient} indexName="lincolnstable">
-          <SearchBox />
+          <CustomSearchBox />
           <div className={Styles.searchResults}>
             <Hits hitComponent={Hit} />
           </div>

@@ -1,19 +1,16 @@
 import { connectSearchBox } from 'react-instantsearch-dom';
 import Styles from '@src/styles/InstantSearch.module.css';
 
-function SearchBox({ refine, openModal }) {
-  return (
-    <form noValidate action="" role="search" className={Styles.instantSearch__form}>
-      <input
-        onClick={openModal}
-        className={Styles.instantSearch__input}
-        id="algolia_search"
-        type="search"
-        placeholder={'Malaysian'}
-        onChange={e => refine(e.currentTarget.value)}
-      />
-    </form>
-  );
-}
+const CustomSearchBox = ({ currentRefinement, refine }) => (
+  <form noValidate action="" role="search" className={Styles.searchForm}>
+    <input
+      type="search"
+      value={currentRefinement}
+      onChange={e => refine(e.target.value)}
+      className={Styles.searchInput}
+      placeholder="Search articles..."
+    />
+  </form>
+);
 
-export default connectSearchBox(SearchBox);
+export default connectSearchBox(CustomSearchBox);

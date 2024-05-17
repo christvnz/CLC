@@ -71,3 +71,41 @@
     background-color: #0056b3;
   }
   
+  .searchForm {
+    display: flex;
+    width: 98%; /* Ensures the form takes the full width of its parent */
+    margin-bottom: 20px;
+  }
+  
+  .searchInput {
+    flex-grow: 1; /* Allows the input to expand and fill the available space */
+    padding: 12px 20px; /* Increased padding for a better visual appearance */
+    border: 2px solid #ddd; /* Softer border color */
+    border-radius: 8px 0 8px 8px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions for interactions */
+  }
+  
+  .searchInput:focus {
+    border-color: #0056b3; /* Focus color changed for better visibility */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Enhanced shadow on focus */
+  }
+  
+  .searchButton {
+    padding: 12px 20px; /* Padding adjusted to match the input */
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+    border-left: none; /* Makes the button flush with the input */
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .searchButton:hover {
+    background-color: #0056b3;
+  }
+  
