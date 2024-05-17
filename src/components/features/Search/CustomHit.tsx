@@ -2,7 +2,7 @@ import { connectStateResults } from 'react-instantsearch-dom';
 import RecentPost from '@src/components/features/RecentPostList/RecentPost';
 import Styles from '@src/styles/InstantSearch.module.css';
 
-const Hits = ({ searchState, searchResults }) => {
+const Hits = ({ searchState, searchResults, closeModal }) => {
   const validQuery = searchState.query?.length >= 3;
 
   return (
@@ -15,7 +15,10 @@ const Hits = ({ searchState, searchResults }) => {
       {searchResults?.hits.length > 0 && validQuery && (
         <ol className={Styles.instantSearch__hitsList}>
           {searchResults.hits.map(hit => (
-            <li key={hit.objectID} className={Styles.instantSearch__hitsListItem}>
+            <li
+              key={hit.objectID}
+              onClick={closeModal}
+              className={Styles.instantSearch__hitsListItem}>
               <RecentPost post={hit} />
             </li>
           ))}

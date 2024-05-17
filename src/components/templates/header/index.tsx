@@ -26,6 +26,7 @@ const Header = () => {
   const navLinksClasses = menuOpen
     ? `${HeaderStyles.header__navList}`
     : `${HeaderStyles.header__navList} ${HeaderStyles.header__navList__hide}`;
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
     <>
@@ -67,7 +68,12 @@ const Header = () => {
               About
             </div>
           </Link>
-          <Search />
+          <button
+            onClick={() => setModalOpen(true)}
+            style={{ fontSize: '24px', border: 'none', background: 'none', cursor: 'pointer' }}>
+            🔍
+          </button>
+          <Search isOpen={isModalOpen} closeModal={() => setModalOpen(false)} />
         </div>
       </header>
     </>

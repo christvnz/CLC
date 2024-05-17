@@ -77,7 +77,7 @@
   }
   
   .contentList__title {
-    color: var(--color-background);
+    color: var(--color-primary);
     font-weight: var(--font-weight-normal);
     font-size: 1.4rem;
     line-height: 1.4;
