@@ -5,7 +5,8 @@ import Link from 'next/link';
 // import SocialLinks from '@src/components/SocialLinks';
 import { useRouter } from 'next/router';
 import { Config } from '@src/utils/Config';
-import Logo from './wordLogo.svg';
+import LogoWord from './wordLogo.svg';
+import Logo from './logo.svg';
 import Search from '@src/components/features/Search';
 
 const Header = () => {
@@ -35,6 +36,7 @@ const Header = () => {
               className={HeaderStyles.header__logoContainerLink}
               aria-label="Navigate to home page">
               <Logo />
+              <LogoWord />
             </div>
           </Link>
           <Link href="/">
