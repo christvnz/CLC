@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import RecentPostListStyles from '@src/styles/RecentPostList.module.css';
-import ReactMarkdown from 'react-markdown';
 import PublishedDateAndReadingTime from '@src/components/features/PublishedDateAndReadingTime';
 
 export default function RecentPost({ post }) {

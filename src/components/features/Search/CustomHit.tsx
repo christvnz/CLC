@@ -15,10 +15,7 @@ const Hits = ({ searchState, searchResults, closeModal }) => {
       {searchResults?.hits.length > 0 && validQuery && (
         <ol className={Styles.instantSearch__hitsList}>
           {searchResults.hits.map(hit => (
-            <li
-              key={hit.objectID}
-              onClick={closeModal}
-              className={Styles.instantSearch__hitsListItem}>
+            <li key={hit.objectID} className={Styles.instantSearch__hitsListItem}>
               <RecentPost post={hit} />
             </li>
           ))}
