@@ -16,11 +16,9 @@ const Header = () => {
         <div className={HeaderStyles.header__logoContainer}>
           <Link href="/">
             <div
-              className={`${HeaderStyles.header__logoContainerLink} ${
-                router.pathname === '/' ? HeaderStyles.active : ''
-              }`}
+              className={`${HeaderStyles.header__logoContainerLink}`}
               aria-label="Navigate to home page">
-              <Logo />
+              <Logo className={HeaderStyles.header__logoImage} />
               <LogoWord className={HeaderStyles.header__logoName} />
             </div>
           </Link>

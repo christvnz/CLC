@@ -40,6 +40,12 @@
     @apply font-normal leading-snug tracking-snug text-gray600 md:leading-normal;
   }
   .navMargin{
+    margin-top: 70px;
+  }
+
+@media screen and (min-width: 768px) {
+  .navMargin{
     margin-top: 100px;
   }
+}
 }
