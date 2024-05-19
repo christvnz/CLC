@@ -10,22 +10,6 @@ import Logo from './logo.svg';
 import Search from '@src/components/features/Search';
 
 const Header = () => {
-  const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const showSocialLinks = router.pathname !== '/';
-
-  function toggleMenu() {
-    setMenuOpen(!menuOpen);
-  }
-
-  const hamburgerClasses = menuOpen
-    ? `${HeaderStyles.hamburger} ${HeaderStyles.is__open}`
-    : `${HeaderStyles.hamburger}`;
-
-  const navLinksClasses = menuOpen
-    ? `${HeaderStyles.header__navList}`
-    : `${HeaderStyles.header__navList} ${HeaderStyles.header__navList__hide}`;
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
@@ -37,7 +21,7 @@ const Header = () => {
               className={HeaderStyles.header__logoContainerLink}
               aria-label="Navigate to home page">
               <Logo />
-              <LogoWord />
+              <LogoWord className={HeaderStyles.header__logoName} />
             </div>
           </Link>
           <Link href="/">

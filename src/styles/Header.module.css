@@ -68,6 +68,10 @@
     justify-content: center;
     height: 4rem;
   }
+  .header__logoName {
+   display: none;
+  }
+  
   .header__logoContainerLinkWord {
     text-decoration: none;
     display: inline-flex;
@@ -131,6 +135,11 @@
       box-shadow: rgb(0 0 0 / 10%) -2px 2px 5px;
     }
   
+    .header__logoName {
+      display: block
+     }
+  
+     
     .header__navList {
       flex-direction: row;
     }
