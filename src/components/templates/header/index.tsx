@@ -1,16 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import HeaderStyles from '@src/styles/Header.module.css';
 import Link from 'next/link';
-// import SocialLinks from '@src/components/SocialLinks';
 import { useRouter } from 'next/router';
-import { Config } from '@src/utils/Config';
 import LogoWord from './wordLogo.svg';
 import Logo from './logo.svg';
 import Search from '@src/components/features/Search';
 
 const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -18,7 +16,9 @@ const Header = () => {
         <div className={HeaderStyles.header__logoContainer}>
           <Link href="/">
             <div
-              className={HeaderStyles.header__logoContainerLink}
+              className={`${HeaderStyles.header__logoContainerLink} ${
+                router.pathname === '/' ? HeaderStyles.active : ''
+              }`}
               aria-label="Navigate to home page">
               <Logo />
               <LogoWord className={HeaderStyles.header__logoName} />
@@ -27,28 +27,36 @@ const Header = () => {
           <Link href="/">
             <div
               aria-label="Navigate to home page"
-              className={HeaderStyles.header__logoContainerLinkWord}>
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/' ? HeaderStyles.active : ''
+              }`}>
               Home
             </div>
           </Link>
           <Link href="/food">
             <div
-              aria-label="Navigate to home page"
-              className={HeaderStyles.header__logoContainerLinkWord}>
+              aria-label="Navigate to food page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/food' ? HeaderStyles.active : ''
+              }`}>
               Food
             </div>
           </Link>
           <Link href="/lifestyle">
             <div
               aria-label="Navigate to lifestyle page"
-              className={HeaderStyles.header__logoContainerLinkWord}>
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/lifestyle' ? HeaderStyles.active : ''
+              }`}>
               LifeStyle
             </div>
           </Link>
           <Link href="/about">
             <div
-              aria-label="Navigate to lifestyle page"
-              className={HeaderStyles.header__logoContainerLinkWord}>
+              aria-label="Navigate to about page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/about' ? HeaderStyles.active : ''
+              }`}>
               About
             </div>
           </Link>
