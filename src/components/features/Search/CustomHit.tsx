@@ -2,7 +2,7 @@ import { connectStateResults } from 'react-instantsearch-dom';
 import RecentPost from '@src/components/features/RecentPostList/RecentPost';
 import Styles from '@src/styles/InstantSearch.module.css';
 
-const Hits = ({ searchState, searchResults, closeModal }) => {
+const Hits = ({ searchState, searchResults }) => {
   const validQuery = searchState.query?.length >= 3;
 
   return (

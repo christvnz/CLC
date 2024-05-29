@@ -45,7 +45,10 @@ const FollowUs = () => (
     <LinksGrid>
       <LinkContainer>
         <LinkText>
-          <a href="https://www.instagram.com/chowluckclub" target="_blank">
+          <a
+            href="https://www.instagram.com/chowluckclub"
+            target="_blank"
+            rel="noopener noreferrer">
             <svg
               width="16"
               height="16"
@@ -66,7 +69,7 @@ const FollowUs = () => (
 
       <LinkContainer>
         <LinkText>
-          <a href="https://www.tiktok.com/@chowluckclub" target="_blank">
+          <a href="https://www.tiktok.com/@chowluckclub" target="_blank" rel="noopener noreferrer">
             <svg
               width="16"
               height="16"
