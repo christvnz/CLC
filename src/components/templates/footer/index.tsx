@@ -3,12 +3,16 @@ import Logo from '../header/logo.svg';
 import WordLogo from '../header/wordLogo.svg';
 import EmailSubscription from '@src/components/features/emailSubscription';
 import FollowUs from './FollowUs';
+import Link from 'next/link';
+import styled from 'styled-components';
+
+const FooterContainer = styled.footer`
+  background-color: #f5b3b3;
+`;
 
 const Footer = () => {
-  const date = new Date();
-
   return (
-    <footer className="flex flex-col items-end justify-center">
+    <FooterContainer className="flex flex-col items-end justify-center">
       <div className="from-gray-700 via-gray-900 to-black w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]">
         <div className="mx-auto w-full py-10 px-4 sm:px-6 lg:px-8 lg:pt-20">
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
@@ -30,30 +34,32 @@ const Footer = () => {
               <h4 className="text-gray-100 font-semibold uppercase">Important Links</h4>
               <div className="mt-6 grid space-y-3">
                 <p>
-                  <a className="text-white hover:text-gray-200 inline-flex gap-x-2" href="#">
-                    Our Journeys
-                  </a>
+                  <Link
+                    className="text-white hover:text-gray-200 inline-flex gap-x-2"
+                    href="/about">
+                    About
+                  </Link>
                 </p>
                 <p>
-                  <a className="text-white hover:text-gray-200 inline-flex gap-x-2" href="#">
-                    Roadmap
-                  </a>
-                </p>
-                <p>
-                  <a className="text-white hover:text-gray-200 inline-flex gap-x-2" href="#">
-                    Pricing Plans
-                  </a>
+                  <Link
+                    className="text-white hover:text-gray-200 inline-flex gap-x-2"
+                    href="/about">
+                    Faq
+                  </Link>
                 </p>
               </div>
             </div>
-            <div className="col-span-1">
-              <EmailSubscription />
+            <div className="col-span-2 lg:col-span-1">
+              <h4 className="text-gray-100 font-semibold uppercase">Sign up for our updates</h4>
+              <div className="mt-6 ">
+                <EmailSubscription />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <WordLogo />
-    </footer>
+    </FooterContainer>
   );
 };
 

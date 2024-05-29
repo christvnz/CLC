@@ -81,7 +81,7 @@
     flex-grow: 1; /* Allows the input to expand and fill the available space */
     padding: 12px 20px; /* Increased padding for a better visual appearance */
     border: 2px solid #ddd; /* Softer border color */
-    border-radius: 8px 0 8px 8px;
+    border-radius: 8px;
     font-size: 16px;
     outline: none;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */

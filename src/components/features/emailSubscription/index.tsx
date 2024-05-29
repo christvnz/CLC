@@ -5,7 +5,6 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
 
   border-radius: 10px;
   background: var(--color-primary);
@@ -14,18 +13,18 @@ const Form = styled.form`
 
 const Input = styled.input`
   padding: 10px;
-  margin-bottom: 10px;
+  width: 100%;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
   font-size: 14px;
 `;
 
 const Button = styled.button`
-  margin-top: 10px;
   padding: 10px 20px;
+  width: 100%;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0px 0px 5px 5px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -36,9 +35,9 @@ const Button = styled.button`
 `;
 
 const Message = styled.p`
-  margin-top: 10px;
   font-size: 14px;
   color: #333;
+  padding: 10px;
 `;
 
 const EmailSubscription = () => {
