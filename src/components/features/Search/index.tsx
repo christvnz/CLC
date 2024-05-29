@@ -37,8 +37,8 @@ const SearchModal = ({ isOpen, closeModal }) => {
   };
 
   return createPortal(
-    <div id="modalOverlay" className={Styles.modalOverlay} onClick={handleOverlayClick}>
-      <div className={Styles.modalContent} onClick={e => e.stopPropagation()}>
+    <button id="modalOverlay" className={Styles.modalOverlay} onClick={handleOverlayClick}>
+      <button className={Styles.modalContent} onClick={e => e.stopPropagation()}>
         <button className={Styles.closeButton} onClick={closeModal}>
           ✖
         </button>
@@ -48,8 +48,8 @@ const SearchModal = ({ isOpen, closeModal }) => {
             <Hits hitComponent={Hit} />
           </div>
         </InstantSearch>
-      </div>
-    </div>,
+      </button>
+    </button>,
     document.body,
   );
 };
