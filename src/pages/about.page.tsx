@@ -60,7 +60,7 @@ const Answer = styled.p`
 `;
 
 const EmailLink = styled.a`
-  color: var(--color-primary)
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
 

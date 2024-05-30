@@ -1,31 +1,93 @@
-import { GetStaticProps } from 'next';
-import { Trans, useTranslation } from 'next-i18next';
-import Link from 'next/link';
+import styled, { keyframes } from 'styled-components';
+import { useRouter } from 'next/router';
 
-import { Container } from '@src/components/shared/container';
-import { getServerSideTranslations } from '@src/pages/utils/get-serverside-translations';
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5b3b3;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+`;
 
-const ErrorPage404 = () => {
-  const { t } = useTranslation();
+const glow = keyframes`
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+  }
+`;
+
+const float = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 6rem;
+  margin: 0;
+  animation: ${glow} 1.5s infinite alternate, ${float} 3s ease-in-out infinite;
+  color: #333;
+`;
+
+const Subtitle = styled.h2`
+  font-size: 2rem;
+  margin: 20px 0;
+  animation: ${float} 3s ease-in-out infinite;
+  color: #333;
+`;
+
+const Description = styled.p`
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 20px auto;
+  animation: ${float} 3s ease-in-out infinite;
+  color: #333;
+`;
+
+const Button = styled.button`
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover {
+    background-color: #555;
+    transform: scale(1.05);
+  }
+`;
+
+const NotFoundPage = () => {
+  const router = useRouter();
+
+  const goHome = () => {
+    router.push('/');
+  };
 
   return (
     <Container>
-      <h1 className="h2">{t('notFound.title')}</h1>
-      <p className="mt-4">
-        <Trans i18nKey="notFound.description">
-          <Link className="text-blue500" href="/" />
-        </Trans>
-      </p>
+      <Title>404</Title>
+      <Subtitle>Page Not Found</Subtitle>
+      <Description>
+        Oops! The page you are looking for does not exist. It might have been moved or deleted.
+      </Description>
+      <Button onClick={goHome}>Go Back Home</Button>
     </Container>
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
-    props: {
-      ...(await getServerSideTranslations(locale)),
-    },
-  };
-};
-
-export default ErrorPage404;
+export default NotFoundPage;
