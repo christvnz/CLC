@@ -1,8 +1,6 @@
 import SocialLinksStyles from '@src/styles/SocialLinks.module.css';
 import GitHub from './svg/github';
 
-import { Config } from '@src/utils/Config';
-
 const socialLinksList = [
   {
     name: 'GitHub',
