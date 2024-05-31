@@ -15,10 +15,10 @@ const Container = styled.div`
 
 const glow = keyframes`
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #2fc3f0, 0 0 30px #2fc3f0, 0 0 40px #2fc3f0, 0 0 50px #2fc3f0, 0 0 60px #2fc3f0, 0 0 70px #2fc3f0;
   }
   to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+    text-shadow: 0 0 20px #fff, 0 0 30px #2fc3f0, 0 0 40px #2fc3f0, 0 0 50px #2fc3f0, 0 0 60px #2fc3f0, 0 0 70px #2fc3f0, 0 0 80px #2fc3f0;
   }
 `;
 

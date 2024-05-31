@@ -15,6 +15,7 @@ const Container = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   color: #e0e0e0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 50px;
 `;
 
 const Title = styled.h1`
