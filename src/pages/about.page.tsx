@@ -81,7 +81,7 @@ const About = () => {
       </Paragraph>
       <Paragraph>
         As former F&B entrepreneurs in the restaurant and hotel-linked businesses, Chowluckclub.com
-        was co-founded by Lincoln Tan and Bee Keng Kong and now has a team of dedicated foodies.
+        was co-founded by Lincoln Tan and Bee Keng Koh and now has a team of dedicated foodies.
         Lincoln is also a senior journalist with the New Zealand Herald and Bee was a former
         educator and education consultant.
       </Paragraph>
