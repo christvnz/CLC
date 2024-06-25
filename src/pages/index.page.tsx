@@ -37,7 +37,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {/*</Container>*/}
 
       <Container className="my-8  md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">{t('landingPage.latestArticles')}</h2>
+        <h2 className="mb-4 md:mb-6">Articles</h2>
         <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={posts} />
       </Container>
     </>
@@ -52,7 +52,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const page = landingPageData.pageLandingCollection?.items[0];
 
     const blogPostsData = await gqlClient.pageBlogPostCollection({
-      limit: 6,
       locale,
       order: PageBlogPostOrder.PublishedDateDesc,
       where: {
