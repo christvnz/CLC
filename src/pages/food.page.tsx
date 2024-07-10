@@ -13,12 +13,23 @@ import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { t } = useTranslation();
   console.log('props', props);
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
 
   if (!page?.featuredBlogPost || !posts) return;
+
+  const chinesePosts = posts.filter(post => {
+    return post.cuisineType?.includes('chinese');
+  });
+
+  const vietnamesePosts = posts.filter(post => {
+    return post.cuisineType?.includes('vietnamese');
+  });
+
+  const otherPosts = posts.filter(post => {
+    return !post.cuisineType;
+  });
 
   return (
     <>
@@ -31,8 +42,16 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Container>
 
       <Container className="my-8 md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">{t('landingPage.latestArticles')}</h2>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={posts} />
+        <h2 className="mb-4 md:mb-6">Chinese</h2>
+        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={chinesePosts} />
+      </Container>
+      <Container className="my-8 md:mb-10 lg:mb-16">
+        <h2 className="mb-4 md:mb-6">Vietnamese</h2>
+        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={vietnamesePosts} />
+      </Container>
+      <Container className="my-8 md:mb-10 lg:mb-16">
+        <h2 className="mb-4 md:mb-6">Others</h2>
+        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={otherPosts} />
       </Container>
     </>
   );
