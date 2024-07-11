@@ -1,7 +1,10 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
-const Form = styled.form`
+const EmbedShell = styled.div``;
+
+const FormContainer = styled.div``;
+
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +22,11 @@ const Input = styled.input`
   font-size: 14px;
 `;
 
-const Button = styled.button`
+const HiddenInput = styled.input`
+  display: none;
+`;
+
+const SubmitButton = styled.input`
   padding: 10px 20px;
   width: 100%;
   color: white;
@@ -34,48 +41,48 @@ const Button = styled.button`
   }
 `;
 
-const Message = styled.p`
-  font-size: 14px;
-  color: #333;
-  padding: 10px;
-`;
-
-const EmailSubscription = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    const response = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    if (response.ok) {
-      setMessage('Thank you for subscribing!');
-      setEmail('');
-    } else {
-      setMessage('Something went wrong. Please try again.');
-    }
-  };
-
+const MailchimpSignup = () => {
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input
-        type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        required
-      />
-      <Button type="submit">Subscribe</Button>
-      {message && <Message>{message}</Message>}
-    </Form>
+    <EmbedShell>
+      <FormContainer>
+        <StyledForm
+          action="https://chowluckclub.us13.list-manage.com/subscribe/post?u=f3e41496ce33f06e3a27b23e7&amp;id=c48cf0bdd7&amp;f_id=00a0dee2f0"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          target="_blank">
+          <Input
+            type="email"
+            name="EMAIL"
+            className="required email"
+            id="mce-EMAIL"
+            required
+            defaultValue=""
+            placeholder="Enter your email"
+          />
+
+          <div id="mce-responses" className="clear foot">
+            <div className="response" id="mce-error-response" style={{ display: 'none' }}></div>
+            <div className="response" id="mce-success-response" style={{ display: 'none' }}></div>
+          </div>
+          <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+            <HiddenInput
+              type="text"
+              name="b_f3e41496ce33f06e3a27b23e7_c48cf0bdd7"
+              tabIndex={-1}
+              defaultValue=""
+            />
+          </div>
+          <SubmitButton
+            type="submit"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+            value="Subscribe"
+          />
+        </StyledForm>
+      </FormContainer>
+    </EmbedShell>
   );
 };
 
-export default EmailSubscription;
+export default MailchimpSignup;
