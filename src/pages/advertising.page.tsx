@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   background-color: #000;
+
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;

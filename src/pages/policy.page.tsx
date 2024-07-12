@@ -7,8 +7,9 @@ import { getServerSideTranslations } from '@src/pages/utils/get-serverside-trans
 import styled from 'styled-components';
 
 const Container = styled.div`
-  background-color: #000;
   max-width: 800px;
+  background-color: #000;
+
   margin-left: auto;
   margin-right: auto;
   padding: 30px 40px;
