@@ -27,12 +27,12 @@ const Footer = () => {
       <div className="grid grid-cols-2 md:gap-12">
         <div className="col-span-2 md:order-1 md:col-span-1">
           <TextP className=" mt-6">
-            chowluckclub.com is a digital platform designed to help you discover great restaurants,
+            {`chowluckclub.com is a digital platform designed to help you discover great restaurants,
             products, and businesses in Auckland. It offers a comprehensive directory of dining
             options, ranging from casual eateries to gourmet establishments, along with a variety of
             other establishments. This platform also features articles from our writers showcasing
             top spots, opinions, and in-depth restaurant features, making it a valuable resource for
-            discovering the best of Auckland's offerings.
+            discovering the best of Auckland's offerings.`}
           </TextP>
         </div>
         <div className="md:order-0 col-span-2 mt-6 md:col-span-1">
