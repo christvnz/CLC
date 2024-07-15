@@ -17,6 +17,7 @@ const FooterContainer = styled.footer`
 
 const TextP = styled.p`
   font-size: 15px;
+  color: white;
 `;
 
 const Footer = () => {
@@ -25,7 +26,7 @@ const Footer = () => {
       <WordLogo />
       <div className="grid grid-cols-2 md:gap-12">
         <div className="col-span-2 md:order-1 md:col-span-1">
-          <TextP className="mt-6">
+          <TextP className=" mt-6">
             chowluckclub.com is a digital platform designed to help you discover great restaurants,
             products, and businesses in Auckland. It offers a comprehensive directory of dining
             options, ranging from casual eateries to gourmet establishments, along with a variety of
@@ -46,26 +47,26 @@ const Footer = () => {
 
         <div className="order-2 col-span-2">
           <div className="grid space-y-3">
-            <p>
+            <TextP>
               <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/about">
                 About us
               </Link>
-            </p>
-            <p>
+            </TextP>
+            <TextP>
               <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/advertising">
                 Advertising & Partnership
               </Link>
-            </p>
-            <p>
+            </TextP>
+            <TextP>
               <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/policy">
                 Editorial Policy
               </Link>
-            </p>
-            <p>
+            </TextP>
+            <TextP>
               <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/contact">
                 Contact us
               </Link>
-            </p>
+            </TextP>
           </div>
         </div>
       </div>
