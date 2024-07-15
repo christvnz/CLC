@@ -27,6 +27,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     return post.cuisineType?.includes('vietnamese');
   });
 
+  const dessertsPosts = posts.filter(post => {
+    return post.cuisineType?.includes('desserts');
+  });
+
   const otherPosts = posts.filter(post => {
     return !post.cuisineType;
   });
@@ -52,6 +56,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Container className="my-8 md:mb-10 lg:mb-16">
         <h2 className="mb-4 md:mb-6">Others</h2>
         <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={otherPosts} />
+      </Container>
+      <Container className="my-8 md:mb-10 lg:mb-16">
+        <h2 className="mb-4 md:mb-6">Desserts</h2>
+        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={dessertsPosts} />
       </Container>
     </>
   );
