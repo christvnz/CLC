@@ -7,12 +7,91 @@ import FollowUs from '../footer/FollowUs';
 const Title = styled.h4`
   text-transform: uppercase;
   color: grey;
+  margin-top: 20px;
 `;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: black;
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: black;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const NavList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+`;
+
+const NavItem = styled.li`
+  margin: 30px 0;
+`;
+
+const NavLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-size: 32px;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
 export default function Modal({ closeModal }) {
+  const handleNavClick = () => {
+    closeModal();
+  };
+
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-button" onClick={closeModal}>
+    <ModalOverlay>
+      <ModalContent>
+        <CloseButton onClick={closeModal}>
           <svg
             width="36"
             height="36"
@@ -37,81 +116,36 @@ export default function Modal({ closeModal }) {
               />
             </defs>
           </svg>
-        </button>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/food">Food</Link>
-            </li>
-            <li>
-              <Link href="/lifestyle">Lifestyle</Link>
-            </li>
-            <li>
-              <Link href="/about">about</Link>
-            </li>
-          </ul>
+        </CloseButton>
+        <Nav>
+          <NavList>
+            <NavItem>
+              <NavLink href="/" onClick={handleNavClick}>
+                Home
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/food" onClick={handleNavClick}>
+                Food
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/lifestyle" onClick={handleNavClick}>
+                Lifestyle
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/about" onClick={handleNavClick}>
+                About
+              </NavLink>
+            </NavItem>
+          </NavList>
           <div>
             <Title>Follow us</Title>
             <FollowUs />
           </div>
-        </nav>
-      </div>
-      <style jsx>{`
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 1000;
-        }
-        .modal-content {
-          background: transparent;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          color: black;
-        }
-        .close-button {
-          background: none;
-          border: none;
-          font-size: 30px;
-          cursor: pointer;
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          color: white;
-        }
-        nav ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          height: 100%;
-          justify-content: center;
-        }
-        nav li {
-          margin: 20px 0;
-        }
-        nav a {
-          text-decoration: none;
-          color: white;
-          font-size: 24px;
-        }
-      `}</style>
-    </div>
+        </Nav>
+      </ModalContent>
+    </ModalOverlay>
   );
 }

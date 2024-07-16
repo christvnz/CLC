@@ -29,9 +29,9 @@ const Input = styled.input`
   padding: 10px;
   width: 100%;
   border: 1px solid #ccc;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
   @media (max-width: 768px) {
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 10px 0px 0px 10px;
   }
   font-size: 14px;
 `;
@@ -41,6 +41,7 @@ const HiddenInput = styled.input`
 `;
 
 const SubmitButton = styled.input`
+  width: 100%;
   padding: 10px 20px;
   color: white;
   border: none;
@@ -53,7 +54,7 @@ const SubmitButton = styled.input`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #005bb5;
+    /* background-color: #005bb5; */
   }
 `;
 

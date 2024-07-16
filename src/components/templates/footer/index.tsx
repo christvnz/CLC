@@ -1,5 +1,3 @@
-import HeaderStyles from '@src/styles/Header.module.css';
-import Logo from '../header/logo.svg';
 import WordLogo from '../header/wordLogo.svg';
 import EmailSubscription from '@src/components/features/emailSubscription';
 import FollowUs from './FollowUs';
@@ -7,6 +5,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
+  margin-top: 40px;
   background-color: #e08c54;
   padding: 0 32px 27px;
 
@@ -47,6 +46,7 @@ const Footer = () => {
 
         <div className="order-2 col-span-2 mt-8 mb-8 md:mt-0 md:mb-0">
           <Title>Follow us</Title>
+
           <FollowUs />
         </div>
 

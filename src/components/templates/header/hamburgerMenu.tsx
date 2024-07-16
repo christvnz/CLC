@@ -49,7 +49,7 @@ export default function HamburgerMenu() {
           cursor: pointer;
           outline: none;
           display: block;
-          @media (min-width: 768px) {
+          @media (min-width: 1024px) {
             display: none;
           }
         }

@@ -69,6 +69,7 @@
 
 
 .header__logoContainerLinkWord {
+  font-size: 26px;
   text-decoration: none;
   display: inline-flex;
   width: 100%;

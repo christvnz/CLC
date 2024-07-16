@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import HeaderStyles from '@src/styles/Header.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import LogoWord from './wordLogo.svg';
+import LogoWord from './wordLogoHeader.svg';
 import Logo from './logo.svg';
 import Search from '@src/components/features/Search';
 import HamburgerMenu from './hamburgerMenu';
+import FollowUs from '../footer/FollowUs';
 
 const Header = () => {
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
@@ -15,6 +16,9 @@ const Header = () => {
   return (
     <>
       <header className={HeaderStyles.header}>
+        <div className="m-auto mt-9 hidden w-4/5 justify-end lg:flex">
+          <FollowUs />
+        </div>
         <div className={HeaderStyles.header__logoContainer}>
           <Link href="/">
             <div
@@ -24,7 +28,7 @@ const Header = () => {
               <LogoWord className={HeaderStyles.header__logoName} />
             </div>
           </Link>
-          <Link href="/" className="hidden md:block">
+          <Link href="/" className="hidden lg:block">
             <div
               aria-label="Navigate to home page"
               className={`${HeaderStyles.header__logoContainerLinkWord} ${
@@ -33,7 +37,7 @@ const Header = () => {
               Home
             </div>
           </Link>
-          <Link href="/food" className="hidden md:block">
+          <Link href="/food" className="hidden lg:block">
             <div
               aria-label="Navigate to food page"
               className={`${HeaderStyles.header__logoContainerLinkWord} ${
@@ -42,7 +46,7 @@ const Header = () => {
               Food
             </div>
           </Link>
-          <Link href="/lifestyle" className="hidden md:block">
+          <Link href="/lifestyle" className="hidden lg:block">
             <div
               aria-label="Navigate to lifestyle page"
               className={`${HeaderStyles.header__logoContainerLinkWord} ${
@@ -51,7 +55,7 @@ const Header = () => {
               Lifestyle
             </div>
           </Link>
-          <Link href="/about" className="hidden md:block">
+          <Link href="/about" className="hidden lg:block">
             <div
               aria-label="Navigate to about page"
               className={`${HeaderStyles.header__logoContainerLinkWord} ${
@@ -61,7 +65,9 @@ const Header = () => {
             </div>
           </Link>
           <div className="flex flex-row">
-            <HamburgerMenu />
+            <div className="mr-3">
+              <HamburgerMenu />
+            </div>
             <button onClick={() => setSearchModalOpen(true)}>
               <svg
                 width="36"
