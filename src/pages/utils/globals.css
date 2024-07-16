@@ -37,7 +37,7 @@
   }
 
   p {
-    @apply font-normal leading-snug tracking-snug text-gray600 md:leading-normal;
+    @apply font-normal text-xl leading-snug tracking-snug text-gray600 md:leading-normal;
   }
   .navMargin{
     margin-top: 70px;
