@@ -15,6 +15,10 @@ const FooterContainer = styled.footer`
   }
 `;
 
+const Title = styled.h4`
+  text-transform: uppercase;
+`;
+
 const TextP = styled.p`
   font-size: 15px;
   color: white;
@@ -41,7 +45,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="order-2 col-span-2">
+        <div className="order-2 col-span-2 mt-8 mb-8 md:mt-0 md:mb-0">
+          <Title>Follow us</Title>
           <FollowUs />
         </div>
 

@@ -35,12 +35,6 @@
 }
 
 .header__logoContainer {
-  /* display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--color-foreground);
-    padding: 1rem 1rem 1rem 1rem; */
   --logo-height: 3rem;
   margin: 1rem auto;
   display: flex;
@@ -48,22 +42,23 @@
   align-items: center;
   flex-direction: row;
   z-index: 10;
-  position: fixed;
   justify-self: center;
+  padding: 0 0.5rem;
+
   width: 80vw;
+  /* position: fixed;
   border-radius: 2.5rem;
   background: var(--header-bg);
   backdrop-filter: blur(6px);
-  padding: 0 0.5rem;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
 }
 
 .header__logoContainerLink {
+  width: 144px;
   text-decoration: none;
   display: inline-flex;
-  width: 100%;
   justify-content: center;
 }
 
@@ -71,9 +66,7 @@
   width: 30px;
   height: 30px;
 }
-.header__logoName {
-  display: none;
-}
+
 
 .header__logoContainerLinkWord {
   text-decoration: none;
@@ -139,6 +132,7 @@
 
   .header__logoContainerLink {
     height: 4rem;
+    width: unset;
   }
 
   .header__logoImage {
@@ -146,9 +140,7 @@
     height: unset;
   }
 
-  .header__logoName {
-    display: block;
-  }
+  
 
   .header__navList {
     flex-direction: row;

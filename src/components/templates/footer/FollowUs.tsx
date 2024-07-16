@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   grid-column: span 1;
   @media (max-width: 768px) {
-    margin: 30px 0px;
+    /* margin: 30px 0px; */
   }
 `;
 
@@ -46,7 +46,6 @@ const Link = styled.a`
 
 const FollowUs = () => (
   <Container>
-    <Title>Follow us</Title>
     <LinksGrid>
       <LinkContainer>
         <LinkText>
