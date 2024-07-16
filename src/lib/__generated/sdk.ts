@@ -1734,7 +1734,7 @@ export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', 
     & ImageFieldsFragment
   ) | null };
 
-export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalName?: string | null, slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, cuisineType?: Array<string | null> | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
+export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalName?: string | null, slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, cuisineType?: Array<string | null> | null, blogPostType?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
   ) | null, author?: (
@@ -1925,6 +1925,7 @@ export const PageBlogPostFieldsFragmentDoc = gql`
     ...ImageFields
   }
   cuisineType
+  blogPostType
   content {
     json
     links {

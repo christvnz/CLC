@@ -37,6 +37,7 @@ fragment PageBlogPostFields on PageBlogPost {
     ...ImageFields
   }
   cuisineType
+  blogPostType
   content {
     json
     links {
