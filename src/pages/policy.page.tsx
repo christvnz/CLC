@@ -1,6 +1,4 @@
 import { GetStaticProps } from 'next';
-import { Trans, useTranslation } from 'next-i18next';
-import Link from 'next/link';
 
 import { getServerSideTranslations } from '@src/pages/utils/get-serverside-translations';
 
@@ -8,8 +6,6 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   max-width: 800px;
-  background-color: #000;
-
   margin-left: auto;
   margin-right: auto;
   padding: 30px 40px;
@@ -76,34 +72,6 @@ const About = () => {
   return (
     <Container className="navMargin">
       <Title>About Us</Title>
-      <Paragraph>
-        Chowluckclub.com is a digital platform and food website all about food with a focus on
-        interesting cuisine, restaurant and hospitality-related lifestyle stories that will also
-        give you a behind-the-scenes look.
-      </Paragraph>
-      <Paragraph>
-        As former F&B entrepreneurs in the restaurant and hotel-linked businesses, Chowluckclub.com
-        was co-founded by Lincoln Tan and Bee Keng Koh and now has a team of dedicated foodies.
-        Lincoln is also a senior journalist with the New Zealand Herald and Bee was a former
-        educator and education consultant.
-      </Paragraph>
-      <Paragraph>
-        As a team, we hunt down the best eats and stories to inspire hungry bellies.
-      </Paragraph>
-      <Paragraph>
-        Complementing the online food and lifestyle publication, we also run food-related events
-        from walking food tours, menu launches, food festivals, and events that dive into unique
-        food and cultural experiences.
-      </Paragraph>
-      <Paragraph>
-        To bring you a more visual aspect to the food adventures, we have our channels on Facebook,
-        TikTok, Instagram, and Xiaohongshu.
-      </Paragraph>
-      <Paragraph>
-        Rather than being an online review site, where strangers are your food critics,
-        Chowluckclub.com is like a trusted friend with a proven palate to help you with food choices
-        and hospitality experiences.
-      </Paragraph>
 
       <SectionTitle>Our Policy on Sponsorship, Collaboration, and Advertising</SectionTitle>
 
@@ -125,7 +93,7 @@ const About = () => {
         <Question>Can a featured company tell Chowluckclub what to say in the article?</Question>
         <Answer>
           Our editorial policy is that articles are based on our independent voice and choice and
-          will not be subject to any business’s editing or direction. Only if the facts are wrong
+          will not be subject to any business's editing or direction. Only if the facts are wrong
           will we make correction edits, but we will not be obliged to external requests.
         </Answer>
       </QnASection>
@@ -142,7 +110,7 @@ const About = () => {
 
       <QnASection>
         <Question>
-          Can we trust Chowluckclub.com of not being biased when you’re receiving sponsored meals?
+          Can we trust Chowluckclub.com of not being biased when you're receiving sponsored meals?
         </Question>
         <Answer>
           Credibility is most important to Chowluckclub. Articles are written as honestly as
@@ -157,9 +125,9 @@ const About = () => {
         <Question>How do I get Chowluckclub.com to do paid advertorials?</Question>
         <Answer>
           For paid advertorial campaigns, interested parties can contact our marketing team via
-          email. Note that payment for these will have to be in cash and not food vouchers. Also
-          kindly note that Chowluckclub.com maintains our right to reject would-be clients deemed to
-          be detrimental to readers and our members.
+          info@chowluckclub.com or contact us. Note that payment for these will have to be in cash
+          and not food vouchers. Also kindly note that chowluckclub.com maintains our right to
+          reject would-be clients deemed to be detrimental to readers and our members.
         </Answer>
       </QnASection>
 
