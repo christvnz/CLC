@@ -75,7 +75,7 @@ const About = () => {
     <Container className="navMargin">
       <Title>T&Cs / Privacy Policy</Title>
       <Paragraph>
-        1. GENERAL WEBSITE TERMS AND CONDITIONS 1. Acceptance: This website is owned and operated by
+        {` 1. GENERAL WEBSITE TERMS AND CONDITIONS 1. Acceptance: This website is owned and operated by
         Chow Luck Club ("CLC"). Your use of this website is subject to all applicable laws, these
         general terms and conditions, the privacy policy below and any additional terms of use
         indicated on this website (together, the "Terms"). By accessing and browsing chowluckcub.com
@@ -87,12 +87,12 @@ const About = () => {
         content at any one time. CLC does not accept any liability for any loss or damage which may
         directly or indirectly result from any advice, opinion, information, representation or
         omission, whether negligent or otherwise, contained on or accessed through our websites. 3.
-        CLC is not an agent of any retailer or third party. If you buy products from the retailer’s
+        CLC is not an agent of any retailer or third party. If you buy products from the retailer's
         own website, CLC will not be responsible to you in any way relating to those purchases or
         any transaction you may enter into through use of our website. 4. Additional terms: Some of
         the individual services, promotions, events and offers advertised on or through our websites
-        are governed by CLC’s and third party suppliers’ additional terms of use (the "Additional
-        Terms"). You accept, and agree to comply with, any Additional Terms (and CLC’s Additional
+        are governed by CLC's and third party suppliers' additional terms of use (the "Additional
+        Terms"). You accept, and agree to comply with, any Additional Terms (and CLC's Additional
         Terms prevail if there is any inconsistency with these general terms and conditions). 5.
         Changes to Terms: These Terms may be amended at any time by CLC without specific notice to
         you. The latest Terms will be posted on our website, and you should review these Terms prior
@@ -151,7 +151,7 @@ const About = () => {
         CLC reserves the right to terminate your use of our website for any reason whatsoever (in
         its sole discretion, acting reasonably). You agree to indemnify CLC against the consequences
         of any breach of these Terms. 2. PRIVACY POLICY 1. Your consent: By using our website and
-        signing up to email newsletter/s, offer alerts or other alerts and/or using CLC’s services,
+        signing up to email newsletter/s, offer alerts or other alerts and/or using CLC's services,
         you consent to our collection, use, disclosure, and processing of your personal information
         as described in this privacy policy. 2. If we change our privacy policies and procedures, we
         will post those changes on our website to keep you aware of what information we collect, how
@@ -174,8 +174,8 @@ const About = () => {
         (an IP address is a number that is automatically assigned to your computer whenever you are
         surfing the web) from which you access our website, and the date and time you access our
         website and the pages you visit. This information is used in statistical and aggregate
-        formats to assess the effectiveness of and improve our websites and CLC’s services, to
-        determine our visitors’ preferences and interests, and to help us target messaging on social
+        formats to assess the effectiveness of and improve our websites and CLC's services, to
+        determine our visitors' preferences and interests, and to help us target messaging on social
         media. We may collect nonpublic personal information from you when you voluntarily provide
         personally identifiable information to us through our websites, such as when entering
         competitions or submitting a membership application. We limit use of such information to the
@@ -207,7 +207,7 @@ const About = () => {
         alter or delete any personal information that we hold about you by contacting us
         info@chowluckclub.com. 9. Competition: Any personal information collected as part of a
         competition or survey will be held by CLC in accordance with its obligations under the
-        Privacy Act 2020 and will not be shared with third parties.
+        Privacy Act 2020 and will not be shared with third parties.`}
       </Paragraph>
     </Container>
   );

@@ -92,9 +92,9 @@ const About = () => {
       <QnASection>
         <Question>Can a featured company tell Chowluckclub what to say in the article?</Question>
         <Answer>
-          Our editorial policy is that articles are based on our independent voice and choice and
+          {`Our editorial policy is that articles are based on our independent voice and choice and
           will not be subject to any business's editing or direction. Only if the facts are wrong
-          will we make correction edits, but we will not be obliged to external requests.
+          will we make correction edits, but we will not be obliged to external requests.`}
         </Answer>
       </QnASection>
       <QnASection>
@@ -110,7 +110,7 @@ const About = () => {
 
       <QnASection>
         <Question>
-          Can we trust Chowluckclub.com of not being biased when you're receiving sponsored meals?
+          {`Can we trust Chowluckclub.com of not being biased when you're receiving sponsored meals?`}
         </Question>
         <Answer>
           Credibility is most important to Chowluckclub. Articles are written as honestly as

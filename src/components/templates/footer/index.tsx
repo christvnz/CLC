@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="order-2 col-span-2 mt-3 flex justify-center md:col-span-1 md:items-end md:justify-end">
-          <span className=" hover:text-gray-200 inline-flex gap-x-2">©Lincoln's Table 2024</span>
+          <span className=" hover:text-gray-200 inline-flex gap-x-2">{`©Lincoln's Table 2024`}</span>
           <Link className=" hover:text-gray-200 ml-2 inline-flex gap-x-2" href="/terms">
             T&Cs / Privacy Policy
           </Link>

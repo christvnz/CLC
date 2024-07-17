@@ -38,7 +38,7 @@ export default function HamburgerMenu() {
         </svg>
       </button>
       {isOpen && <Modal closeModal={toggleMenu} />}
-      <style jsx>{`
+      <style>{`
         .hamburger {
           font-size: 36px;
           background: none;
