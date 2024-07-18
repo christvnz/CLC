@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import HeaderStyles from '@src/styles/Header.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import LogoWord from './wordLogoHeader.svg';
-import Logo from './logo.svg';
+import LogoWord from './wordLogoBlack.svg';
 import Search from '@src/components/features/Search';
 import HamburgerMenu from './hamburgerMenu';
 import FollowUs from '../footer/FollowUs';
@@ -24,7 +23,6 @@ const Header = () => {
             <div
               className={`${HeaderStyles.header__logoContainerLink}`}
               aria-label="Navigate to home page">
-              <Logo className={HeaderStyles.header__logoImage} />
               <LogoWord className={HeaderStyles.header__logoName} />
             </div>
           </Link>

@@ -45,7 +45,8 @@
   justify-self: center;
   padding: 0 0.5rem;
 
-  width: 80vw;
+  width: 90vw;
+  max-width: 1440px;
   /* position: fixed;
   border-radius: 2.5rem;
   background: var(--header-bg);
@@ -56,7 +57,7 @@
 }
 
 .header__logoContainerLink {
-  width: 144px;
+  width: 200px;
   text-decoration: none;
   display: inline-flex;
   justify-content: center;

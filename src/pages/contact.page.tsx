@@ -101,7 +101,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
+    <div className="p-6">
       <h1 className="flex justify-center">Contact Us</h1>
       <p className="mr-auto ml-auto mt-5 mb-5 max-w-3xl">
         {`Got something awesome happening in New Zealand? Or maybe a genius idea to jazz up the
