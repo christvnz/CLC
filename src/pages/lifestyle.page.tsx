@@ -28,17 +28,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
 
-      <Container className="navMargin">
-        <Link href={`/${page.featuredBlogPost.slug}`}>
-          <ArticleHero article={page.featuredBlogPost} />
-        </Link>
+      <Container className="navMargin flex flex-col items-center">
+        <h1>Lifestyle</h1>
+        <p>{lifeStylePosts.length} results</p>
       </Container>
-
-      {/* Tutorial: contentful-and-the-starter-template.md */}
-      {/* Uncomment the line below to make the Greeting field available to render */}
-      {/*<Container>*/}
-      {/*  <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>*/}
-      {/*</Container>*/}
 
       <Container className="my-8 md:mb-10 lg:mb-16">
         <h2 className="mb-4 md:mb-6">{t('landingPage.latestArticles')}</h2>

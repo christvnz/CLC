@@ -13,53 +13,52 @@ import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log('props', props);
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
 
-  if (!page?.featuredBlogPost || !posts) return;
+  if (!page?.featuredBlogPost || !posts) return null;
 
-  const chinesePosts = posts.filter(post => {
-    return post.cuisineType?.includes('chinese');
-  });
-
-  const vietnamesePosts = posts.filter(post => {
-    return post.cuisineType?.includes('vietnamese');
-  });
-
-  const dessertsPosts = posts.filter(post => {
-    return post.cuisineType?.includes('desserts');
-  });
-
-  const otherPosts = posts.filter(post => {
-    return !post.cuisineType;
-  });
+  // Extract unique cuisine types
+  const cuisineTypes: any[] = [
+    ...new Set(
+      posts
+        .map(post => post.cuisineType)
+        .filter(Boolean)
+        .flat(),
+    ),
+  ];
+  const categorizedPosts = posts.reduce((acc, post) => {
+    const type = post.cuisineType || 'Others';
+    if (!acc[type]) acc[type] = [];
+    acc[type].push(post);
+    return acc;
+  }, {});
 
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
 
-      <Container className="navMargin">
-        <Link href={`/${page.featuredBlogPost.slug}`}>
-          <ArticleHero article={page.featuredBlogPost} />
-        </Link>
+      <Container className="navMargin flex flex-col items-center">
+        <h1>Food</h1>
+        <p>{posts.length} results</p>
       </Container>
 
-      <Container className="my-8 md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">Chinese</h2>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={chinesePosts} />
-      </Container>
-      <Container className="my-8 md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">Vietnamese</h2>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={vietnamesePosts} />
-      </Container>
+      {cuisineTypes.map(cuisineType => (
+        <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
+          <h2 className="mb-4 md:mb-6">{cuisineType}</h2>
+          <ArticleTileGrid
+            className="md:grid-cols-2 lg:grid-cols-3"
+            articles={categorizedPosts[cuisineType]}
+          />
+        </Container>
+      ))}
+
       <Container className="my-8 md:mb-10 lg:mb-16">
         <h2 className="mb-4 md:mb-6">Others</h2>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={otherPosts} />
-      </Container>
-      <Container className="my-8 md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">Desserts</h2>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={dessertsPosts} />
+        <ArticleTileGrid
+          className="md:grid-cols-2 lg:grid-cols-3"
+          articles={categorizedPosts['Others']}
+        />
       </Container>
     </>
   );
