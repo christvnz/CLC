@@ -16,18 +16,22 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
 
+  const foodPosts = posts.filter(post => {
+    return post.blogPostType === 'food';
+  });
+
   if (!page?.featuredBlogPost || !posts) return null;
 
   // Extract unique cuisine types
   const cuisineTypes: any[] = [
     ...new Set(
-      posts
+      foodPosts
         .map(post => post.cuisineType)
         .filter(Boolean)
         .flat(),
     ),
   ];
-  const categorizedPosts = posts.reduce((acc, post) => {
+  const categorizedPosts = foodPosts.reduce((acc, post) => {
     const type = post.cuisineType || 'Others';
     if (!acc[type]) acc[type] = [];
     acc[type].push(post);
