@@ -13,7 +13,7 @@ export const Layout = ({ children }: LayoutPropsInterface) => {
     <>
       <Header />
       <GoogleAnalytics />
-      {children}
+      <div className="pt-24 md:pt-28 lg:pt-52">{children}</div>
       <Footer />
     </>
   );
