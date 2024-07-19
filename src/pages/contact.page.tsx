@@ -52,7 +52,11 @@ const Textarea = styled.textarea`
   }
 `;
 
-const Button = styled.button`
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  loading?: boolean;
+}
+
+const Button = styled.button<ButtonProps>`
   width: 100%;
   padding: 15px;
   background: ${props => (props.loading ? '#bbb' : '#0284c7')};
