@@ -26,10 +26,12 @@ const TextP = styled.p`
 const Footer = () => {
   return (
     <FooterContainer className="flex-column">
-      <WordLogo />
+      <div className="pt-6 md:pt-0">
+        <WordLogo />
+      </div>
       <div className="grid grid-cols-2 md:gap-12">
         <div className="col-span-2 md:order-1 md:col-span-1">
-          <TextP className=" mt-6">
+          <TextP className="mb-6 mt-6 md:mb-0 md:mt-0">
             {`chowluckclub.com is a digital platform designed to help you discover great restaurants,
             products, and businesses in Auckland. It offers a comprehensive directory of dining
             options, ranging from casual eateries to gourmet establishments, along with a variety of
@@ -38,7 +40,7 @@ const Footer = () => {
             discovering the best of Auckland's offerings.`}
           </TextP>
         </div>
-        <div className="md:order-0 col-span-2 mt-6 md:col-span-1">
+        <div className="md:order-0 col-span-2 md:col-span-1">
           <div className="">
             <EmailSubscription />
           </div>
