@@ -3,13 +3,12 @@ import PublishedDateAndReadingTime from '@src/components/features/PublishedDateA
 
 export default function RecentPost({ post }) {
   return (
-    <article>
+    <a href={`/${post.slug}`}>
       <PublishedDateAndReadingTime date={post.publishedDate} readingTime={post.readingTime} />
-      <a href={`/${post.slug}`}>
-        <h2 className={RecentPostListStyles.contentList__title}>{post.title}</h2>
-      </a>
+
+      <h2 className={RecentPostListStyles.contentList__title}>{post.title}</h2>
 
       <div className={RecentPostListStyles.contentList__excerpt}></div>
-    </article>
+    </a>
   );
 }
