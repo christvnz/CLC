@@ -71,13 +71,13 @@ const EmailLink = styled.a`
 const About = () => {
   return (
     <Container className="navMargin">
-      <Title>About Us</Title>
+      <Title>Policy</Title>
 
       <SectionTitle>Our Policy on Sponsorship, Collaboration, and Advertising</SectionTitle>
 
       <QnASection>
         <Question>
-          Can a restaurant invite Chowluckclub.com team for food tasting or give a media gift in
+          Can a restaurant invite chowluckclub.com team for food tasting or give a media gift in
           exchange for a feature write-up?
         </Question>
         <Answer>
@@ -90,7 +90,7 @@ const About = () => {
       </QnASection>
 
       <QnASection>
-        <Question>Can a featured company tell Chowluckclub what to say in the article?</Question>
+        <Question>Can a featured company tell chowluckclub what to say in the article?</Question>
         <Answer>
           {`Our editorial policy is that articles are based on our independent voice and choice and
           will not be subject to any business's editing or direction. Only if the facts are wrong
@@ -98,7 +98,7 @@ const About = () => {
         </Answer>
       </QnASection>
       <QnASection>
-        <Question>Can we pay Chowluckclub.com to write an article about us?</Question>
+        <Question>Can we pay chowluckclub.com to write an article about us?</Question>
         <Answer>
           In general, articles on the publication are from meals and experiences that have been paid
           out of our own budget or through media invites. However, to sustain the operations, we
@@ -110,10 +110,10 @@ const About = () => {
 
       <QnASection>
         <Question>
-          {`Can we trust Chowluckclub.com of not being biased when you're receiving sponsored meals?`}
+          {`Can we trust chowluckclub.com of not being biased when you're receiving sponsored meals?`}
         </Question>
         <Answer>
-          Credibility is most important to Chowluckclub. Articles are written as honestly as
+          Credibility is most important to chowluckclub. Articles are written as honestly as
           possible from the perspectives of our writers, and we will not have ratings or any
           overhyped recommendations. Whether a meal is paid-for or sponsored will not affect what we
           say. As mentioned above, our team of writers are more like a sharing from trusted friends
@@ -122,7 +122,7 @@ const About = () => {
       </QnASection>
 
       <QnASection>
-        <Question>How do I get Chowluckclub.com to do paid advertorials?</Question>
+        <Question>How do I get chowluckclub.com to do paid advertorials?</Question>
         <Answer>
           For paid advertorial campaigns, interested parties can contact our marketing team via
           info@chowluckclub.com or contact us. Note that payment for these will have to be in cash
@@ -133,7 +133,7 @@ const About = () => {
 
       <QnASection>
         <Question>
-          How much lead time do we need to give Chowluckclub.com to publish an article?
+          How much lead time do we need to give chowluckclub.com to publish an article?
         </Question>
         <Answer>
           The publishing lead time for articles is two weeks, but this is subject to the editor’s
@@ -142,7 +142,7 @@ const About = () => {
       </QnASection>
 
       <QnASection>
-        <Question>What kind of promotions can we do with Chowluckclub.com?</Question>
+        <Question>What kind of promotions can we do with chowluckclub.com?</Question>
         <Answer>
           From Giveaways to hosting, many options can be further explored if you contact our
           business team.
