@@ -8,7 +8,7 @@ const StyledTitle = styled.h2`
   color: white;
   font-weight: 400;
   margin-bottom: 16px;
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     font-size: 42px;
   }
 `;
@@ -30,6 +30,7 @@ const Input = styled.input`
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 10px 10px 0px 0px;
+  text-align: center;
   @media (max-width: 768px) {
     border-radius: 10px 0px 0px 10px;
   }
@@ -75,7 +76,7 @@ const MailchimpSignup = () => {
           id="mce-EMAIL"
           required
           defaultValue=""
-          placeholder="Enter your email"
+          placeholder="Email address"
         />
 
         <div id="mce-responses" className="clear foot">
