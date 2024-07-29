@@ -28,7 +28,7 @@ export const ArticleAuthor = ({ article }: ArticleAuthorProps) => {
           />
         )}
       </div>
-      <span className="text-xs leading-none text-gray600" {...inspectorProps({ fieldId: 'name' })}>
+      <span className="text-sm leading-none text-gray600" {...inspectorProps({ fieldId: 'name' })}>
         {author?.name}
       </span>
     </div>

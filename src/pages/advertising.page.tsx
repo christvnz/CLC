@@ -83,7 +83,7 @@ const About = () => {
             <li>Create brand awareness</li>
             <li>Content marketing</li>
           </ul>
-          <p>
+          <p className="mt-2">
             We work with you to grow your business and tell your stories. Your goal is our goal.
           </p>
         </div>

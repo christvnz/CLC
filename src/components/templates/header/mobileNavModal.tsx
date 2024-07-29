@@ -8,6 +8,7 @@ const Title = styled.h4`
   text-transform: uppercase;
   color: grey;
   margin-top: 20px;
+  font-size: 14px;
 `;
 
 const ModalOverlay = styled.div`

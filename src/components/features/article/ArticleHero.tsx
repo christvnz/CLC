@@ -52,7 +52,7 @@ export const ArticleHero = ({
           )}
           <div
             className={twMerge(
-              'ml-auto hidden pl-2 text-xs text-gray600',
+              'ml-auto hidden pl-2 text-sm text-gray600',
               isReversedLayout ? 'lg:block' : '',
             )}
             {...inspectorProps({ fieldId: 'publishedDate' })}>
@@ -66,7 +66,7 @@ export const ArticleHero = ({
           </p>
         )}
         <div
-          className={twMerge('mt-2 text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
+          className={twMerge('mt-2 text-sm text-gray600', isReversedLayout ? 'lg:hidden' : '')}
           {...inspectorProps({ fieldId: 'publishedDate' })}>
           <FormatDate date={publishedDate} />
         </div>

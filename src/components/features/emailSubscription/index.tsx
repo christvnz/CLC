@@ -21,7 +21,7 @@ const StyledForm = styled.form`
     flex-direction: row;
   }
   border-radius: 10px;
-  background: var(--color-primary);
+  background: #feab01ff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 

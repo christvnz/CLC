@@ -66,7 +66,7 @@ const Header = () => {
             <div className="mr-3">
               <HamburgerMenu />
             </div>
-            <button onClick={() => setSearchModalOpen(true)}>
+            <button onClick={() => setSearchModalOpen(true)} className="mr-2">
               <svg
                 width="36"
                 height="36"

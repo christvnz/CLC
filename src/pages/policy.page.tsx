@@ -71,9 +71,7 @@ const EmailLink = styled.a`
 const About = () => {
   return (
     <Container className="navMargin">
-      <Title>Policy</Title>
-
-      <SectionTitle>Our Policy on Sponsorship, Collaboration, and Advertising</SectionTitle>
+      <Title>Our Policy on Sponsorship, Collaboration, and Advertising</Title>
 
       <QnASection>
         <Question>

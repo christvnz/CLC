@@ -65,7 +65,7 @@ const Footer = () => {
             <div className="grid space-y-3">
               <TextP>
                 <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/about">
-                  About us
+                  About Us
                 </Link>
               </TextP>
               <TextP>
@@ -80,7 +80,7 @@ const Footer = () => {
               </TextP>
               <TextP>
                 <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/contact">
-                  Contact us
+                  Contact Us
                 </Link>
               </TextP>
             </div>
