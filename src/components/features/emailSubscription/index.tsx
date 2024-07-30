@@ -28,7 +28,6 @@ const StyledForm = styled.form`
 const Input = styled.input`
   padding: 10px;
   width: 100%;
-  border: 1px solid #ccc;
   border-radius: 10px 10px 0px 0px;
   text-align: center;
   @media (max-width: 768px) {
@@ -53,10 +52,6 @@ const SubmitButton = styled.input`
   }
   cursor: pointer;
   transition: background-color 0.3s ease;
-
-  &:hover {
-    /* background-color: #005bb5; */
-  }
 `;
 
 const MailchimpSignup = () => {
