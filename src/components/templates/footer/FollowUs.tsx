@@ -55,10 +55,10 @@ const FollowUs = () => (
       <LinkContainer>
         <LinkText>
           <a
-            href="https://www.instagram.com/chowluckclub"
+            href="https://www.facebook.com/groups/chowluckclub/"
             target="_blank"
             rel="noopener noreferrer">
-            <Image src={instagram} width={24} height={24} alt="instagram" />
+            <Image src={facebook} width={24} height={24} alt="facebook" />
           </a>
         </LinkText>
       </LinkContainer>
@@ -73,10 +73,10 @@ const FollowUs = () => (
       <LinkContainer>
         <LinkText>
           <a
-            href="https://www.facebook.com/groups/chowluckclub/"
+            href="https://www.instagram.com/chowluckclub"
             target="_blank"
             rel="noopener noreferrer">
-            <Image src={facebook} width={24} height={24} alt="facebook" />
+            <Image src={instagram} width={24} height={24} alt="instagram" />
           </a>
         </LinkText>
       </LinkContainer>
