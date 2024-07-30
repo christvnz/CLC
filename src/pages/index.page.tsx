@@ -34,7 +34,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Container>
 
       <Container className="flex justify-center ">
-        <h2 className="underline">
+        <h2 className="mb-3 font-light text-gray700 underline underline-offset-4">
           <Link href="/food">Find out more</Link>
         </h2>
       </Container>
