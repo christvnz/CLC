@@ -10,7 +10,7 @@ export default function HamburgerMenu() {
   };
 
   return (
-    <div>
+    <div className="pt-0.5">
       <button className="hamburger" onClick={toggleMenu}>
         <svg
           width="33"

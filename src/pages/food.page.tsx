@@ -1,6 +1,6 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useTranslation } from 'next-i18next';
+import { groupArticlesByCuisineType } from './utils/groupArticles';
 import Link from 'next/link';
 
 import { getServerSideTranslations } from './utils/get-serverside-translations';
@@ -21,22 +21,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   });
 
   if (!page?.featuredBlogPost || !posts) return null;
+  3;
 
-  // Extract unique cuisine types
-  const cuisineTypes: any[] = [
-    ...new Set(
-      foodPosts
-        .map(post => post.cuisineType)
-        .filter(Boolean)
-        .flat(),
-    ),
-  ];
-  const categorizedPosts = foodPosts.reduce((acc, post) => {
-    const type = post.cuisineType || 'Others';
-    if (!acc[type]) acc[type] = [];
-    acc[type].push(post);
-    return acc;
-  }, {});
+  const groupedArticles = groupArticlesByCuisineType(foodPosts);
+  const foodCategories = Object.keys(groupedArticles);
 
   return (
     <>
@@ -46,8 +34,23 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <h1>Food</h1>
         <p>{posts.length} results</p>
       </Container>
-
-      {cuisineTypes.map(cuisineType => (
+      {foodCategories.map(cuisineType => {
+        if (groupedArticles[cuisineType].length === 0) {
+          return null;
+        }
+        return (
+          <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
+            <h2 className="mb-4 md:mb-6">
+              {cuisineType.charAt(0).toUpperCase() + cuisineType.slice(1)}
+            </h2>
+            <ArticleTileGrid
+              className="md:grid-cols-2 lg:grid-cols-3"
+              articles={groupedArticles[cuisineType]}
+            />
+          </Container>
+        );
+      })}
+      {/* {cuisineTypes.map(cuisineType => (
         <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
           <h2 className="mb-4 md:mb-6">{cuisineType}</h2>
           <ArticleTileGrid
@@ -63,7 +66,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           className="md:grid-cols-2 lg:grid-cols-3"
           articles={categorizedPosts['Others']}
         />
-      </Container>
+      </Container> */}
     </>
   );
 };
