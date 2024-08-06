@@ -426,55 +426,6 @@ type ContentfulTag {
 }
 
 """
-type of  Cuisine, with limited option like Chinese, Japanese or Italian... each blog article should have this content type so the reader knows which type of cuisine the article is about [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/cuisineType)
-"""
-type CuisineType implements Entry & _Node {
-  _id: ID!
-  contentfulMetadata: ContentfulMetadata!
-  cuisine(locale: String): String
-  linkedFrom(allowedLocales: [String]): CuisineTypeLinkingCollections
-  sys: Sys!
-}
-
-type CuisineTypeCollection {
-  items: [CuisineType]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input CuisineTypeFilter {
-  AND: [CuisineTypeFilter]
-  Cuisine: String
-  Cuisine_contains: String
-  Cuisine_exists: Boolean
-  Cuisine_in: [String]
-  Cuisine_not: String
-  Cuisine_not_contains: String
-  Cuisine_not_in: [String]
-  OR: [CuisineTypeFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  sys: SysFilter
-}
-
-type CuisineTypeLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum CuisineTypeOrder {
-  Cuisine_ASC
-  Cuisine_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-"""
 A date-time string at UTC, such as 2007-12-03T10:15:30Z,
     compliant with the 'date-time' format outlined in section 5.6 of
     the RFC 3339 profile of the ISO 8601 standard for representation
@@ -962,8 +913,6 @@ type Query {
   componentRichImageCollection(limit: Int = 100, locale: String, order: [ComponentRichImageOrder], preview: Boolean, skip: Int = 0, where: ComponentRichImageFilter): ComponentRichImageCollection
   componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
   componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, where: ComponentSeoFilter): ComponentSeoCollection
-  cuisineType(id: String!, locale: String, preview: Boolean): CuisineType
-  cuisineTypeCollection(limit: Int = 100, locale: String, order: [CuisineTypeOrder], preview: Boolean, skip: Int = 0, where: CuisineTypeFilter): CuisineTypeCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection

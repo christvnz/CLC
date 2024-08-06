@@ -708,76 +708,6 @@ export type ContentfulTag = {
   name?: Maybe<Scalars['String']>;
 };
 
-/** type of  Cuisine, with limited option like Chinese, Japanese or Italian... each blog article should have this content type so the reader knows which type of cuisine the article is about [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/cuisineType) */
-export type CuisineType = Entry & _Node & {
-  __typename?: 'CuisineType';
-  _id: Scalars['ID'];
-  contentfulMetadata: ContentfulMetadata;
-  cuisine?: Maybe<Scalars['String']>;
-  linkedFrom?: Maybe<CuisineTypeLinkingCollections>;
-  sys: Sys;
-};
-
-
-/** type of  Cuisine, with limited option like Chinese, Japanese or Italian... each blog article should have this content type so the reader knows which type of cuisine the article is about [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/cuisineType) */
-export type CuisineTypeCuisineArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-/** type of  Cuisine, with limited option like Chinese, Japanese or Italian... each blog article should have this content type so the reader knows which type of cuisine the article is about [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/cuisineType) */
-export type CuisineTypeLinkedFromArgs = {
-  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type CuisineTypeCollection = {
-  __typename?: 'CuisineTypeCollection';
-  items: Array<Maybe<CuisineType>>;
-  limit: Scalars['Int'];
-  skip: Scalars['Int'];
-  total: Scalars['Int'];
-};
-
-export type CuisineTypeFilter = {
-  AND?: InputMaybe<Array<InputMaybe<CuisineTypeFilter>>>;
-  Cuisine?: InputMaybe<Scalars['String']>;
-  Cuisine_contains?: InputMaybe<Scalars['String']>;
-  Cuisine_exists?: InputMaybe<Scalars['Boolean']>;
-  Cuisine_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  Cuisine_not?: InputMaybe<Scalars['String']>;
-  Cuisine_not_contains?: InputMaybe<Scalars['String']>;
-  Cuisine_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  OR?: InputMaybe<Array<InputMaybe<CuisineTypeFilter>>>;
-  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  sys?: InputMaybe<SysFilter>;
-};
-
-export type CuisineTypeLinkingCollections = {
-  __typename?: 'CuisineTypeLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type CuisineTypeLinkingCollectionsEntryCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-  skip?: InputMaybe<Scalars['Int']>;
-};
-
-export enum CuisineTypeOrder {
-  CuisineAsc = 'Cuisine_ASC',
-  CuisineDesc = 'Cuisine_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
 export type Entry = {
   contentfulMetadata: ContentfulMetadata;
   sys: Sys;
@@ -1376,8 +1306,6 @@ export type Query = {
   componentRichImageCollection?: Maybe<ComponentRichImageCollection>;
   componentSeo?: Maybe<ComponentSeo>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
-  cuisineType?: Maybe<CuisineType>;
-  cuisineTypeCollection?: Maybe<CuisineTypeCollection>;
   entryCollection?: Maybe<EntryCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
@@ -1458,23 +1386,6 @@ export type QueryComponentSeoCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ComponentSeoFilter>;
-};
-
-
-export type QueryCuisineTypeArgs = {
-  id: Scalars['String'];
-  locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-};
-
-
-export type QueryCuisineTypeCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Scalars['String']>;
-  order?: InputMaybe<Array<InputMaybe<CuisineTypeOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CuisineTypeFilter>;
 };
 
 
@@ -1746,7 +1657,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'CuisineType' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
