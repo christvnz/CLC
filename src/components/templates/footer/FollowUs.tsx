@@ -54,10 +54,7 @@ const FollowUs = () => (
     <LinksGrid>
       <LinkContainer>
         <LinkText>
-          <a
-            href="https://www.facebook.com/groups/chowluckclub/"
-            target="_blank"
-            rel="noopener noreferrer">
+          <a href="https://www.facebook.com/chowluckclub" target="_blank" rel="noopener noreferrer">
             <Image src={facebook} width={24} height={24} alt="facebook" />
           </a>
         </LinkText>
