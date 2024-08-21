@@ -25,6 +25,7 @@ const StyledTitle = styled.h2`
   color: white;
   font-weight: 400;
   margin-bottom: 16px;
+  margin-right: 20px;
   @media (min-width: 1024px) {
     font-size: 42px;
   }
@@ -71,7 +72,7 @@ const Footer = () => {
 
             <FollowUs />
           </div>
-          <div className="order-2 col-span-2 md:col-span-3">
+          <div className="order-2 col-span-2 md:col-span-2">
             <div className="grid space-y-3">
               <TextP>
                 <Link className=" hover:text-gray-200 inline-flex gap-x-2" href="/about">
@@ -95,15 +96,12 @@ const Footer = () => {
               </TextP>
             </div>
           </div>
-          <div className="order-2 col-span-3 mt-5 flex  items-center md:order-2 md:col-span-1 md:justify-start">
-            <StyledTitle>PARTNER WITH</StyledTitle>
+          <div className="order-2 col-span-3 mt-5 flex  items-center md:order-2 md:justify-start xl:col-span-1">
+            <StyledTitle>Our Partners</StyledTitle>
+            <Image src={HNZ} width={100} height={200} alt="Hospitality New Zealand" />
+            <Image src={honda} width={100} height={35} alt="Honda" />
           </div>
-          <div className="order-2 col-span-3 mt-3 flex justify-center md:order-2 md:col-span-1 ">
-            <Image src={HNZ} width={200} height={200} alt="Hospitality New Zealand" />
-          </div>
-          <div className="order-2 col-span-3 mt-3 flex items-center justify-center md:order-2 md:col-span-1">
-            <Image src={honda} width={200} height={35} alt="Honda" />
-          </div>
+
           <div className="order-2 col-span-3 mt-8 flex md:col-span-3 md:items-end md:justify-end">
             <span className=" hover:text-gray-200 inline-flex gap-x-2">{`©Lincoln's Table 2024`}</span>
             <Link className=" hover:text-gray-200 ml-2 inline-flex gap-x-2" href="/terms">
