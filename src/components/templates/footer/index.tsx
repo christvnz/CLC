@@ -25,7 +25,8 @@ const StyledTitle = styled.h2`
   color: white;
   font-weight: 400;
   margin-bottom: 16px;
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-top: 16px;
   @media (min-width: 1024px) {
     font-size: 42px;
   }
@@ -97,7 +98,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="order-2 col-span-3 mt-5 flex  items-center md:order-2 md:justify-start xl:col-span-1">
-            <StyledTitle>Our Partners</StyledTitle>
+            <StyledTitle>OUR PARTNERS</StyledTitle>
             <Image src={HNZ} width={100} height={200} alt="Hospitality New Zealand" />
             <Image src={honda} width={100} height={35} alt="Honda" />
           </div>
