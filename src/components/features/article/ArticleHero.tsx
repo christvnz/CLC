@@ -7,6 +7,7 @@ import { ArticleLabel } from '@src/components/features/article/ArticleLabel';
 import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+import ArticleSocialShare from './ArticleSocialShare';
 
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
@@ -21,7 +22,7 @@ export const ArticleHero = ({
   const { t } = useTranslation();
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
-  const { title, shortDescription, publishedDate } = article;
+  const { title, shortDescription, publishedDate, slug } = article;
 
   return (
     <div
@@ -65,6 +66,9 @@ export const ArticleHero = ({
             {shortDescription}
           </p>
         )}
+        <div className='mt-6'>  
+          <ArticleSocialShare title={title || ''} slug={slug || ''}/>
+        </div>
         <div
           className={twMerge('mt-2 text-sm text-gray600', isReversedLayout ? 'lg:hidden' : '')}
           {...inspectorProps({ fieldId: 'publishedDate' })}>

@@ -9,6 +9,7 @@ import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
+import ArticleSocialShare from '@src/components/features/article/ArticleSocialShare';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
@@ -25,6 +26,9 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Container>
       <Container className="mt-8 max-w-4xl">
         <ArticleContent article={blogPost} />
+        <div className='mt-6'>
+          <ArticleSocialShare title={blogPost.title || ''} slug={blogPost.slug} />
+        </div>
       </Container>
       {relatedPosts.length ? (
         <Container className="mt-8 max-w-5xl">
