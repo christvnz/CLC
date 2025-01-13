@@ -28,7 +28,6 @@ interface Props {
   slug: string;
 }
 
-// Add Social Share Buttons
 const ArticleSocialShare = (props: Props) => {
   const location = `${process.env.NEXT_PUBLIC_BASE_URL}${props.slug}`;
   const title = props.title || '';
