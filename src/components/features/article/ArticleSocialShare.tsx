@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { toast } from 'react-toastify';
 
 const FacebookShareButton = dynamic(
   () => import('react-share').then(mod => mod.FacebookShareButton),
@@ -36,10 +36,18 @@ const ArticleSocialShare = (props: Props) => {
     e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(location);
+    toast.success('Link copied to clipboard');
   };
 
   const handleShareClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+  };
+
+  const handleWhatsappShare = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const text = title + ' - ' + location;
+    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
 
   return (
@@ -50,10 +58,8 @@ const ArticleSocialShare = (props: Props) => {
           <FacebookIcon size={32} round />
         </FacebookShareButton>
       </button>
-      <button onClick={handleShareClick} className="!h-[32px]">
-        <WhatsappShareButton url={location} title={title} separator=" - ">
-          <WhatsappIcon size={32} round />
-        </WhatsappShareButton>
+      <button onClick={handleWhatsappShare} className="!h-[32px]">
+        <WhatsappIcon size={32} round />
       </button>
       <button 
         className='bg-colorWhite border rounded-full h-[32px] w-[32px] text-gray600 flex items-center justify-center' 
