@@ -140,6 +140,11 @@ export default function Modal({ closeModal }) {
                 About
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/gallery" onClick={handleNavClick}>
+                Gallery
+              </NavLink>
+            </NavItem>
           </NavList>
           <div>
             <Title>Follow us</Title>
