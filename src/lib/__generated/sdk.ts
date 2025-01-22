@@ -174,6 +174,7 @@ export type AssetLinkingCollections = {
   componentRichImageCollection?: Maybe<ComponentRichImageCollection>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  galleryCollection?: Maybe<GalleryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
 };
 
@@ -203,6 +204,14 @@ export type AssetLinkingCollectionsComponentSeoCollectionArgs = {
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsGalleryCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -684,10 +693,26 @@ export enum ComponentSeoOrder {
 
 export type ContentfulMetadata = {
   __typename?: 'ContentfulMetadata';
+  concepts: Array<Maybe<TaxonomyConcept>>;
   tags: Array<Maybe<ContentfulTag>>;
 };
 
+export type ContentfulMetadataConceptsDescendantsFilter = {
+  id_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ContentfulMetadataConceptsFilter = {
+  descendants?: InputMaybe<ContentfulMetadataConceptsDescendantsFilter>;
+  id_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  id_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export type ContentfulMetadataFilter = {
+  concepts?: InputMaybe<ContentfulMetadataConceptsFilter>;
+  concepts_exists?: InputMaybe<Scalars['Boolean']>;
   tags?: InputMaybe<ContentfulMetadataTagsFilter>;
   tags_exists?: InputMaybe<Scalars['Boolean']>;
 };
@@ -737,6 +762,112 @@ export enum EntryOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type Gallery = Entry & _Node & {
+  __typename?: 'Gallery';
+  _id: Scalars['ID'];
+  contentfulMetadata: ContentfulMetadata;
+  imagesCollection?: Maybe<AssetCollection>;
+  linkedFrom?: Maybe<GalleryLinkingCollections>;
+  slug?: Maybe<Scalars['String']>;
+  sys: Sys;
+  thumbnail?: Maybe<Asset>;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type GalleryImagesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type GalleryLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type GallerySlugArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type GalleryThumbnailArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type GalleryTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type GalleryCollection = {
+  __typename?: 'GalleryCollection';
+  items: Array<Maybe<Gallery>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type GalleryFilter = {
+  AND?: InputMaybe<Array<InputMaybe<GalleryFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<GalleryFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  imagesCollection_exists?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+  thumbnail_exists?: InputMaybe<Scalars['Boolean']>;
+  title?: InputMaybe<Scalars['String']>;
+  title_contains?: InputMaybe<Scalars['String']>;
+  title_exists?: InputMaybe<Scalars['Boolean']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not?: InputMaybe<Scalars['String']>;
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type GalleryLinkingCollections = {
+  __typename?: 'GalleryLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type GalleryLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum GalleryOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 export enum ImageFormat {
@@ -1307,6 +1438,8 @@ export type Query = {
   componentSeo?: Maybe<ComponentSeo>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  gallery?: Maybe<Gallery>;
+  galleryCollection?: Maybe<GalleryCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageLanding?: Maybe<PageLanding>;
@@ -1396,6 +1529,23 @@ export type QueryEntryCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryGalleryArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryGalleryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<GalleryOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<GalleryFilter>;
 };
 
 
@@ -1489,6 +1639,15 @@ export type SysFilter = {
   publishedVersion_lte?: InputMaybe<Scalars['Float']>;
   publishedVersion_not?: InputMaybe<Scalars['Float']>;
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+};
+
+/**
+ * Represents a taxonomy concept entity for finding and organizing content easily.
+ *         Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
+ */
+export type TaxonomyConcept = {
+  __typename?: 'TaxonomyConcept';
+  id?: Maybe<Scalars['String']>;
 };
 
 export type _Node = {
@@ -1657,7 +1816,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -1686,6 +1845,40 @@ export type PageBlogPostCollectionQueryVariables = Exact<{
 export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & PageBlogPostFieldsFragment
+    ) | null> } | null };
+
+export type PageGalleryPostFieldsFragment = { __typename: 'Gallery', title?: string | null, slug?: string | null, thumbnail?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<(
+      { __typename?: 'Asset' }
+      & ImageFieldsFragment
+    ) | null> } | null };
+
+export type PageGalleryQueryVariables = Exact<{
+  slug: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type PageGalleryQuery = { __typename?: 'Query', galleryCollection?: { __typename?: 'GalleryCollection', items: Array<(
+      { __typename?: 'Gallery' }
+      & PageGalleryPostFieldsFragment
+    ) | null> } | null };
+
+export type GalleryCollectionQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Array<InputMaybe<GalleryOrder>> | InputMaybe<GalleryOrder>>;
+  where?: InputMaybe<GalleryFilter>;
+}>;
+
+
+export type GalleryCollectionQuery = { __typename?: 'Query', galleryCollection?: { __typename?: 'GalleryCollection', items: Array<(
+      { __typename?: 'Gallery' }
+      & PageGalleryPostFieldsFragment
     ) | null> } | null };
 
 export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalName?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
@@ -1854,6 +2047,21 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   }
 }
     `;
+export const PageGalleryPostFieldsFragmentDoc = gql`
+    fragment PageGalleryPostFields on Gallery {
+  __typename
+  title
+  slug
+  thumbnail {
+    ...ImageFields
+  }
+  imagesCollection {
+    items {
+      ...ImageFields
+    }
+  }
+}
+    `;
 export const PageLandingFieldsFragmentDoc = gql`
     fragment PageLandingFields on PageLanding {
   __typename
@@ -1928,6 +2136,37 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
+export const PageGalleryDocument = gql`
+    query pageGallery($slug: String!, $locale: String, $preview: Boolean) {
+  galleryCollection(
+    limit: 1
+    where: {slug: $slug}
+    locale: $locale
+    preview: $preview
+  ) {
+    items {
+      ...PageGalleryPostFields
+    }
+  }
+}
+    ${PageGalleryPostFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
+export const GalleryCollectionDocument = gql`
+    query galleryCollection($locale: String, $preview: Boolean, $limit: Int, $order: [GalleryOrder], $where: GalleryFilter) {
+  galleryCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageGalleryPostFields
+    }
+  }
+}
+    ${PageGalleryPostFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const PageLandingDocument = gql`
     query pageLanding($locale: String, $preview: Boolean) {
   pageLandingCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -1972,6 +2211,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pageBlogPostCollection(variables?: PageBlogPostCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageBlogPostCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostCollectionQuery>(PageBlogPostCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPostCollection', 'query', variables);
+    },
+    pageGallery(variables: PageGalleryQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageGalleryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageGalleryQuery>(PageGalleryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageGallery', 'query', variables);
+    },
+    galleryCollection(variables?: GalleryCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GalleryCollectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GalleryCollectionQuery>(GalleryCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'galleryCollection', 'query', variables);
     },
     pageLanding(variables?: PageLandingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageLandingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageLandingQuery>(PageLandingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageLanding', 'query', variables);

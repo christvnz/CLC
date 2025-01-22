@@ -63,6 +63,15 @@ const Header = () => {
               About
             </div>
           </Link>
+          <Link href="/gallery" className="hidden lg:block">
+            <div
+              aria-label="Navigate to about page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/gallery' ? HeaderStyles.active : ''
+              }`}>
+              Gallery
+            </div>
+          </Link>
           <div className="flex flex-row">
             <div className="mr-3">
               <HamburgerMenu />
