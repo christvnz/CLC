@@ -176,6 +176,7 @@ export type AssetLinkingCollections = {
   entryCollection?: Maybe<EntryCollection>;
   galleryCollection?: Maybe<GalleryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+  pageEventCollection?: Maybe<PageEventCollection>;
 };
 
 
@@ -220,6 +221,14 @@ export type AssetLinkingCollectionsGalleryCollectionArgs = {
 
 
 export type AssetLinkingCollectionsPageBlogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsPageEventCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -1334,6 +1343,149 @@ export enum PageBlogPostRelatedBlogPostsCollectionOrder {
   TitleDesc = 'title_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEvent = Entry & _Node & {
+  __typename?: 'PageEvent';
+  _id: Scalars['ID'];
+  buttonLink?: Maybe<Scalars['String']>;
+  contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<Scalars['String']>;
+  linkedFrom?: Maybe<PageEventLinkingCollections>;
+  price?: Maybe<Scalars['Float']>;
+  slug?: Maybe<Scalars['String']>;
+  sys: Sys;
+  thumbnail?: Maybe<Asset>;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventButtonLinkArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventPriceArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventSlugArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventThumbnailArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type PageEventCollection = {
+  __typename?: 'PageEventCollection';
+  items: Array<Maybe<PageEvent>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type PageEventFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PageEventFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PageEventFilter>>>;
+  buttonLink?: InputMaybe<Scalars['String']>;
+  buttonLink_contains?: InputMaybe<Scalars['String']>;
+  buttonLink_exists?: InputMaybe<Scalars['Boolean']>;
+  buttonLink_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  buttonLink_not?: InputMaybe<Scalars['String']>;
+  buttonLink_not_contains?: InputMaybe<Scalars['String']>;
+  buttonLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']>;
+  description_contains?: InputMaybe<Scalars['String']>;
+  description_exists?: InputMaybe<Scalars['Boolean']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description_not?: InputMaybe<Scalars['String']>;
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  price?: InputMaybe<Scalars['Float']>;
+  price_exists?: InputMaybe<Scalars['Boolean']>;
+  price_gt?: InputMaybe<Scalars['Float']>;
+  price_gte?: InputMaybe<Scalars['Float']>;
+  price_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  price_lt?: InputMaybe<Scalars['Float']>;
+  price_lte?: InputMaybe<Scalars['Float']>;
+  price_not?: InputMaybe<Scalars['Float']>;
+  price_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+  thumbnail_exists?: InputMaybe<Scalars['Boolean']>;
+  title?: InputMaybe<Scalars['String']>;
+  title_contains?: InputMaybe<Scalars['String']>;
+  title_exists?: InputMaybe<Scalars['Boolean']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not?: InputMaybe<Scalars['String']>;
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PageEventLinkingCollections = {
+  __typename?: 'PageEventLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageEventLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PageEventOrder {
+  ButtonLinkAsc = 'buttonLink_ASC',
+  ButtonLinkDesc = 'buttonLink_DESC',
+  PriceAsc = 'price_ASC',
+  PriceDesc = 'price_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 /** To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageLanding) */
 export type PageLanding = Entry & _Node & {
   __typename?: 'PageLanding';
@@ -1442,6 +1594,8 @@ export type Query = {
   galleryCollection?: Maybe<GalleryCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+  pageEvent?: Maybe<PageEvent>;
+  pageEventCollection?: Maybe<PageEventCollection>;
   pageLanding?: Maybe<PageLanding>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
 };
@@ -1563,6 +1717,23 @@ export type QueryPageBlogPostCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PageBlogPostFilter>;
+};
+
+
+export type QueryPageEventArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryPageEventCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageEventOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageEventFilter>;
 };
 
 
@@ -1816,7 +1987,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -1845,6 +2016,25 @@ export type PageBlogPostCollectionQueryVariables = Exact<{
 export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & PageBlogPostFieldsFragment
+    ) | null> } | null };
+
+export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, price?: number | null, buttonLink?: string | null, thumbnail?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null };
+
+export type PageEventsCollectionQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Array<InputMaybe<PageEventOrder>> | InputMaybe<PageEventOrder>>;
+  where?: InputMaybe<PageEventFilter>;
+}>;
+
+
+export type PageEventsCollectionQuery = { __typename?: 'Query', pageEventCollection?: { __typename?: 'PageEventCollection', items: Array<(
+      { __typename?: 'PageEvent' }
+      & PageEventPostFieldsFragment
     ) | null> } | null };
 
 export type PageGalleryPostFieldsFragment = { __typename: 'Gallery', title?: string | null, slug?: string | null, thumbnail?: (
@@ -2047,6 +2237,19 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   }
 }
     `;
+export const PageEventPostFieldsFragmentDoc = gql`
+    fragment PageEventPostFields on PageEvent {
+  __typename
+  title
+  slug
+  description
+  price
+  buttonLink
+  thumbnail {
+    ...ImageFields
+  }
+}
+    `;
 export const PageGalleryPostFieldsFragmentDoc = gql`
     fragment PageGalleryPostFields on Gallery {
   __typename
@@ -2136,6 +2339,22 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
+export const PageEventsCollectionDocument = gql`
+    query pageEventsCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageEventOrder], $where: PageEventFilter) {
+  pageEventCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageEventPostFields
+    }
+  }
+}
+    ${PageEventPostFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const PageGalleryDocument = gql`
     query pageGallery($slug: String!, $locale: String, $preview: Boolean) {
   galleryCollection(
@@ -2211,6 +2430,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pageBlogPostCollection(variables?: PageBlogPostCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageBlogPostCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostCollectionQuery>(PageBlogPostCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPostCollection', 'query', variables);
+    },
+    pageEventsCollection(variables?: PageEventsCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageEventsCollectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageEventsCollectionQuery>(PageEventsCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageEventsCollection', 'query', variables);
     },
     pageGallery(variables: PageGalleryQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageGalleryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageGalleryQuery>(PageGalleryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageGallery', 'query', variables);
