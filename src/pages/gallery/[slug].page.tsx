@@ -7,7 +7,6 @@ import { client, previewClient } from '@src/lib/client';
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
 import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
 import React from 'react';
 import { ImageFieldsFragment } from '@src/lib/__generated/sdk';
 
