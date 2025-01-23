@@ -54,7 +54,8 @@
     "react-share": "^5.1.2",
     "react-toastify": "^11.0.2",
     "sharp": "^0.31.3",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "yet-another-react-lightbox": "^3.21.7"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",

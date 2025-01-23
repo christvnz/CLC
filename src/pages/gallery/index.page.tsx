@@ -28,7 +28,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                 return (
                                     <Link href={`/gallery/${item.slug}`} key={index} className="rounded-xl overflow-hidden bg-colorWhite col-span-12 xl:col-span-4 lg:col-span-4 sm:col-span-6 cursor-pointer">
                                         <div className="p-4">
-                                            <p className="h3 mb-2 text-gray800 md:mb-3 text-xl font-bold text-gray-800">
+                                            <p className="h3 mb-2 text-[#ff0000] md:mb-3 text-xl font-bold text-gray-800 text-center">
                                                 {item.title}
                                             </p>
                                             <div className="rounded-lg overflow-hidden">

@@ -6,10 +6,23 @@ import { CtfImage } from '@src/components/features/contentful';
 import { client, previewClient } from '@src/lib/client';
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import React from 'react';
+import { ImageFieldsFragment } from '@src/lib/__generated/sdk';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const page = useContentfulLiveUpdates(props.page);
     const gallery = useContentfulLiveUpdates(props.gallery);
+    const slides = gallery.imagesCollection.items.map((image: ImageFieldsFragment) => {
+        return {
+            src: image.url
+        }
+    });
+    slides.unshift({
+        src: gallery.thumbnail.url
+    });
+    const [index, setIndex] = React.useState(-1);
     return (
         <>
             {page.seoFields && <SeoFields {...page.seoFields} />}
@@ -18,7 +31,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <div className='grid grid-cols-12 gap-5 mt-3'>
                     <div className='col-span-12 xl:col-span-4 lg:col-span-4 sm:col-span-6'>
                         <CtfImage
-                            nextImageProps={{ className: 'object-cover aspect-[16/10] w-full rounded-md cursor-pointer' }}
+                            nextImageProps={
+                                { 
+                                    className: 'object-cover aspect-[16/10] w-full rounded-md cursor-pointer', 
+                                    onClick: () => setIndex(0)
+                                }
+                            }
                             {...gallery.thumbnail}     
                         />
                     </div>
@@ -26,12 +44,23 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                         gallery.imagesCollection.items.map((image: any, index: number) => (
                             <div key={index} className='col-span-12 xl:col-span-4 lg:col-span-4 sm:col-span-6'>
                                 <CtfImage
-                                    nextImageProps={{ className: 'object-cover aspect-[16/10] w-full rounded-md cursor-pointer' }}
+                                    nextImageProps={
+                                        { 
+                                            className: 'object-cover aspect-[16/10] w-full rounded-md cursor-pointer', 
+                                            onClick: () => setIndex(index + 1)
+                                        }
+                                    }
                                     {...image}     
                                 />
                             </div>
                         ))
                     }
+                    <Lightbox
+                        index={index}
+                        slides={slides}
+                        open={index >= 0}
+                        close={() => setIndex(-1)}
+                    />
                 </div>
             </Container>
         </>
