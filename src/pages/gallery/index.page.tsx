@@ -95,8 +95,8 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                 })
                                             }
                                         </div>
-                                        <div className='text-center text-lg mt-2 hover:underline'>
-                                            <Link href={`/gallery/${item.slug}`} className="rounded-xl overflow-hidden bg-colorWhite col-span-12 cursor-pointer">
+                                        <div className='text-center text-lg mt-5'>
+                                            <Link href={`/gallery/${item.slug}`} className="bg-[#FEAB01] text-colorWhite font-medium py-2 px-5 rounded-xl overflow-hidden col-span-12 cursor-pointer">
                                                 View All
                                             </Link>
                                         </div>
