@@ -42,14 +42,9 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                     { item.amount }
                                                 </div>
                                                 <p className="text-gray600 mb-4 line-clamp-3 md:line-clamp-5 break-all">{ item.description }</p>
-                                                {
-                                                    item.buttonLink ?
-                                                    <a href={item.buttonLink?.toString()} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
-                                                        Buy Now
-                                                    </a>
-                                                    :
-                                                    <span className="text-[#FEAB01] font-medium w-fit text-lg">{ item.eventCta ? item.eventCta : 'Coming soon!' }</span>
-                                                }
+                                                <a href={item.buttonLink ? item.buttonLink : '#'} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
+                                                    { item.eventCta ? item.eventCta : 'Buy Now' }
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
