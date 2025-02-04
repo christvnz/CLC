@@ -1347,15 +1347,22 @@ export enum PageBlogPostRelatedBlogPostsCollectionOrder {
 export type PageEvent = Entry & _Node & {
   __typename?: 'PageEvent';
   _id: Scalars['ID'];
+  amount?: Maybe<Scalars['String']>;
   buttonLink?: Maybe<Scalars['String']>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']>;
+  eventCta?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<PageEventLinkingCollections>;
-  price?: Maybe<Scalars['Float']>;
   slug?: Maybe<Scalars['String']>;
   sys: Sys;
   thumbnail?: Maybe<Asset>;
   title?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventAmountArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1372,14 +1379,14 @@ export type PageEventDescriptionArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
-export type PageEventLinkedFromArgs = {
-  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+export type PageEventEventCtaArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
-export type PageEventPriceArgs = {
-  locale?: InputMaybe<Scalars['String']>;
+export type PageEventLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1412,6 +1419,13 @@ export type PageEventCollection = {
 export type PageEventFilter = {
   AND?: InputMaybe<Array<InputMaybe<PageEventFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PageEventFilter>>>;
+  amount?: InputMaybe<Scalars['String']>;
+  amount_contains?: InputMaybe<Scalars['String']>;
+  amount_exists?: InputMaybe<Scalars['Boolean']>;
+  amount_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  amount_not?: InputMaybe<Scalars['String']>;
+  amount_not_contains?: InputMaybe<Scalars['String']>;
+  amount_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   buttonLink?: InputMaybe<Scalars['String']>;
   buttonLink_contains?: InputMaybe<Scalars['String']>;
   buttonLink_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1427,15 +1441,13 @@ export type PageEventFilter = {
   description_not?: InputMaybe<Scalars['String']>;
   description_not_contains?: InputMaybe<Scalars['String']>;
   description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  price?: InputMaybe<Scalars['Float']>;
-  price_exists?: InputMaybe<Scalars['Boolean']>;
-  price_gt?: InputMaybe<Scalars['Float']>;
-  price_gte?: InputMaybe<Scalars['Float']>;
-  price_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
-  price_lt?: InputMaybe<Scalars['Float']>;
-  price_lte?: InputMaybe<Scalars['Float']>;
-  price_not?: InputMaybe<Scalars['Float']>;
-  price_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  eventCta?: InputMaybe<Scalars['String']>;
+  eventCta_contains?: InputMaybe<Scalars['String']>;
+  eventCta_exists?: InputMaybe<Scalars['Boolean']>;
+  eventCta_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  eventCta_not?: InputMaybe<Scalars['String']>;
+  eventCta_not_contains?: InputMaybe<Scalars['String']>;
+  eventCta_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   slug?: InputMaybe<Scalars['String']>;
   slug_contains?: InputMaybe<Scalars['String']>;
   slug_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1468,10 +1480,12 @@ export type PageEventLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum PageEventOrder {
+  AmountAsc = 'amount_ASC',
+  AmountDesc = 'amount_DESC',
   ButtonLinkAsc = 'buttonLink_ASC',
   ButtonLinkDesc = 'buttonLink_DESC',
-  PriceAsc = 'price_ASC',
-  PriceDesc = 'price_DESC',
+  EventCtaAsc = 'eventCta_ASC',
+  EventCtaDesc = 'eventCta_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -2018,7 +2032,7 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
       & PageBlogPostFieldsFragment
     ) | null> } | null };
 
-export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, price?: number | null, buttonLink?: string | null, thumbnail?: (
+export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, thumbnail?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null };
@@ -2243,11 +2257,12 @@ export const PageEventPostFieldsFragmentDoc = gql`
   title
   slug
   description
-  price
+  amount
   buttonLink
   thumbnail {
     ...ImageFields
   }
+  eventCta
 }
     `;
 export const PageGalleryPostFieldsFragmentDoc = gql`

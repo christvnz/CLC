@@ -13,9 +13,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     const page = useContentfulLiveUpdates(props.page);
     const events = useContentfulLiveUpdates(props.events);
-
-    console.log(events);
-
     return (
         <>
             {page.seoFields && <SeoFields {...page.seoFields} />}
@@ -28,7 +25,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                         <div className="grid grid-cols-12 gap-5">
                             {
                                 events.map((item: PageEvent, index: number) => (
-                                    <div key={index} className="rounded-lg flex flex-col md:flex-row gap-8 p-2 lg:p-8 border col-span-12">
+                                    <div key={index} className="rounded-lg flex flex-col md:flex-row gap-8 p-2 lg:p-8 col-span-12 shadow-md border border-gray300">
                                         <div className="rounded-xl overflow-hidden">
                                             {
                                                 item.thumbnail &&
@@ -42,12 +39,17 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                             <div className="flex flex-col justify-center h-full gap-y-4">
                                                 <h2 className="text-[35px] font-bold text-gray-800 mb-2">{ item.title }</h2>
                                                 <div className="text-[25px] text-[#FEAB01] rounded-bl-lg font-bold">
-                                                    $ { item.price?.toFixed(2) } NZD
+                                                    { item.amount }
                                                 </div>
                                                 <p className="text-gray600 mb-4 line-clamp-3 md:line-clamp-5 break-all">{ item.description }</p>
-                                                <a href={item.buttonLink?.toString()} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
-                                                    Buy Now
-                                                </a>
+                                                {
+                                                    item.buttonLink ?
+                                                    <a href={item.buttonLink?.toString()} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
+                                                        Buy Now
+                                                    </a>
+                                                    :
+                                                    <span className="text-[#FEAB01] font-medium w-fit text-lg">{ item.eventCta ? item.eventCta : 'Coming soon!' }</span>
+                                                }
                                             </div>
                                         </div>
                                     </div>

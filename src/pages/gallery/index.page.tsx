@@ -12,10 +12,6 @@ import NoData from '@src/components/features/noData'
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const page = useContentfulLiveUpdates(props.page);
     const gallery = useContentfulLiveUpdates(props.gallery);
-
-    console.log(gallery);
-    
-
     return (
         <>
             {page.seoFields && <SeoFields {...page.seoFields} />}
@@ -30,19 +26,42 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                         {
                             gallery.map((item: any, index: number) => {
                                 return (
-                                    <Link href={`/gallery/${item.slug}`} key={index} className="rounded-xl overflow-hidden bg-colorWhite col-span-12 xl:col-span-4 lg:col-span-4 sm:col-span-6 cursor-pointer">
-                                        <div className="p-4">
-                                            <p className="h3 mb-2 text-colorBlack md:mb-3 text-xl font-bold text-gray-800 text-center">
-                                                {item.title}
-                                            </p>
-                                            <div className="rounded-lg overflow-hidden">
+                                    <div key={index} className="rounded-xl overflow-hidden bg-colorWhite col-span-12 cursor-pointer p-4">
+                                        <p className="h3 mb-2 text-colorBlack md:mb-3 text-xl font-semibold text-gray-800 text-center">
+                                            {item.title}
+                                        </p>
+                                        <div className='grid grid-cols-12 gap-5'>
+                                            <div className="rounded-lg overflow-hidden aspect-[16/10] col-span-12  xl:col-span-3 lg:col-span-3 sm:col-span-4   ">
                                                 <CtfImage
                                                     nextImageProps={{ className: 'object-cover aspect-[16/10] w-full' }}
                                                     {...item.thumbnail}     
                                                 />
                                             </div>
+                                            {
+                                                item.imagesCollection.items.slice(0, 3).map((image: any, imageKey: number) => {
+                                                    return (
+                                                        <div key={imageKey} className="rounded-lg aspect-[16/10] overflow-hidden col-span-12  xl:col-span-3 lg:col-span-3 sm:col-span-4 relative">
+                                                            <CtfImage
+                                                                nextImageProps={{ className: 'object-cover aspect-[16/10] w-full' }}
+                                                                {...image}     
+                                                            />
+                                                            {
+                                                                imageKey === 2 && item.imagesCollection.items.length > 3 &&
+                                                                <div className='absolute bg-colorBlack opacity-80 top-0 left-0 w-full h-full flex items-center justify-center text-colorWhite'>
+                                                                    <span className='text-2xl font-semibold'>+{item.imagesCollection.items.length - 3}</span>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                    </Link>
+                                        <div className='text-center text-lg mt-2 hover:underline'>
+                                            <Link href={`/gallery/${item.slug}`} className="rounded-xl overflow-hidden bg-colorWhite col-span-12 cursor-pointer">
+                                                View All
+                                            </Link>
+                                        </div>
+                                    </div>
                                 )
                             })
                         }

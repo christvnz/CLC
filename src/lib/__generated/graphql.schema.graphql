@@ -931,11 +931,12 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 """
 type PageEvent implements Entry & _Node {
   _id: ID!
+  amount(locale: String): String
   buttonLink(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   description(locale: String): String
+  eventCta(locale: String): String
   linkedFrom(allowedLocales: [String]): PageEventLinkingCollections
-  price(locale: String): Float
   slug(locale: String): String
   sys: Sys!
   thumbnail(locale: String, preview: Boolean): Asset
@@ -952,6 +953,13 @@ type PageEventCollection {
 input PageEventFilter {
   AND: [PageEventFilter]
   OR: [PageEventFilter]
+  amount: String
+  amount_contains: String
+  amount_exists: Boolean
+  amount_in: [String]
+  amount_not: String
+  amount_not_contains: String
+  amount_not_in: [String]
   buttonLink: String
   buttonLink_contains: String
   buttonLink_exists: Boolean
@@ -967,15 +975,13 @@ input PageEventFilter {
   description_not: String
   description_not_contains: String
   description_not_in: [String]
-  price: Float
-  price_exists: Boolean
-  price_gt: Float
-  price_gte: Float
-  price_in: [Float]
-  price_lt: Float
-  price_lte: Float
-  price_not: Float
-  price_not_in: [Float]
+  eventCta: String
+  eventCta_contains: String
+  eventCta_exists: Boolean
+  eventCta_in: [String]
+  eventCta_not: String
+  eventCta_not_contains: String
+  eventCta_not_in: [String]
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -999,10 +1005,12 @@ type PageEventLinkingCollections {
 }
 
 enum PageEventOrder {
+  amount_ASC
+  amount_DESC
   buttonLink_ASC
   buttonLink_DESC
-  price_ASC
-  price_DESC
+  eventCta_ASC
+  eventCta_DESC
   slug_ASC
   slug_DESC
   sys_firstPublishedAt_ASC
