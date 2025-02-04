@@ -8,10 +8,43 @@ import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
 import Link from 'next/link';
 import NoData from '@src/components/features/noData'
+import Lightbox from "yet-another-react-lightbox";
+import React from 'react';
+import { Gallery, ImageFieldsFragment } from '@src/lib/__generated/sdk';
+
+interface ImageInterface {
+    src: string
+}
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const page = useContentfulLiveUpdates(props.page);
     const gallery = useContentfulLiveUpdates(props.gallery);
+    const [index, setIndex] = React.useState(-1);
+    const [slides, setSlides] = React.useState([]);
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const handleSetSlides = (item: any, index: number) => {
+        if (!item.imagesCollection) return;
+        const images = item.imagesCollection.items.map((image: ImageFieldsFragment) => {
+            return {
+                src: image.url
+            }
+        })
+        if (item.thumbnail && item.thumbnail.url)
+            images.unshift({
+                src: item.thumbnail?.url
+            });
+        setSlides(images);
+        setIndex(index);
+        setIsOpen(true);
+    }
+
+    const handleSliderClose = () => {
+        setIndex(-1)
+        setIsOpen(false)
+        setSlides([])
+    }
+
     return (
         <>
             {page.seoFields && <SeoFields {...page.seoFields} />}
@@ -33,7 +66,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                         <div className='grid grid-cols-12 gap-5'>
                                             <div className="rounded-lg overflow-hidden aspect-[16/10] col-span-12  xl:col-span-3 lg:col-span-3 sm:col-span-4   ">
                                                 <CtfImage
-                                                    nextImageProps={{ className: 'object-cover aspect-[16/10] w-full' }}
+                                                    nextImageProps={{ 
+                                                        className: 'object-cover aspect-[16/10] w-full hover:scale-105',
+                                                        onClick: () => handleSetSlides(item, 0)
+                                                    }}
                                                     {...item.thumbnail}     
                                                 />
                                             </div>
@@ -42,7 +78,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                     return (
                                                         <div key={imageKey} className="rounded-lg aspect-[16/10] overflow-hidden col-span-12  xl:col-span-3 lg:col-span-3 sm:col-span-4 relative">
                                                             <CtfImage
-                                                                nextImageProps={{ className: 'object-cover aspect-[16/10] w-full' }}
+                                                                nextImageProps={{ 
+                                                                    className: 'object-cover aspect-[16/10] w-full hover:scale-105',
+                                                                    onClick: () => handleSetSlides(item, imageKey + 1)
+                                                                }}
                                                                 {...image}     
                                                             />
                                                             {
@@ -73,6 +112,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                     )
                 }
             </Container>
+            <Lightbox
+                index={index}
+                slides={slides}
+                open={isOpen}
+                close={handleSliderClose}
+            />
         </>
     )
 }
