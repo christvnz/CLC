@@ -54,7 +54,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                     item.date && 
                                                         <div className="text-lg">
                                                             <span className="font-bold">Date: </span>
-                                                            <span>{ formatDateForDisplay(item.date) }</span>
+                                                            <span>{ item.date }</span>
                                                         </div>
                                                 }
                                                 {
