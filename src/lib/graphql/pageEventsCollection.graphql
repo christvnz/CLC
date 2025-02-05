@@ -4,11 +4,14 @@ fragment PageEventPostFields on PageEvent {
     slug,
     description,
     amount,
-    buttonLink
+    buttonLink,
     thumbnail {
         ...ImageFields
     },
-    eventCta
+    eventCta,
+    location,
+    date,
+    time
 }
 
 query pageEventsCollection(

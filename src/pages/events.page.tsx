@@ -8,6 +8,7 @@ import { SeoFields } from '@src/components/features/seo';
 import { PageEvent } from "@src/lib/__generated/sdk";
 import { CtfImage } from '@src/components/features/contentful';
 import NoData from '@src/components/features/noData'
+import { formatDateForDisplay } from "@src/utils/Date";
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
@@ -36,12 +37,33 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                             }
                                         </div>
                                         <div className="flex-1">
-                                            <div className="flex flex-col justify-center h-full gap-y-4">
+                                            <div className="flex flex-col justify-center h-full gap-y-3">
                                                 <h2 className="text-[35px] font-bold text-gray-800 mb-2">{ item.title }</h2>
                                                 <div className="text-[25px] text-[#FEAB01] rounded-bl-lg font-bold">
                                                     { item.amount }
                                                 </div>
-                                                <p className="text-gray600 mb-4 line-clamp-3 md:line-clamp-5 break-all">{ item.description }</p>
+                                                <p className="text-gray600 mb-3 line-clamp-3 md:line-clamp-5 break-all">{ item.description }</p>
+                                                {
+                                                    item.location &&
+                                                        <div className="text-lg">
+                                                            <span className="font-bold">Location: </span>
+                                                            <span>{ item.location }</span>
+                                                        </div>
+                                                }
+                                                {
+                                                    item.date && 
+                                                        <div className="text-lg">
+                                                            <span className="font-bold">Date: </span>
+                                                            <span>{ formatDateForDisplay(item.date) }</span>
+                                                        </div>
+                                                }
+                                                {
+                                                    item.time && 
+                                                        <div className="text-lg">
+                                                            <span className="font-bold">Time: </span>
+                                                            <span>{ item.time }</span>
+                                                        </div>
+                                                }
                                                 <a href={item.buttonLink ? item.buttonLink : '#'} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
                                                     { item.eventCta ? item.eventCta : 'Buy Now' }
                                                 </a>

@@ -1350,12 +1350,15 @@ export type PageEvent = Entry & _Node & {
   amount?: Maybe<Scalars['String']>;
   buttonLink?: Maybe<Scalars['String']>;
   contentfulMetadata: ContentfulMetadata;
+  date?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   eventCta?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<PageEventLinkingCollections>;
+  location?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sys: Sys;
   thumbnail?: Maybe<Asset>;
+  time?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -1368,6 +1371,12 @@ export type PageEventAmountArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
 export type PageEventButtonLinkArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventDateArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
@@ -1391,6 +1400,12 @@ export type PageEventLinkedFromArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventLocationArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
 export type PageEventSlugArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
@@ -1400,6 +1415,12 @@ export type PageEventSlugArgs = {
 export type PageEventThumbnailArgs = {
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventTimeArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1434,6 +1455,15 @@ export type PageEventFilter = {
   buttonLink_not_contains?: InputMaybe<Scalars['String']>;
   buttonLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  date?: InputMaybe<Scalars['DateTime']>;
+  date_exists?: InputMaybe<Scalars['Boolean']>;
+  date_gt?: InputMaybe<Scalars['DateTime']>;
+  date_gte?: InputMaybe<Scalars['DateTime']>;
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  date_lt?: InputMaybe<Scalars['DateTime']>;
+  date_lte?: InputMaybe<Scalars['DateTime']>;
+  date_not?: InputMaybe<Scalars['DateTime']>;
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   description?: InputMaybe<Scalars['String']>;
   description_contains?: InputMaybe<Scalars['String']>;
   description_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1448,6 +1478,13 @@ export type PageEventFilter = {
   eventCta_not?: InputMaybe<Scalars['String']>;
   eventCta_not_contains?: InputMaybe<Scalars['String']>;
   eventCta_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location?: InputMaybe<Scalars['String']>;
+  location_contains?: InputMaybe<Scalars['String']>;
+  location_exists?: InputMaybe<Scalars['Boolean']>;
+  location_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location_not?: InputMaybe<Scalars['String']>;
+  location_not_contains?: InputMaybe<Scalars['String']>;
+  location_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   slug?: InputMaybe<Scalars['String']>;
   slug_contains?: InputMaybe<Scalars['String']>;
   slug_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1457,6 +1494,13 @@ export type PageEventFilter = {
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
   thumbnail_exists?: InputMaybe<Scalars['Boolean']>;
+  time?: InputMaybe<Scalars['String']>;
+  time_contains?: InputMaybe<Scalars['String']>;
+  time_exists?: InputMaybe<Scalars['Boolean']>;
+  time_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  time_not?: InputMaybe<Scalars['String']>;
+  time_not_contains?: InputMaybe<Scalars['String']>;
+  time_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   title?: InputMaybe<Scalars['String']>;
   title_contains?: InputMaybe<Scalars['String']>;
   title_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1484,8 +1528,12 @@ export enum PageEventOrder {
   AmountDesc = 'amount_DESC',
   ButtonLinkAsc = 'buttonLink_ASC',
   ButtonLinkDesc = 'buttonLink_DESC',
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
   EventCtaAsc = 'eventCta_ASC',
   EventCtaDesc = 'eventCta_DESC',
+  LocationAsc = 'location_ASC',
+  LocationDesc = 'location_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -1496,6 +1544,8 @@ export enum PageEventOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TimeAsc = 'time_ASC',
+  TimeDesc = 'time_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC'
 }
@@ -2032,7 +2082,7 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
       & PageBlogPostFieldsFragment
     ) | null> } | null };
 
-export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, thumbnail?: (
+export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, location?: string | null, date?: any | null, time?: string | null, thumbnail?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null };
@@ -2263,6 +2313,9 @@ export const PageEventPostFieldsFragmentDoc = gql`
     ...ImageFields
   }
   eventCta
+  location
+  date
+  time
 }
     `;
 export const PageGalleryPostFieldsFragmentDoc = gql`

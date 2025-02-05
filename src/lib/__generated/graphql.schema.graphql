@@ -934,12 +934,15 @@ type PageEvent implements Entry & _Node {
   amount(locale: String): String
   buttonLink(locale: String): String
   contentfulMetadata: ContentfulMetadata!
+  date(locale: String): DateTime
   description(locale: String): String
   eventCta(locale: String): String
   linkedFrom(allowedLocales: [String]): PageEventLinkingCollections
+  location(locale: String): String
   slug(locale: String): String
   sys: Sys!
   thumbnail(locale: String, preview: Boolean): Asset
+  time(locale: String): String
   title(locale: String): String
 }
 
@@ -968,6 +971,15 @@ input PageEventFilter {
   buttonLink_not_contains: String
   buttonLink_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  date: DateTime
+  date_exists: Boolean
+  date_gt: DateTime
+  date_gte: DateTime
+  date_in: [DateTime]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_not: DateTime
+  date_not_in: [DateTime]
   description: String
   description_contains: String
   description_exists: Boolean
@@ -982,6 +994,13 @@ input PageEventFilter {
   eventCta_not: String
   eventCta_not_contains: String
   eventCta_not_in: [String]
+  location: String
+  location_contains: String
+  location_exists: Boolean
+  location_in: [String]
+  location_not: String
+  location_not_contains: String
+  location_not_in: [String]
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -991,6 +1010,13 @@ input PageEventFilter {
   slug_not_in: [String]
   sys: SysFilter
   thumbnail_exists: Boolean
+  time: String
+  time_contains: String
+  time_exists: Boolean
+  time_in: [String]
+  time_not: String
+  time_not_contains: String
+  time_not_in: [String]
   title: String
   title_contains: String
   title_exists: Boolean
@@ -1009,8 +1035,12 @@ enum PageEventOrder {
   amount_DESC
   buttonLink_ASC
   buttonLink_DESC
+  date_ASC
+  date_DESC
   eventCta_ASC
   eventCta_DESC
+  location_ASC
+  location_DESC
   slug_ASC
   slug_DESC
   sys_firstPublishedAt_ASC
@@ -1021,6 +1051,8 @@ enum PageEventOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  time_ASC
+  time_DESC
   title_ASC
   title_DESC
 }
