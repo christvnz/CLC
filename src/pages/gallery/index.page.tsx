@@ -73,7 +73,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                             />
                                                             {
                                                                 imageKey === 3 && item.imagesCollection.items.length > 4 &&
-                                                                <div onClick={() => handleSetSlides(item, imageKey)} className='absolute bg-colorBlack opacity-80 top-0 left-0 w-full h-full flex items-center justify-center text-colorWhite'>
+                                                                <div role="button" tabIndex={0} onClick={() => handleSetSlides(item, imageKey)} className='absolute bg-colorBlack opacity-80 top-0 left-0 w-full h-full flex items-center justify-center text-colorWhite'>
                                                                     <span className='text-2xl font-semibold'>+{item.imagesCollection.items.length - 4}</span>
                                                                 </div>
                                                             }
