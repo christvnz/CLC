@@ -18,9 +18,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             src: image.url
         }
     });
-    slides.unshift({
-        src: gallery.thumbnail.url
-    });
     const [index, setIndex] = React.useState(-1);
     return (
         <>
@@ -28,17 +25,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <Container className="my-5 md:mb-10 lg:mb-16">
                 <h1 className='h3 mb-2 text-gray800 md:mb-3 text-center block'>{ gallery.title }</h1>
                 <div className='grid grid-cols-12 gap-5 mt-3'>
-                    <div className='col-span-12 xl:col-span-4 lg:col-span-4 sm:col-span-6 overflow-hidden'>
-                        <CtfImage
-                            nextImageProps={
-                                { 
-                                    className: 'object-cover aspect-[16/10] w-full rounded-md cursor-pointer hover:scale-105', 
-                                    onClick: () => setIndex(0)
-                                }
-                            }
-                            {...gallery.thumbnail}     
-                        />
-                    </div>
                     {
                         gallery.imagesCollection.items.map((image: any, index: number) => (
                             <div key={index} className='col-span-12 xl:col-span-4 lg:col-span-4 sm:col-span-6 overflow-hidden'>
@@ -46,7 +32,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                     nextImageProps={
                                         { 
                                             className: 'object-cover aspect-[16/10] w-full rounded-md cursor-pointer hover:scale-105', 
-                                            onClick: () => setIndex(index + 1)
+                                            onClick: () => setIndex(index)
                                         }
                                     }
                                     {...image}     

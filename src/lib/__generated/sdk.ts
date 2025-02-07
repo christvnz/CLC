@@ -782,7 +782,6 @@ export type Gallery = Entry & _Node & {
   linkedFrom?: Maybe<GalleryLinkingCollections>;
   slug?: Maybe<Scalars['String']>;
   sys: Sys;
-  thumbnail?: Maybe<Asset>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -805,13 +804,6 @@ export type GalleryLinkedFromArgs = {
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
 export type GallerySlugArgs = {
   locale?: InputMaybe<Scalars['String']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
-export type GalleryThumbnailArgs = {
-  locale?: InputMaybe<Scalars['String']>;
-  preview?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -841,7 +833,6 @@ export type GalleryFilter = {
   slug_not_contains?: InputMaybe<Scalars['String']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
-  thumbnail_exists?: InputMaybe<Scalars['Boolean']>;
   title?: InputMaybe<Scalars['String']>;
   title_contains?: InputMaybe<Scalars['String']>;
   title_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1350,7 +1341,7 @@ export type PageEvent = Entry & _Node & {
   amount?: Maybe<Scalars['String']>;
   buttonLink?: Maybe<Scalars['String']>;
   contentfulMetadata: ContentfulMetadata;
-  date?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   eventCta?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<PageEventLinkingCollections>;
@@ -1455,15 +1446,13 @@ export type PageEventFilter = {
   buttonLink_not_contains?: InputMaybe<Scalars['String']>;
   buttonLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  date?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['String']>;
+  date_contains?: InputMaybe<Scalars['String']>;
   date_exists?: InputMaybe<Scalars['Boolean']>;
-  date_gt?: InputMaybe<Scalars['DateTime']>;
-  date_gte?: InputMaybe<Scalars['DateTime']>;
-  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
-  date_lt?: InputMaybe<Scalars['DateTime']>;
-  date_lte?: InputMaybe<Scalars['DateTime']>;
-  date_not?: InputMaybe<Scalars['DateTime']>;
-  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  date_not?: InputMaybe<Scalars['String']>;
+  date_not_contains?: InputMaybe<Scalars['String']>;
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   description?: InputMaybe<Scalars['String']>;
   description_contains?: InputMaybe<Scalars['String']>;
   description_exists?: InputMaybe<Scalars['Boolean']>;
@@ -2082,7 +2071,7 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
       & PageBlogPostFieldsFragment
     ) | null> } | null };
 
-export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, location?: string | null, date?: any | null, time?: string | null, thumbnail?: (
+export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, location?: string | null, date?: string | null, time?: string | null, thumbnail?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null };
@@ -2101,10 +2090,7 @@ export type PageEventsCollectionQuery = { __typename?: 'Query', pageEventCollect
       & PageEventPostFieldsFragment
     ) | null> } | null };
 
-export type PageGalleryPostFieldsFragment = { __typename: 'Gallery', title?: string | null, slug?: string | null, thumbnail?: (
-    { __typename?: 'Asset' }
-    & ImageFieldsFragment
-  ) | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<(
+export type PageGalleryPostFieldsFragment = { __typename: 'Gallery', title?: string | null, slug?: string | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<(
       { __typename?: 'Asset' }
       & ImageFieldsFragment
     ) | null> } | null };
@@ -2323,9 +2309,6 @@ export const PageGalleryPostFieldsFragmentDoc = gql`
   __typename
   title
   slug
-  thumbnail {
-    ...ImageFields
-  }
   imagesCollection {
     items {
       ...ImageFields

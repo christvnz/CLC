@@ -498,7 +498,6 @@ type Gallery implements Entry & _Node {
   linkedFrom(allowedLocales: [String]): GalleryLinkingCollections
   slug(locale: String): String
   sys: Sys!
-  thumbnail(locale: String, preview: Boolean): Asset
   title(locale: String): String
 }
 
@@ -522,7 +521,6 @@ input GalleryFilter {
   slug_not_contains: String
   slug_not_in: [String]
   sys: SysFilter
-  thumbnail_exists: Boolean
   title: String
   title_contains: String
   title_exists: Boolean
@@ -934,7 +932,7 @@ type PageEvent implements Entry & _Node {
   amount(locale: String): String
   buttonLink(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  date(locale: String): DateTime
+  date(locale: String): String
   description(locale: String): String
   eventCta(locale: String): String
   linkedFrom(allowedLocales: [String]): PageEventLinkingCollections
@@ -971,15 +969,13 @@ input PageEventFilter {
   buttonLink_not_contains: String
   buttonLink_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  date: DateTime
+  date: String
+  date_contains: String
   date_exists: Boolean
-  date_gt: DateTime
-  date_gte: DateTime
-  date_in: [DateTime]
-  date_lt: DateTime
-  date_lte: DateTime
-  date_not: DateTime
-  date_not_in: [DateTime]
+  date_in: [String]
+  date_not: String
+  date_not_contains: String
+  date_not_in: [String]
   description: String
   description_contains: String
   description_exists: Boolean

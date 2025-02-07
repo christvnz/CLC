@@ -2,9 +2,6 @@ fragment PageGalleryPostFields on Gallery {
     __typename
     title,
     slug,
-    thumbnail {
-        ...ImageFields
-    },
     imagesCollection {
         items {
             ...ImageFields

@@ -14,6 +14,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     const page = useContentfulLiveUpdates(props.page);
     const events = useContentfulLiveUpdates(props.events);
+    console.log(events)
     return (
         <>
             {page.seoFields && <SeoFields {...page.seoFields} />}

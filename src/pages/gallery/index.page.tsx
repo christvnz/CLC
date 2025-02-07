@@ -30,10 +30,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 src: image.url
             }
         })
-        if (item.thumbnail && item.thumbnail.url)
-            images.unshift({
-                src: item.thumbnail?.url
-            });
         setSlides(images);
         setIndex(index);
         setIsOpen(true);
@@ -64,30 +60,21 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                             {item.title}
                                         </p>
                                         <div className='grid grid-cols-12 gap-5'>
-                                            <div className="rounded-lg overflow-hidden aspect-[16/10] col-span-12  xl:col-span-3 lg:col-span-3 sm:col-span-4   ">
-                                                <CtfImage
-                                                    nextImageProps={{ 
-                                                        className: 'object-cover aspect-[16/10] w-full hover:scale-105',
-                                                        onClick: () => handleSetSlides(item, 0)
-                                                    }}
-                                                    {...item.thumbnail}     
-                                                />
-                                            </div>
                                             {
-                                                item.imagesCollection.items.slice(0, 3).map((image: any, imageKey: number) => {
+                                                item.imagesCollection.items.slice(0, 4).map((image: any, imageKey: number) => {
                                                     return (
                                                         <div key={imageKey} className="rounded-lg aspect-[16/10] overflow-hidden col-span-12  xl:col-span-3 lg:col-span-3 sm:col-span-4 relative">
                                                             <CtfImage
                                                                 nextImageProps={{ 
                                                                     className: 'object-cover aspect-[16/10] w-full hover:scale-105',
-                                                                    onClick: () => handleSetSlides(item, imageKey + 1)
+                                                                    onClick: () => handleSetSlides(item, imageKey)
                                                                 }}
                                                                 {...image}     
                                                             />
                                                             {
-                                                                imageKey === 2 && item.imagesCollection.items.length > 3 &&
-                                                                <div className='absolute bg-colorBlack opacity-80 top-0 left-0 w-full h-full flex items-center justify-center text-colorWhite'>
-                                                                    <span className='text-2xl font-semibold'>+{item.imagesCollection.items.length - 3}</span>
+                                                                imageKey === 3 && item.imagesCollection.items.length > 4 &&
+                                                                <div onClick={() => handleSetSlides(item, imageKey)} className='absolute bg-colorBlack opacity-80 top-0 left-0 w-full h-full flex items-center justify-center text-colorWhite'>
+                                                                    <span className='text-2xl font-semibold'>+{item.imagesCollection.items.length - 4}</span>
                                                                 </div>
                                                             }
                                                         </div>
