@@ -780,6 +780,7 @@ export type Gallery = Entry & _Node & {
   contentfulMetadata: ContentfulMetadata;
   imagesCollection?: Maybe<AssetCollection>;
   linkedFrom?: Maybe<GalleryLinkingCollections>;
+  order?: Maybe<Scalars['Int']>;
   slug?: Maybe<Scalars['String']>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
@@ -798,6 +799,12 @@ export type GalleryImagesCollectionArgs = {
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
 export type GalleryLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery) */
+export type GalleryOrderArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -825,6 +832,15 @@ export type GalleryFilter = {
   OR?: InputMaybe<Array<InputMaybe<GalleryFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   imagesCollection_exists?: InputMaybe<Scalars['Boolean']>;
+  order?: InputMaybe<Scalars['Int']>;
+  order_exists?: InputMaybe<Scalars['Boolean']>;
+  order_gt?: InputMaybe<Scalars['Int']>;
+  order_gte?: InputMaybe<Scalars['Int']>;
+  order_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  order_lt?: InputMaybe<Scalars['Int']>;
+  order_lte?: InputMaybe<Scalars['Int']>;
+  order_not?: InputMaybe<Scalars['Int']>;
+  order_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
   slug?: InputMaybe<Scalars['String']>;
   slug_contains?: InputMaybe<Scalars['String']>;
   slug_exists?: InputMaybe<Scalars['Boolean']>;
@@ -856,6 +872,8 @@ export type GalleryLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum GalleryOrder {
+  OrderAsc = 'order_ASC',
+  OrderDesc = 'order_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',

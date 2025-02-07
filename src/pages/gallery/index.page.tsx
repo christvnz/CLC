@@ -10,7 +10,7 @@ import Link from 'next/link';
 import NoData from '@src/components/features/noData'
 import Lightbox from "yet-another-react-lightbox";
 import React from 'react';
-import { Gallery, ImageFieldsFragment } from '@src/lib/__generated/sdk';
+import { Gallery, GalleryOrder, ImageFieldsFragment } from '@src/lib/__generated/sdk';
 
 interface ImageInterface {
     src: string
@@ -116,7 +116,9 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const landingPageData = await gqlClient.pageLanding({ locale, preview });
     const page = landingPageData.pageLandingCollection?.items[0];
 
-    const galleryData = await gqlClient.galleryCollection({ locale, preview });
+    const galleryData = await gqlClient.galleryCollection({ locale, preview, order: [
+        GalleryOrder.OrderDesc
+    ] });
     const gallery = galleryData.galleryCollection?.items;
 
     if (!page) {

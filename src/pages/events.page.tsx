@@ -43,7 +43,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                 <div className="text-[25px] text-[#FEAB01] rounded-bl-lg font-bold">
                                                     { item.amount }
                                                 </div>
-                                                <p className="text-gray600 mb-3 line-clamp-3 md:line-clamp-5 break-all">{ item.description }</p>
+                                                <p className="text-gray600 mb-3 line-clamp-3 md:line-clamp-5">{ item.description }</p>
                                                 {
                                                     item.location &&
                                                         <div className="text-lg">
