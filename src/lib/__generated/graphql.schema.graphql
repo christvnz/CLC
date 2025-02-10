@@ -698,6 +698,89 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageAboutUs)
+"""
+type PageAboutUs implements Entry & _Node {
+  _id: ID!
+  content(locale: String): PageAboutUsContent
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): PageAboutUsLinkingCollections
+  sys: Sys!
+}
+
+type PageAboutUsCollection {
+  items: [PageAboutUs]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type PageAboutUsContent {
+  json: JSON!
+  links: PageAboutUsContentLinks!
+}
+
+type PageAboutUsContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageAboutUsContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageAboutUsContentLinks {
+  assets: PageAboutUsContentAssets!
+  entries: PageAboutUsContentEntries!
+  resources: PageAboutUsContentResources!
+}
+
+type PageAboutUsContentResources {
+  block: [PageAboutUsContentResourcesBlock!]!
+  hyperlink: [PageAboutUsContentResourcesHyperlink!]!
+  inline: [PageAboutUsContentResourcesInline!]!
+}
+
+type PageAboutUsContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageAboutUsContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageAboutUsContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input PageAboutUsFilter {
+  AND: [PageAboutUsFilter]
+  OR: [PageAboutUsFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+}
+
+type PageAboutUsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageAboutUsOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
 To create individual blog posts [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry & _Node {
@@ -1138,6 +1221,8 @@ type Query {
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   gallery(id: String!, locale: String, preview: Boolean): Gallery
   galleryCollection(limit: Int = 100, locale: String, order: [GalleryOrder], preview: Boolean, skip: Int = 0, where: GalleryFilter): GalleryCollection
+  pageAboutUs(id: String!, locale: String, preview: Boolean): PageAboutUs
+  pageAboutUsCollection(limit: Int = 100, locale: String, order: [PageAboutUsOrder], preview: Boolean, skip: Int = 0, where: PageAboutUsFilter): PageAboutUsCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
   pageEvent(id: String!, locale: String, preview: Boolean): PageEvent

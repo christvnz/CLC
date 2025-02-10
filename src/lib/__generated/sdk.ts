@@ -983,6 +983,118 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageAboutUs) */
+export type PageAboutUs = Entry & _Node & {
+  __typename?: 'PageAboutUs';
+  _id: Scalars['ID'];
+  content?: Maybe<PageAboutUsContent>;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<PageAboutUsLinkingCollections>;
+  sys: Sys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageAboutUs) */
+export type PageAboutUsContentArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageAboutUs) */
+export type PageAboutUsLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PageAboutUsCollection = {
+  __typename?: 'PageAboutUsCollection';
+  items: Array<Maybe<PageAboutUs>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type PageAboutUsContent = {
+  __typename?: 'PageAboutUsContent';
+  json: Scalars['JSON'];
+  links: PageAboutUsContentLinks;
+};
+
+export type PageAboutUsContentAssets = {
+  __typename?: 'PageAboutUsContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type PageAboutUsContentEntries = {
+  __typename?: 'PageAboutUsContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type PageAboutUsContentLinks = {
+  __typename?: 'PageAboutUsContentLinks';
+  assets: PageAboutUsContentAssets;
+  entries: PageAboutUsContentEntries;
+  resources: PageAboutUsContentResources;
+};
+
+export type PageAboutUsContentResources = {
+  __typename?: 'PageAboutUsContentResources';
+  block: Array<PageAboutUsContentResourcesBlock>;
+  hyperlink: Array<PageAboutUsContentResourcesHyperlink>;
+  inline: Array<PageAboutUsContentResourcesInline>;
+};
+
+export type PageAboutUsContentResourcesBlock = ResourceLink & {
+  __typename?: 'PageAboutUsContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type PageAboutUsContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageAboutUsContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type PageAboutUsContentResourcesInline = ResourceLink & {
+  __typename?: 'PageAboutUsContentResourcesInline';
+  sys: ResourceSys;
+};
+
+export type PageAboutUsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PageAboutUsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PageAboutUsFilter>>>;
+  content_contains?: InputMaybe<Scalars['String']>;
+  content_exists?: InputMaybe<Scalars['Boolean']>;
+  content_not_contains?: InputMaybe<Scalars['String']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type PageAboutUsLinkingCollections = {
+  __typename?: 'PageAboutUsLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageAboutUsLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PageAboutUsOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 /** To create individual blog posts [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageBlogPost) */
 export type PageBlogPost = Entry & _Node & {
   __typename?: 'PageBlogPost';
@@ -1663,6 +1775,8 @@ export type Query = {
   entryCollection?: Maybe<EntryCollection>;
   gallery?: Maybe<Gallery>;
   galleryCollection?: Maybe<GalleryCollection>;
+  pageAboutUs?: Maybe<PageAboutUs>;
+  pageAboutUsCollection?: Maybe<PageAboutUsCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageEvent?: Maybe<PageEvent>;
@@ -1771,6 +1885,23 @@ export type QueryGalleryCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<GalleryFilter>;
+};
+
+
+export type QueryPageAboutUsArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryPageAboutUsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageAboutUsOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageAboutUsFilter>;
 };
 
 
@@ -2038,6 +2169,22 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
 
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
+export type PageAboutUsPostFieldsFragment = { __typename: 'PageAboutUs', content?: { __typename?: 'PageAboutUsContent', json: any, links: { __typename?: 'PageAboutUsContentLinks', entries: { __typename?: 'PageAboutUsContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
+          { __typename?: 'ComponentRichImage' }
+          & RichImageFieldsFragment
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageAboutUs' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | null> } } } | null };
+
+export type AboutUsQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type AboutUsQuery = { __typename?: 'Query', pageAboutUsCollection?: { __typename?: 'PageAboutUsCollection', items: Array<(
+      { __typename?: 'PageAboutUs' }
+      & PageAboutUsPostFieldsFragment
+    ) | null> } | null };
+
 export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, author?: (
     { __typename?: 'ComponentAuthor' }
     & AuthorFieldsFragment
@@ -2058,7 +2205,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageAboutUs' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -2205,6 +2352,35 @@ export const ImageFieldsFragmentDoc = gql`
   contentType
 }
     `;
+export const RichImageFieldsFragmentDoc = gql`
+    fragment RichImageFields on ComponentRichImage {
+  __typename
+  internalName
+  sys {
+    id
+  }
+  image {
+    ...ImageFields
+  }
+  caption
+  fullWidth
+}
+    `;
+export const PageAboutUsPostFieldsFragmentDoc = gql`
+    fragment PageAboutUsPostFields on PageAboutUs {
+  __typename
+  content {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+    `;
 export const SeoFieldsFragmentDoc = gql`
     fragment SeoFields on ComponentSeo {
   __typename
@@ -2230,20 +2406,6 @@ export const AuthorFieldsFragmentDoc = gql`
   avatar {
     ...ImageFields
   }
-}
-    `;
-export const RichImageFieldsFragmentDoc = gql`
-    fragment RichImageFields on ComponentRichImage {
-  __typename
-  internalName
-  sys {
-    id
-  }
-  image {
-    ...ImageFields
-  }
-  caption
-  fullWidth
 }
     `;
 export const ReferencePageBlogPostFieldsFragmentDoc = gql`
@@ -2369,6 +2531,17 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   }
 }
     `;
+export const AboutUsDocument = gql`
+    query aboutUs($locale: String, $preview: Boolean) {
+  pageAboutUsCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageAboutUsPostFields
+    }
+  }
+}
+    ${PageAboutUsPostFieldsFragmentDoc}
+${RichImageFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const PageBlogPostDocument = gql`
     query pageBlogPost($slug: String!, $locale: String, $preview: Boolean) {
   pageBlogPostCollection(
@@ -2494,6 +2667,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    aboutUs(variables?: AboutUsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AboutUsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AboutUsQuery>(AboutUsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'aboutUs', 'query', variables);
+    },
     pageBlogPost(variables: PageBlogPostQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageBlogPostQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostQuery>(PageBlogPostDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPost', 'query', variables);
     },
