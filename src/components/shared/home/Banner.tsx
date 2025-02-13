@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { EffectFade, Navigation, Autoplay } from 'swiper/modules';
 /* eslint-disable import/no-unresolved */
 import { Swiper, SwiperSlide } from 'swiper/react';

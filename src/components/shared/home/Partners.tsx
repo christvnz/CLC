@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { Pagination, Autoplay } from 'swiper/modules';
 import { CtfImage } from '@src/components/features/contentful';
 import { PageOurPartnersPostFieldsFragment } from '@src/lib/__generated/sdk';
