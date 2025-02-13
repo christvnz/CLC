@@ -177,6 +177,7 @@ export type AssetLinkingCollections = {
   galleryCollection?: Maybe<GalleryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageEventCollection?: Maybe<PageEventCollection>;
+  pageOurPartnersCollection?: Maybe<PageOurPartnersCollection>;
 };
 
 
@@ -229,6 +230,14 @@ export type AssetLinkingCollectionsPageBlogPostCollectionArgs = {
 
 
 export type AssetLinkingCollectionsPageEventCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsPageOurPartnersCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -1761,6 +1770,85 @@ export enum PageLandingOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners) */
+export type PageOurPartners = Entry & _Node & {
+  __typename?: 'PageOurPartners';
+  _id: Scalars['ID'];
+  contentfulMetadata: ContentfulMetadata;
+  image?: Maybe<Asset>;
+  linkedFrom?: Maybe<PageOurPartnersLinkingCollections>;
+  sys: Sys;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners) */
+export type PageOurPartnersImageArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners) */
+export type PageOurPartnersLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners) */
+export type PageOurPartnersUrlArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type PageOurPartnersCollection = {
+  __typename?: 'PageOurPartnersCollection';
+  items: Array<Maybe<PageOurPartners>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type PageOurPartnersFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PageOurPartnersFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PageOurPartnersFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  image_exists?: InputMaybe<Scalars['Boolean']>;
+  sys?: InputMaybe<SysFilter>;
+  url?: InputMaybe<Scalars['String']>;
+  url_contains?: InputMaybe<Scalars['String']>;
+  url_exists?: InputMaybe<Scalars['Boolean']>;
+  url_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  url_not?: InputMaybe<Scalars['String']>;
+  url_not_contains?: InputMaybe<Scalars['String']>;
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PageOurPartnersLinkingCollections = {
+  __typename?: 'PageOurPartnersLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageOurPartnersLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PageOurPartnersOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC'
+}
+
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
@@ -1783,6 +1871,8 @@ export type Query = {
   pageEventCollection?: Maybe<PageEventCollection>;
   pageLanding?: Maybe<PageLanding>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
+  pageOurPartners?: Maybe<PageOurPartners>;
+  pageOurPartnersCollection?: Maybe<PageOurPartnersCollection>;
 };
 
 
@@ -1953,6 +2043,23 @@ export type QueryPageLandingCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PageLandingFilter>;
+};
+
+
+export type QueryPageOurPartnersArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryPageOurPartnersCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageOurPartnersOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageOurPartnersFilter>;
 };
 
 export type ResourceLink = {
@@ -2169,10 +2276,29 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
 
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
+export type PageOurPartnersPostFieldsFragment = { __typename: 'PageOurPartners', url?: string | null, image?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null };
+
+export type OurPartnersQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Array<InputMaybe<PageOurPartnersOrder>> | InputMaybe<PageOurPartnersOrder>>;
+  where?: InputMaybe<PageOurPartnersFilter>;
+}>;
+
+
+export type OurPartnersQuery = { __typename?: 'Query', pageOurPartnersCollection?: { __typename?: 'PageOurPartnersCollection', items: Array<(
+      { __typename?: 'PageOurPartners' }
+      & PageOurPartnersPostFieldsFragment
+    ) | null> } | null };
+
 export type PageAboutUsPostFieldsFragment = { __typename: 'PageAboutUs', content?: { __typename?: 'PageAboutUsContent', json: any, links: { __typename?: 'PageAboutUsContentLinks', entries: { __typename?: 'PageAboutUsContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageAboutUs' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | null> } } } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageAboutUs' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null };
 
 export type AboutUsQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
@@ -2205,7 +2331,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageAboutUs' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageAboutUs' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -2350,6 +2476,15 @@ export const ImageFieldsFragmentDoc = gql`
   height
   url
   contentType
+}
+    `;
+export const PageOurPartnersPostFieldsFragmentDoc = gql`
+    fragment PageOurPartnersPostFields on PageOurPartners {
+  __typename
+  url
+  image {
+    ...ImageFields
+  }
 }
     `;
 export const RichImageFieldsFragmentDoc = gql`
@@ -2531,6 +2666,22 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   }
 }
     `;
+export const OurPartnersDocument = gql`
+    query ourPartners($locale: String, $preview: Boolean, $limit: Int, $order: [PageOurPartnersOrder], $where: PageOurPartnersFilter) {
+  pageOurPartnersCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageOurPartnersPostFields
+    }
+  }
+}
+    ${PageOurPartnersPostFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const AboutUsDocument = gql`
     query aboutUs($locale: String, $preview: Boolean) {
   pageAboutUsCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -2667,6 +2818,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    ourPartners(variables?: OurPartnersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<OurPartnersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<OurPartnersQuery>(OurPartnersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ourPartners', 'query', variables);
+    },
     aboutUs(variables?: AboutUsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AboutUsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AboutUsQuery>(AboutUsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'aboutUs', 'query', variables);
     },

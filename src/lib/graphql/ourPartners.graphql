@@ -1,0 +1,21 @@
+fragment PageOurPartnersPostFields on PageOurPartners {
+    __typename
+    url,
+    image {
+      ...ImageFields
+    }
+}
+
+query ourPartners(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [PageOurPartnersOrder]
+  $where: PageOurPartnersFilter
+) {
+  pageOurPartnersCollection(limit: $limit, locale: $locale, preview: $preview, order: $order where: $where) {
+    items {
+      ...PageOurPartnersPostFields
+    }
+  }
+}

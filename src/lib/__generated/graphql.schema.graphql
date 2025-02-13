@@ -99,6 +99,7 @@ type AssetLinkingCollections {
   galleryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): GalleryCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBlogPostCollection
   pageEventCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageEventCollection
+  pageOurPartnersCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageOurPartnersCollection
 }
 
 enum AssetOrder {
@@ -1204,6 +1205,57 @@ enum PageLandingOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners)
+"""
+type PageOurPartners implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): PageOurPartnersLinkingCollections
+  sys: Sys!
+  url(locale: String): String
+}
+
+type PageOurPartnersCollection {
+  items: [PageOurPartners]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageOurPartnersFilter {
+  AND: [PageOurPartnersFilter]
+  OR: [PageOurPartnersFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  image_exists: Boolean
+  sys: SysFilter
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+}
+
+type PageOurPartnersLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageOurPartnersOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  url_ASC
+  url_DESC
+}
+
+"""
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
@@ -1229,6 +1281,8 @@ type Query {
   pageEventCollection(limit: Int = 100, locale: String, order: [PageEventOrder], preview: Boolean, skip: Int = 0, where: PageEventFilter): PageEventCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
+  pageOurPartners(id: String!, locale: String, preview: Boolean): PageOurPartners
+  pageOurPartnersCollection(limit: Int = 100, locale: String, order: [PageOurPartnersOrder], preview: Boolean, skip: Int = 0, where: PageOurPartnersFilter): PageOurPartnersCollection
 }
 
 interface ResourceLink {

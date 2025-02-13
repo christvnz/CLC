@@ -24,10 +24,18 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Container className="navMargin">
         <ArticleHero article={blogPost} isFeatured={props.isFeatured} isReversedLayout={true} />
       </Container>
-      <Container className="mt-8 max-w-4xl">
-        <ArticleContent article={blogPost} />
-        <div className='mt-6'>
-          <ArticleSocialShare title={blogPost.title || ''} slug={blogPost.slug} />
+      <Container className="mt-8 max-w-8xl">
+        <div className='relative flex justify-between flex-col xl:flex-row gap-y-4 xl:gap-y-0 gap-x-0 xl:gap-x-3'>
+          <div className='mx-auto max-w-4xl'>
+            <ArticleContent article={blogPost} />
+            <div className='mt-6'>
+              <ArticleSocialShare title={blogPost.title || ''} slug={blogPost.slug} />
+            </div>
+          </div>
+          <div className='mx-auto max-w-4xl sticky top-44 h-fit'>
+            <img src="https://placehold.co/400x800" className='hidden xl:block' alt="" />
+            <img src="https://placehold.co/800x400" className='block xl:hidden' alt="" />
+          </div>
         </div>
       </Container>
       {relatedPosts.length ? (
