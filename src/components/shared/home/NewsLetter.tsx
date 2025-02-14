@@ -2,12 +2,9 @@ const NewsLetter = () => {
     return (
         <div className="space-y-4">
             <div>
-                <h2 className="text-[30px] md:text-[40px] text-gray-800 font-light tracking-wide">
+                <h2 className="text-2xl md:text-4xl text-gray-800 mb-8 font-semibold tracking-wide">
                     Sign Up to Our Newsletter
                 </h2>
-                <p className="text-[20px] md:text-[30px] text-gray-600 font-light">
-                    & Get Special Offers
-                </p>
             </div>
             <div id="mc_embed_shell" className='flex justify-center'>
                 <div id="mc_embed_signup" style={{

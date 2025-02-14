@@ -92,6 +92,7 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  componentAboutUsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAboutUsCollection
   componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAuthorCollection
   componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRichImageCollection
   componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSeoCollection
@@ -123,6 +124,159 @@ enum AssetOrder {
   url_DESC
   width_ASC
   width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentAboutUs)
+"""
+type ComponentAboutUs implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): ComponentAboutUsDescription
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): ComponentAboutUsLinkingCollections
+  shortDescription(locale: String): ComponentAboutUsShortDescription
+  sys: Sys!
+  title(locale: String): String
+}
+
+type ComponentAboutUsCollection {
+  items: [ComponentAboutUs]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type ComponentAboutUsDescription {
+  json: JSON!
+  links: ComponentAboutUsDescriptionLinks!
+}
+
+type ComponentAboutUsDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentAboutUsDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentAboutUsDescriptionLinks {
+  assets: ComponentAboutUsDescriptionAssets!
+  entries: ComponentAboutUsDescriptionEntries!
+  resources: ComponentAboutUsDescriptionResources!
+}
+
+type ComponentAboutUsDescriptionResources {
+  block: [ComponentAboutUsDescriptionResourcesBlock!]!
+  hyperlink: [ComponentAboutUsDescriptionResourcesHyperlink!]!
+  inline: [ComponentAboutUsDescriptionResourcesInline!]!
+}
+
+type ComponentAboutUsDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input ComponentAboutUsFilter {
+  AND: [ComponentAboutUsFilter]
+  OR: [ComponentAboutUsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  image_exists: Boolean
+  shortDescription_contains: String
+  shortDescription_exists: Boolean
+  shortDescription_not_contains: String
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type ComponentAboutUsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentAboutUsLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+}
+
+enum ComponentAboutUsLinkingCollectionsPageLandingCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentAboutUsOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type ComponentAboutUsShortDescription {
+  json: JSON!
+  links: ComponentAboutUsShortDescriptionLinks!
+}
+
+type ComponentAboutUsShortDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentAboutUsShortDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentAboutUsShortDescriptionLinks {
+  assets: ComponentAboutUsShortDescriptionAssets!
+  entries: ComponentAboutUsShortDescriptionEntries!
+  resources: ComponentAboutUsShortDescriptionResources!
+}
+
+type ComponentAboutUsShortDescriptionResources {
+  block: [ComponentAboutUsShortDescriptionResourcesBlock!]!
+  hyperlink: [ComponentAboutUsShortDescriptionResourcesHyperlink!]!
+  inline: [ComponentAboutUsShortDescriptionResourcesInline!]!
+}
+
+type ComponentAboutUsShortDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsShortDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsShortDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 """
@@ -699,89 +853,6 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
-[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageAboutUs)
-"""
-type PageAboutUs implements Entry & _Node {
-  _id: ID!
-  content(locale: String): PageAboutUsContent
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): PageAboutUsLinkingCollections
-  sys: Sys!
-}
-
-type PageAboutUsCollection {
-  items: [PageAboutUs]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-type PageAboutUsContent {
-  json: JSON!
-  links: PageAboutUsContentLinks!
-}
-
-type PageAboutUsContentAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type PageAboutUsContentEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type PageAboutUsContentLinks {
-  assets: PageAboutUsContentAssets!
-  entries: PageAboutUsContentEntries!
-  resources: PageAboutUsContentResources!
-}
-
-type PageAboutUsContentResources {
-  block: [PageAboutUsContentResourcesBlock!]!
-  hyperlink: [PageAboutUsContentResourcesHyperlink!]!
-  inline: [PageAboutUsContentResourcesInline!]!
-}
-
-type PageAboutUsContentResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageAboutUsContentResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageAboutUsContentResourcesInline implements ResourceLink {
-  sys: ResourceSys!
-}
-
-input PageAboutUsFilter {
-  AND: [PageAboutUsFilter]
-  OR: [PageAboutUsFilter]
-  content_contains: String
-  content_exists: Boolean
-  content_not_contains: String
-  contentfulMetadata: ContentfulMetadataFilter
-  sys: SysFilter
-}
-
-type PageAboutUsLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum PageAboutUsOrder {
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-"""
 To create individual blog posts [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry & _Node {
@@ -1154,6 +1225,7 @@ To have an entry point for the app (e.g. Homepage) [See type definition](https:/
 """
 type PageLanding implements Entry & _Node {
   _id: ID!
+  aboutUs(locale: String, preview: Boolean, where: ComponentAboutUsFilter): ComponentAboutUs
   contentfulMetadata: ContentfulMetadata!
   featuredBlogPost(locale: String, preview: Boolean, where: PageBlogPostFilter): PageBlogPost
   internalName(locale: String): String
@@ -1172,6 +1244,8 @@ type PageLandingCollection {
 input PageLandingFilter {
   AND: [PageLandingFilter]
   OR: [PageLandingFilter]
+  aboutUs: cfComponentAboutUsNestedFilter
+  aboutUs_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
   featuredBlogPost: cfPageBlogPostNestedFilter
   featuredBlogPost_exists: Boolean
@@ -1264,6 +1338,8 @@ type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  componentAboutUs(id: String!, locale: String, preview: Boolean): ComponentAboutUs
+  componentAboutUsCollection(limit: Int = 100, locale: String, order: [ComponentAboutUsOrder], preview: Boolean, skip: Int = 0, where: ComponentAboutUsFilter): ComponentAboutUsCollection
   componentAuthor(id: String!, locale: String, preview: Boolean): ComponentAuthor
   componentAuthorCollection(limit: Int = 100, locale: String, order: [ComponentAuthorOrder], preview: Boolean, skip: Int = 0, where: ComponentAuthorFilter): ComponentAuthorCollection
   componentRichImage(id: String!, locale: String, preview: Boolean): ComponentRichImage
@@ -1273,8 +1349,6 @@ type Query {
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   gallery(id: String!, locale: String, preview: Boolean): Gallery
   galleryCollection(limit: Int = 100, locale: String, order: [GalleryOrder], preview: Boolean, skip: Int = 0, where: GalleryFilter): GalleryCollection
-  pageAboutUs(id: String!, locale: String, preview: Boolean): PageAboutUs
-  pageAboutUsCollection(limit: Int = 100, locale: String, order: [PageAboutUsOrder], preview: Boolean, skip: Int = 0, where: PageAboutUsFilter): PageAboutUsCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
   pageEvent(id: String!, locale: String, preview: Boolean): PageEvent
@@ -1353,6 +1427,27 @@ type TaxonomyConcept {
 
 interface _Node {
   _id: ID!
+}
+
+input cfComponentAboutUsNestedFilter {
+  AND: [cfComponentAboutUsNestedFilter]
+  OR: [cfComponentAboutUsNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  image_exists: Boolean
+  shortDescription_contains: String
+  shortDescription_exists: Boolean
+  shortDescription_not_contains: String
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
 }
 
 input cfComponentAuthorNestedFilter {

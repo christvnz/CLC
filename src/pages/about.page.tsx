@@ -29,98 +29,41 @@ const Title = styled.h1`
   font-weight: 700;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 1.75rem;
-  color: var(--color-primary);
-  margin: 20px 0 15px;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-`;
-
-const Paragraph = styled.p`
-  font-size: 1.1rem;
-  /* color: #bdbdbd; */
-  line-height: 1.8;
-  margin-bottom: 20px;
-`;
-
-const QnASection = styled.div`
-  margin: 20px 0;
-`;
-
-const Question = styled.h3`
-  font-size: 1.3rem;
-  color: var(--color-primary);
-  margin: 15px 0;
-  font-weight: 600;
-`;
-
-const Answer = styled.p`
-  font-size: 1.1rem;
-  /* color: #e0e0e0; */
-  line-height: 1.8;
-  margin-left: 20px;
-  margin-bottom: 10px;
-`;
-
-const EmailLink = styled.a`
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 600;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
-  const aboutUs = useContentfulLiveUpdates(props.aboutUs);
-
-  console.log(aboutUs);
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
       <Container className="navMargin">
         <Title>About Us</Title>
-        <CtfRichText json={aboutUs?.content?.json} links={aboutUs?.content?.links} />
+        <CtfRichText json={page.aboutUs.description.json} links={page.aboutUs.description?.links} />
       </Container>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode: preview }) => {
-    const gqlClient = preview ? previewClient : client;
-    try {
-        const [galleryPageData, landingPageData] = await Promise.all([
-            gqlClient.aboutUs({ locale, preview }),
-            gqlClient.pageLanding({ locale, preview }),
-        ]);
-        const page = landingPageData.pageLandingCollection?.items[0];
-        const aboutUs = galleryPageData.pageAboutUsCollection?.items[0]
+  const gqlClient = preview ? previewClient : client;
+  try {
+    const [landingPageData] = await Promise.all([
+      gqlClient.pageLanding({ locale, preview }),
+    ]);
+    const page = landingPageData.pageLandingCollection?.items[0];
 
-        if (!aboutUs) {
-            return {
-                revalidate: revalidateDuration,
-                notFound: true,
-            };
-        }
-
-        return {
-            revalidate: revalidateDuration,
-            props: {
-                previewActive: !!preview,
-                ...(await getServerSideTranslations(locale)),
-                page,
-                aboutUs
-            },
-        };
-    } catch {
-        return {
-            revalidate: revalidateDuration,
-            notFound: true,
-        };
-    }
+    return {
+      revalidate: revalidateDuration,
+      props: {
+        previewActive: !!preview,
+        ...(await getServerSideTranslations(locale)),
+        page,
+      },
+    };
+  } catch {
+    return {
+      revalidate: revalidateDuration,
+      notFound: true,
+    };
+  }
 };
 
 export default About;

@@ -26,8 +26,14 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
 
-      <Container className='pb-6'>
+      <Container className='pb-12'>
         <HomeBanner />
+      </Container>
+
+      <Container className="navMargin">
+        <Link href={`/${page.featuredBlogPost.slug}`}>
+          <ArticleHero article={page.featuredBlogPost} />
+        </Link>
       </Container>
 
       <Container className="my-8  md:my-10 lg:my-16">
@@ -42,7 +48,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       </Container>
 
       <Container className='my-8 md:my-10 lg:my-16'>
-        <AboutUs />
+        <AboutUs content={page.aboutUs}/>
       </Container>
 
       <Container className='my-8 md:my-10 lg:my-16 bg-[#F7F5EC] text-center p-6 py-12'>

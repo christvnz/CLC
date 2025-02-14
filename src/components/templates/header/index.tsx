@@ -9,6 +9,10 @@ import HamburgerMenu from './hamburgerMenu';
 import FollowUs from '../footer/FollowUs';
 import NewsLetter from './newsletter.png';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import { Urbanist } from 'next/font/google';
+
+const urbanist = Urbanist({ subsets: ['latin'], variable: '--font-urbanist' });
+
 const Header = () => {
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
@@ -48,13 +52,13 @@ const Header = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </PopoverButton>
-                <PopoverPanel transition anchor="bottom" className="flex flex-col z-10 mt-4 bg-colorWhite transition duration-300 ">
+                <PopoverPanel transition anchor="bottom" className={"flex flex-col z-10 mt-4 bg-colorWhite transition duration-300"}>
                   <Link href="/food" className="hidden lg:block"
                     onClick={close}
                   >
                     <div
                       aria-label="Navigate to food page"
-                      className={`font-medium p-3 px-5 text-xl hover:bg-gray100 ${
+                      className={`font-medium p-3 px-5 text-xl hover:bg-gray100 ${urbanist.variable} font-sans ${
                         router.pathname === '/food' ? HeaderStyles.active : ''
                       }`}>
                       Food
@@ -65,7 +69,7 @@ const Header = () => {
                   >
                     <div
                       aria-label="Navigate to lifestyle page"
-                      className={`font-medium p-3 px-5 text-xl hover:bg-gray100 ${
+                      className={`font-medium p-3 px-5 text-xl hover:bg-gray100 ${urbanist.variable} font-sans ${
                         router.pathname === '/lifestyle' ? HeaderStyles.active : ''
                       }`}>
                       Lifestyle

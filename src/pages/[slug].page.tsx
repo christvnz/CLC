@@ -39,7 +39,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         </div>
       </Container>
       {relatedPosts.length ? (
-        <Container className="mt-8 max-w-5xl">
+        <Container className="my-8 max-w-5xl">
           <h2 className="mb-4 md:mb-6">{t('article.relatedArticles')}</h2>
           <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
         </Container>

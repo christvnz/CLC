@@ -53,11 +53,9 @@ const ArticleSocialShare = (props: Props) => {
   return (
     <div className='flex items-center gap-x-2'>
       <span className="text-[16px] font-semibold uppercase">Share Me</span>
-      <button onClick={handleShareClick} className="!h-[32px]">
-        <FacebookShareButton url={location} title={title}>
-          <FacebookIcon size={32} round />
-        </FacebookShareButton>
-      </button>
+      <FacebookShareButton url={location} title={title} onClick={handleShareClick} className='!h-[32px]'>
+        <FacebookIcon size={32} round />
+      </FacebookShareButton>
       <button onClick={handleWhatsappShare} className="!h-[32px]">
         <WhatsappIcon size={32} round />
       </button>

@@ -1,3 +1,31 @@
+fragment ReferenceComponentAboutUs on ComponentAboutUs {
+  __typename
+  title
+  image {
+    ...ImageFields
+  }
+  description {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  shortDescription {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+
 fragment PageLandingFields on PageLanding {
   __typename
   sys {
@@ -10,6 +38,9 @@ fragment PageLandingFields on PageLanding {
   }
   featuredBlogPost {
     ...ReferencePageBlogPostFields
+  }
+  aboutUs {
+    ...ReferenceComponentAboutUs
   }
   # Tutorial: contentful-and-the-starter-template.md
   # Uncomment the line below to add the Greeting field to the query
