@@ -95,10 +95,37 @@ const V2Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className='text-center'>
-                        <div className="order-2 col-span-2 mt-8 mb-8 md:order-1 md:col-span-2 md:mt-0 md:mb-0">
-                            <Title>Follow us</Title>
-                            <FollowUs />
+                    <div className='flex flex-col justify-between'>
+                        <div className='text-center'>
+                            <div className="order-2 col-span-2 mt-8 mb-8 md:order-1 md:col-span-2 md:mt-0 md:mb-0">
+                                <Title>Follow us</Title>
+                                <FollowUs />
+                            </div>
+                        </div>
+                        <div className='flex justify-center'>
+                            <div className="inline-flex items-center gap-3 bg-colorBlack rounded-xl px-4 py-2">
+                                <div className="flex flex-col">
+                                    <span className="text-colorWhite font-bold text-sm">
+                                        App Coming Soon...
+                                    </span>
+                                    <span className="text-colorWhite text-xs">
+                                        Stay tuned for something amazing
+                                    </span>
+                                </div>
+                                <svg
+                                    className="w-5 h-5 text-colorWhite transform transition-transform duration-200"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                    />
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
