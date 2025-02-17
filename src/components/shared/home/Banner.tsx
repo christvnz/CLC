@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { EffectFade, Navigation, Autoplay } from 'swiper/modules';
+import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
 /* eslint-disable import/no-unresolved */
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
@@ -51,13 +51,14 @@ const Banner = () => {
 
     return (
         <Swiper
+            spaceBetween={30}
             autoplay={{
                 delay: 4500, 
                 disableOnInteraction: false,
             }}
-            spaceBetween={30}
             effect={'fade'}
-            modules={[EffectFade, Navigation, Autoplay]}
+            pagination={true}
+            modules={[EffectFade, Pagination, Autoplay]}
         >
             <SwiperSlide className='rounded-xl overflow-hidden'>
                 <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>

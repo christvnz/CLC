@@ -45,8 +45,12 @@
   p {
     @apply font-normal text-xl leading-snug tracking-snug text-gray600 md:leading-normal;
   }
+
 }
 
+.swiper-pagination-bullet-active {
+  background: var(--color-primary) !important;
+}
 #mc_embed_signup {
   background: #fff;
   clear: left;

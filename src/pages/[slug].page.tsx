@@ -35,7 +35,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           </div>
           {
             advertisement && 
-              <div className='mx-auto max-w-4xl sticky top-44 h-fit'>
+              <div className='mx-auto max-w-4xl xl:max-w-full sticky top-44 h-fit w-[300px]'>
                 <Link href={advertisement.redirectUrl ? advertisement.redirectUrl : ''} target={advertisement.redirectUrl ? '_blank' : '_self'}>
                   <CtfImage nextImageProps={{ className: 'w-full' }} {...advertisement.image} />
                 </Link>
