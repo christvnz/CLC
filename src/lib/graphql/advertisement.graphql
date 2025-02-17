@@ -1,0 +1,19 @@
+fragment PageAdvertisementFields on ComponentAdvertisement {
+  __typename
+  title,
+  redirectUrl,
+  image {
+    ...ImageFields
+  }
+  # Tutorial: contentful-and-the-starter-template.md
+  # Uncomment the line below to add the Greeting field to the query
+  # greeting
+}
+
+query pageAdvertisement($locale: String, $preview: Boolean) {
+  componentAdvertisementCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageAdvertisementFields
+    }
+  }
+}

@@ -15,7 +15,7 @@ const Partners = (props: props) => {
         <>
             <div className='flex gap-[25px] items-center mb-10'>
                 <div className='bg-[#FEAB01] flex-1 h-[2px]'></div>
-                <div className='mt-[-0.3em] mb-[-0.4em] text-2xl font-bold capitalize'>Out Partners</div>
+                <div className='mt-[-0.3em] mb-[-0.4em] text-2xl font-bold capitalize'>Our Partners</div>
                 <div className='bg-[#FEAB01] flex-1 h-[2px]'></div>
             </div>
             <Swiper

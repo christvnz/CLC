@@ -6,7 +6,7 @@ const FloatingContact = () => {
 
     return (
         <>
-            <div className="fixed right-0 bottom-16 flex flex-col gap-2">
+            <div className="fixed right-0 bottom-16 flex flex-col z-30 gap-2">
                 <div className="relative">
                     <button
                         className="flex flex-row-reverse items-center bg-[#FEAB00] text-colorWhite p-3 transition-all duration-300"
@@ -27,7 +27,7 @@ const FloatingContact = () => {
                     </button>
                 </div>
             </div>
-            <div className="fixed right-0 bottom-4 flex flex-col gap-2">
+            <div className="fixed right-0 bottom-4 flex flex-col z-30 gap-2">
                 <div className="relative">
                     <button
                         className="flex flex-row-reverse items-center bg-[#FEAB00] text-colorWhite p-3 transition-all duration-300"

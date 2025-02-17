@@ -2,30 +2,35 @@
 import { EffectFade, Navigation, Autoplay } from 'swiper/modules';
 /* eslint-disable import/no-unresolved */
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import Banner1 from './slider-1.jpeg'
+import Banner2 from './slider-2.jpeg'
 
 const Banner = () => {
 
     const images = [
-        {
-            image: 'https://placehold.co/1100x500',
-            title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            position: 'center',
-            textColor: '#000000',
-            buttonText: 'Read More',
-            buttonBackground: '#FEAB01',
-            buttonTextColor: '#ffffff',
-            link: 'http://localhost:3000/food'
-        },
-        {
-            image: 'https://placehold.co/1300x500',
-            title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            position: 'left',
-            textColor: '#000000',
-            buttonText: 'Read More',
-            buttonBackground: '#FEAB01',
-            buttonTextColor: '#ffffff',
-            link: 'http://localhost:3000/food'
-        },
+        // {
+        //     image: 'https://placehold.co/1100x500',
+        //     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        //     position: 'center',
+        //     textColor: '#000000',
+        //     buttonText: 'Read More',
+        //     buttonBackground: '#FEAB01',
+        //     buttonTextColor: '#ffffff',
+        //     link: 'http://localhost:3000/food'
+        // },
+        // {
+        //     image: 'https://placehold.co/1300x500',
+        //     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        //     position: 'left',
+        //     textColor: '#000000',
+        //     buttonText: 'Read More',
+        //     buttonBackground: '#FEAB01',
+        //     buttonTextColor: '#ffffff',
+        //     link: 'http://localhost:3000/food'
+        // },
         // {
         //   image: 'https://placehold.co/1400x500',
         //   title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -47,14 +52,28 @@ const Banner = () => {
     return (
         <Swiper
             autoplay={{
-                delay: 2500,
+                delay: 4500, 
                 disableOnInteraction: false,
             }}
             spaceBetween={30}
             effect={'fade'}
             modules={[EffectFade, Navigation, Autoplay]}
         >
-            {
+            <SwiperSlide className='rounded-xl overflow-hidden'>
+                <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
+                    <div className='h-[200px] md:h-[400px] lg:h-[600px] relative'>
+                        <Image src={Banner1} className='w-full h-full object-cover' alt='banner-1' />
+                    </div>
+                </Link>
+            </SwiperSlide>
+            <SwiperSlide className='rounded-xl overflow-hidden'>
+                <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
+                    <div className='h-[200px] md:h-[400px] lg:h-[600px] relative'>
+                        <Image src={Banner2} className='w-full h-full object-cover' alt='banner-2' />
+                    </div>
+                </Link>
+            </SwiperSlide>
+            {/* {
                 images.map((image, index) => {
                     return (
                         <SwiperSlide key={index} className='rounded-xl overflow-hidden'>
@@ -79,7 +98,7 @@ const Banner = () => {
                         </SwiperSlide>
                     )
                 })
-            }
+            } */}
         </Swiper>
     )
 }
