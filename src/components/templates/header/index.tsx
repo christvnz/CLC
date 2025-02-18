@@ -41,7 +41,7 @@ const Header = () => {
               Home
             </div>
           </Link>
-          <Popover className="relative">
+          <Popover className="relative hidden lg:block">
             {({ open, close }) => ( 
               <>
                 <PopoverButton className={`flex gap-x-3 cursor-pointer !shadow-none ${HeaderStyles.header__logoContainerLinkWord} ${
