@@ -5,8 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Banner1 from './slider-1.jpeg'
-import Banner2 from './slider-2.jpeg'
+import Banner1 from './slider-1.jpg'
+import Banner2 from './slider-2.jpg'
 
 const Banner = () => {
 
