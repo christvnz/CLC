@@ -62,15 +62,15 @@ const Banner = () => {
         >
             <SwiperSlide className='rounded-xl overflow-hidden'>
                 <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
-                    <div className='h-[200px] md:h-[400px] lg:h-[600px] relative'>
-                        <Image src={Banner1} className='w-full h-full object-cover' alt='banner-1' />
+                    <div className='h-[180px] sm:h-[200px] md:h-[400px] lg:h-[600px] relative'>
+                        <Image src={Banner1} className='w-full h-full object-fill md:object-cover' alt='banner-1' />
                     </div>
                 </Link>
             </SwiperSlide>
             <SwiperSlide className='rounded-xl overflow-hidden'>
                 <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
-                    <div className='h-[200px] md:h-[400px] lg:h-[600px] relative'>
-                        <Image src={Banner2} className='w-full h-full object-cover' alt='banner-2' />
+                    <div className='h-[180px] sm:h-[200px] md:h-[400px] lg:h-[600px] relative'>
+                        <Image src={Banner2} className='w-full h-full object-fill md:object-cover' alt='banner-2' />
                     </div>
                 </Link>
             </SwiperSlide>
