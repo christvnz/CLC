@@ -71,7 +71,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                     {
                                                         item.googleMapUrl &&
                                                         <a href={item.googleMapUrl} target="_blank" rel="noreferrer" className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
-                                                            View Map
+                                                            Get Direction
                                                         </a>
                                                     }
                                                 </div>
