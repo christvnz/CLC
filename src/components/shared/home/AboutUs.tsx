@@ -29,7 +29,7 @@ const AboutUs = (props: props) => {
                             <div className="relative w-full pt-[56.25%]">
                                 <iframe
                                     className="absolute top-0 left-0 w-full h-full object-cover rounded-md"
-                                    src={content.videoUrl + '&autoplay=1&mute=0&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1'}
+                                    src={content.videoUrl + '&autoplay=1&mute=1&loop=1&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1'}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen={false}
                                     referrerPolicy="strict-origin-when-cross-origin"
