@@ -11,7 +11,8 @@ fragment PageEventPostFields on PageEvent {
     eventCta,
     location,
     date,
-    time
+    time,
+    googleMapUrl
 }
 
 query pageEventsCollection(

@@ -64,9 +64,17 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                                                             <span>{ item.time }</span>
                                                         </div>
                                                 }
-                                                <a href={item.buttonLink ? item.buttonLink : '#'} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
-                                                    { item.eventCta ? item.eventCta : 'Buy Now' }
-                                                </a>
+                                                <div className="flex gap-3">
+                                                    <a href={item.buttonLink ? item.buttonLink : '#'} className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
+                                                        { item.eventCta ? item.eventCta : 'Buy Now' }
+                                                    </a>
+                                                    {
+                                                        item.googleMapUrl &&
+                                                        <a href={item.googleMapUrl} target="_blank" rel="noreferrer" className="bg-[#FEAB01] text-colorWhite font-medium py-4 px-5 rounded hover:bg-red-600 text-center cursor-pointer w-fit">
+                                                            View Map
+                                                        </a>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -24,6 +24,7 @@ fragment ReferenceComponentAboutUs on ComponentAboutUs {
       }
     }
   }
+  videoUrl
 }
 
 fragment PageLandingFields on PageLanding {

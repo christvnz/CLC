@@ -296,6 +296,7 @@ export type ComponentAboutUs = Entry & _Node & {
   shortDescription?: Maybe<ComponentAboutUsShortDescription>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
+  videoUrl?: Maybe<Scalars['String']>;
 };
 
 
@@ -326,6 +327,12 @@ export type ComponentAboutUsShortDescriptionArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentAboutUs) */
 export type ComponentAboutUsTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentAboutUs) */
+export type ComponentAboutUsVideoUrlArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
@@ -404,6 +411,13 @@ export type ComponentAboutUsFilter = {
   title_not?: InputMaybe<Scalars['String']>;
   title_not_contains?: InputMaybe<Scalars['String']>;
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl?: InputMaybe<Scalars['String']>;
+  videoUrl_contains?: InputMaybe<Scalars['String']>;
+  videoUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  videoUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl_not?: InputMaybe<Scalars['String']>;
+  videoUrl_not_contains?: InputMaybe<Scalars['String']>;
+  videoUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type ComponentAboutUsLinkingCollections = {
@@ -452,7 +466,9 @@ export enum ComponentAboutUsOrder {
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
+  TitleDesc = 'title_DESC',
+  VideoUrlAsc = 'videoUrl_ASC',
+  VideoUrlDesc = 'videoUrl_DESC'
 }
 
 export type ComponentAboutUsShortDescription = {
@@ -1702,6 +1718,7 @@ export type PageEvent = Entry & _Node & {
   date?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   eventCta?: Maybe<Scalars['String']>;
+  googleMapUrl?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<PageEventLinkingCollections>;
   location?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
@@ -1738,6 +1755,12 @@ export type PageEventDescriptionArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
 export type PageEventEventCtaArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent) */
+export type PageEventGoogleMapUrlArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
@@ -1825,6 +1848,13 @@ export type PageEventFilter = {
   eventCta_not?: InputMaybe<Scalars['String']>;
   eventCta_not_contains?: InputMaybe<Scalars['String']>;
   eventCta_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  googleMapUrl?: InputMaybe<Scalars['String']>;
+  googleMapUrl_contains?: InputMaybe<Scalars['String']>;
+  googleMapUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  googleMapUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  googleMapUrl_not?: InputMaybe<Scalars['String']>;
+  googleMapUrl_not_contains?: InputMaybe<Scalars['String']>;
+  googleMapUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   location?: InputMaybe<Scalars['String']>;
   location_contains?: InputMaybe<Scalars['String']>;
   location_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1879,6 +1909,8 @@ export enum PageEventOrder {
   DateDesc = 'date_DESC',
   EventCtaAsc = 'eventCta_ASC',
   EventCtaDesc = 'eventCta_DESC',
+  GoogleMapUrlAsc = 'googleMapUrl_ASC',
+  GoogleMapUrlDesc = 'googleMapUrl_DESC',
   LocationAsc = 'location_ASC',
   LocationDesc = 'location_DESC',
   SlugAsc = 'slug_ASC',
@@ -2402,6 +2434,13 @@ export type CfComponentAboutUsNestedFilter = {
   title_not?: InputMaybe<Scalars['String']>;
   title_not_contains?: InputMaybe<Scalars['String']>;
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl?: InputMaybe<Scalars['String']>;
+  videoUrl_contains?: InputMaybe<Scalars['String']>;
+  videoUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  videoUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  videoUrl_not?: InputMaybe<Scalars['String']>;
+  videoUrl_not_contains?: InputMaybe<Scalars['String']>;
+  videoUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type CfComponentAuthorNestedFilter = {
@@ -2632,7 +2671,7 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
       & PageBlogPostFieldsFragment
     ) | null> } | null };
 
-export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, location?: string | null, date?: string | null, time?: string | null, thumbnail?: (
+export type PageEventPostFieldsFragment = { __typename: 'PageEvent', title?: string | null, slug?: string | null, description?: string | null, amount?: string | null, buttonLink?: string | null, eventCta?: string | null, location?: string | null, date?: string | null, time?: string | null, googleMapUrl?: string | null, thumbnail?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null };
@@ -2682,7 +2721,7 @@ export type GalleryCollectionQuery = { __typename?: 'Query', galleryCollection?:
       & PageGalleryPostFieldsFragment
     ) | null> } | null };
 
-export type ReferenceComponentAboutUsFragment = { __typename: 'ComponentAboutUs', title?: string | null, image?: (
+export type ReferenceComponentAboutUsFragment = { __typename: 'ComponentAboutUs', title?: string | null, videoUrl?: string | null, image?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null, description?: { __typename?: 'ComponentAboutUsDescription', json: any, links: { __typename?: 'ComponentAboutUsDescriptionLinks', entries: { __typename?: 'ComponentAboutUsDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | (
@@ -2896,6 +2935,7 @@ export const PageEventPostFieldsFragmentDoc = gql`
   location
   date
   time
+  googleMapUrl
 }
     `;
 export const PageGalleryPostFieldsFragmentDoc = gql`
@@ -2937,6 +2977,7 @@ export const ReferenceComponentAboutUsFragmentDoc = gql`
       }
     }
   }
+  videoUrl
 }
     `;
 export const PageLandingFieldsFragmentDoc = gql`

@@ -130,16 +130,9 @@ const ContactForm = () => {
             <a href="mailto:info@chowluckclub.com">info@chowluckclub.com</a>
         </div>
       </div>
-      <p className="mr-auto ml-auto mt-5 mb-5 max-w-3xl">
-        {`Got something awesome happening in New Zealand? Or maybe a genius idea to jazz up the
-        chowluckclub.com website? Even if it's a top-notch event in New Zealand that's got you
-        buzzing, we're all ears!`}
-        <br />
-        {`Just drop your deets below, along with any questions you have, and we'll hustle to get back
-        to you within 48 hours. If it's urgent (like, really urgent), give us a buzz at 027 483 0668
-        (Bee).`}
-        <br />
-        {`Looking forward to hearing from you soon - let's make some magic happen! ✨`}
+      <p className="mr-auto ml-auto mt-5 mb-5 max-w-3xl break-words">
+        Got an exciting event or a brilliant idea for chowluckclub.com? We’re all ears! Drop your details below, and we’ll get back to you asap. For anything urgent, 
+        call Bee at <a href="tel:0274830668">0274830668</a>.
       </p>
       <Form onSubmit={handleSubmit}>
         <FormGroup>

@@ -23,15 +23,27 @@ const AboutUs = (props: props) => {
                 </div>
             </div>
             <div className="lg:w-1/2">
-                <div className="relative w-full">
+                <div className="relative w-full h-fit">
                     {
-                        content.image &&
-                        <CtfImage
-                            nextImageProps={{
-                                className: 'object-cover w-full  rounded-md',
-                            }}
-                            {...content.image}
-                        />
+                        content.videoUrl ? (
+                            <div className="relative w-full pt-[56.25%]">
+                                <iframe
+                                    className="absolute top-0 left-0 w-full h-full object-cover rounded-md"
+                                    src={content.videoUrl + '&autoplay=1&mute=0&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1'}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen={false}
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    title="YouTube video player"
+                                />
+                            </div>
+                        ) : content.image ? 
+                            <CtfImage
+                                nextImageProps={{
+                                    className: 'object-cover w-full  rounded-md',
+                                }}
+                                {...content.image}
+                            />
+                        : null
                     }
                 </div>
             </div>

@@ -139,6 +139,7 @@ type ComponentAboutUs implements Entry & _Node {
   shortDescription(locale: String): ComponentAboutUsShortDescription
   sys: Sys!
   title(locale: String): String
+  videoUrl(locale: String): String
 }
 
 type ComponentAboutUsCollection {
@@ -207,6 +208,13 @@ input ComponentAboutUsFilter {
   title_not: String
   title_not_contains: String
   title_not_in: [String]
+  videoUrl: String
+  videoUrl_contains: String
+  videoUrl_exists: Boolean
+  videoUrl_in: [String]
+  videoUrl_not: String
+  videoUrl_not_contains: String
+  videoUrl_not_in: [String]
 }
 
 type ComponentAboutUsLinkingCollections {
@@ -238,6 +246,8 @@ enum ComponentAboutUsOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
+  videoUrl_ASC
+  videoUrl_DESC
 }
 
 type ComponentAboutUsShortDescription {
@@ -1164,6 +1174,7 @@ type PageEvent implements Entry & _Node {
   date(locale: String): String
   description(locale: String): String
   eventCta(locale: String): String
+  googleMapUrl(locale: String): String
   linkedFrom(allowedLocales: [String]): PageEventLinkingCollections
   location(locale: String): String
   slug(locale: String): String
@@ -1219,6 +1230,13 @@ input PageEventFilter {
   eventCta_not: String
   eventCta_not_contains: String
   eventCta_not_in: [String]
+  googleMapUrl: String
+  googleMapUrl_contains: String
+  googleMapUrl_exists: Boolean
+  googleMapUrl_in: [String]
+  googleMapUrl_not: String
+  googleMapUrl_not_contains: String
+  googleMapUrl_not_in: [String]
   location: String
   location_contains: String
   location_exists: Boolean
@@ -1264,6 +1282,8 @@ enum PageEventOrder {
   date_DESC
   eventCta_ASC
   eventCta_DESC
+  googleMapUrl_ASC
+  googleMapUrl_DESC
   location_ASC
   location_DESC
   slug_ASC
@@ -1512,6 +1532,13 @@ input cfComponentAboutUsNestedFilter {
   title_not: String
   title_not_contains: String
   title_not_in: [String]
+  videoUrl: String
+  videoUrl_contains: String
+  videoUrl_exists: Boolean
+  videoUrl_in: [String]
+  videoUrl_not: String
+  videoUrl_not_contains: String
+  videoUrl_not_in: [String]
 }
 
 input cfComponentAuthorNestedFilter {

@@ -131,7 +131,7 @@ const V2Footer = () => {
                 </div>
             </div>
             <div className='py-4 flex flex-col md:flex-row items-center justify-between gap-4 mx-auto max-w-8xl px-4'>
-                <span className="hover:text-gray200 inline-flex gap-x-2">{`©Lincoln's Table 2024`}</span>
+                <span className="hover:text-gray200 inline-flex gap-x-2">{`©Chow Luck Club ` + new Date().getFullYear()}</span>
                 <Link className=" hover:text-gray200 ml-2 inline-flex gap-x-2" href="/terms">
                     T&Cs / Privacy Policy
                 </Link>
