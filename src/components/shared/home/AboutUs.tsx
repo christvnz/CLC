@@ -22,13 +22,13 @@ const AboutUs = (props: props) => {
                     </Link>
                 </div>
             </div>
-            <div className="lg:w-1/2">
+            <div className="w-full lg:w-1/2">
                 <div className="relative w-full h-fit">
                     {
                         content.videoUrl ? (
-                            <div className="relative w-full pt-[56.25%]">
+                            <div className="relative w-full lg:pt-[56.25%]">
                                 <iframe
-                                    className="absolute top-0 left-0 w-full h-full object-cover rounded-md"
+                                    className="lg:absolute top-0 left-0 w-full h-[200px] md:h-full object-cover rounded-md"
                                     src={content.videoUrl + '&mute=1&loop=1&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&playsinline=1'}
                                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen={false}
