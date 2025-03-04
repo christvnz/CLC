@@ -21,11 +21,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   });
 
   if (!page?.featuredBlogPost || !posts) return null;
-  3;
-
-  const groupedArticles = groupArticlesByCuisineType(foodPosts);
-  const foodCategories = Object.keys(groupedArticles);
-
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
@@ -34,22 +29,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <h1>Food</h1>
         <p>{posts.length} results</p>
       </Container>
-      {foodCategories.map(cuisineType => {
-        if (groupedArticles[cuisineType].length === 0) {
-          return null;
-        }
-        return (
-          <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
-            <h2 className="mb-4 md:mb-6">
-              {cuisineType.charAt(0).toUpperCase() + cuisineType.slice(1)}
-            </h2>
-            <ArticleTileGrid
-              className="md:grid-cols-2 lg:grid-cols-3"
-              articles={groupedArticles[cuisineType]}
-            />
-          </Container>
-        );
-      })}
+      <Container className="my-8 md:mb-10 lg:mb-16">
+        <ArticleTileGrid
+          className="md:grid-cols-2 lg:grid-cols-3"
+          articles={foodPosts}
+        />
+      </Container>
       {/* {cuisineTypes.map(cuisineType => (
         <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
           <h2 className="mb-4 md:mb-6">{cuisineType}</h2>
