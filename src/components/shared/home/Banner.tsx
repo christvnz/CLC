@@ -7,47 +7,16 @@ import Link from 'next/link';
 
 import Banner1 from './slider-01.jpg'
 import Banner2 from './slider-2.jpg'
+import { CtfImage } from '@src/components/features/contentful';
+import { ComponentHomeBannerPostFieldFragment } from '@src/lib/__generated/sdk';
 
-const Banner = () => {
+interface Props {
+    homeBanners: ComponentHomeBannerPostFieldFragment[]
+}
 
-    const images = [
-        // {
-        //     image: 'https://placehold.co/1100x500',
-        //     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        //     position: 'center',
-        //     textColor: '#000000',
-        //     buttonText: 'Read More',
-        //     buttonBackground: '#FEAB01',
-        //     buttonTextColor: '#ffffff',
-        //     link: 'http://localhost:3000/food'
-        // },
-        // {
-        //     image: 'https://placehold.co/1300x500',
-        //     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        //     position: 'left',
-        //     textColor: '#000000',
-        //     buttonText: 'Read More',
-        //     buttonBackground: '#FEAB01',
-        //     buttonTextColor: '#ffffff',
-        //     link: 'http://localhost:3000/food'
-        // },
-        // {
-        //   image: 'https://placehold.co/1400x500',
-        //   title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        //   position: 'right',
-        //   textColor: '#000000',
-        //   buttonText: 'Read More',
-        //   buttonBackground: '#FEAB01',
-        //   buttonTextColor: '#ffffff',
-        //   link: 'http://localhost:3000/food'
-        // }
-    ]
+const Banner = (props: Props) => {
 
-    const classNames = {
-        center: 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-        left: 'top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2',
-        right: 'top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2'
-    }
+    const images = props.homeBanners
 
     return (
         <Swiper
@@ -60,20 +29,39 @@ const Banner = () => {
             pagination={true}
             modules={[EffectFade, Pagination, Autoplay]}
         >
-            <SwiperSlide className='rounded-xl overflow-hidden'>
-                <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
-                    <div className='h-[180px] sm:h-[200px] md:h-[400px] lg:h-[600px] relative'>
-                        <Image src={Banner1} className='w-full h-full object-fill md:object-cover' alt='banner-1' />
-                    </div>
-                </Link>
-            </SwiperSlide>
-            <SwiperSlide className='rounded-xl overflow-hidden'>
+            {
+                images.length > 0 && images.map((image, index) => {
+                    if (!image.image) return
+                    return (
+                        <SwiperSlide key={index} className='rounded-xl overflow-hidden'>
+                            <Link href={`${image.redirectUrl ? image.redirectUrl : ''}`} target={image.redirectUrl ? '_blank' : '_self'}>
+                                <div className='h-[180px] sm:h-[200px] md:h-[400px] lg:h-[600px] relative'>
+                                    <CtfImage 
+                                        nextImageProps={{
+                                            className: 'w-full h-full object-fill md:object-cover',
+                                        }}
+                                        {...image.image}
+                                    />
+                                </div>
+                            </Link>
+                        </SwiperSlide>
+                    )              
+                })
+            }
+                {/* <SwiperSlide className='rounded-xl overflow-hidden'>
+                    <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
+                        <div className='h-[180px] sm:h-[200px] md:h-[400px] lg:h-[600px] relative'>
+                            <Image src={Banner1} className='w-full h-full object-fill md:object-cover' alt='banner-1' />
+                        </div>
+                    </Link>
+                </SwiperSlide> */}
+            {/* <SwiperSlide className='rounded-xl overflow-hidden'>
                 <Link href="https://www.facebook.com/groups/590817651915936" target='_blank'>
                     <div className='h-[180px] sm:h-[200px] md:h-[400px] lg:h-[600px] relative'>
                         <Image src={Banner2} className='w-full h-full object-fill md:object-cover' alt='banner-2' />
                     </div>
                 </Link>
-            </SwiperSlide>
+            </SwiperSlide> */}
             {/* {
                 images.map((image, index) => {
                     return (

@@ -7,7 +7,7 @@ import { getServerSideTranslations } from './utils/get-serverside-translations';
 import { ArticleHero, ArticleTileGrid } from '@src/components/features/article';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
-import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
+import { ComponentHomeBannerOrder, PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import HomeBanner from '@src/components/shared/home/Banner';
@@ -19,6 +19,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
   const partners = useContentfulLiveUpdates(props.partners);
+  const homeBanners = useContentfulLiveUpdates(props.homeBanners);
 
   if (!page?.featuredBlogPost || !posts) return;
 
@@ -27,7 +28,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {page.seoFields && <SeoFields {...page.seoFields} />}
 
       <Container className='pb-12'>
-        <HomeBanner />
+        <HomeBanner homeBanners={homeBanners}/>
       </Container>
 
       <Container className="navMargin">
@@ -79,9 +80,12 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
       preview,
     });
 
+    const homeBannerData = await gqlClient.homeBanner({ locale, preview, order: ComponentHomeBannerOrder.SysFirstPublishedAtAsc });
+
     const partnersCollection = await gqlClient.ourPartners({ locale, preview })
     const posts = blogPostsData.pageBlogPostCollection?.items;
     const partners = partnersCollection.pageOurPartnersCollection?.items;
+    const homeBanners = homeBannerData.componentHomeBannerCollection?.items
 
     if (!page) {
       return {
@@ -97,7 +101,8 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
         ...(await getServerSideTranslations(locale)),
         page,
         posts,
-        partners
+        partners,
+        homeBanners
       },
     };
   } catch {

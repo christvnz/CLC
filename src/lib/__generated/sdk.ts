@@ -173,6 +173,7 @@ export type AssetLinkingCollections = {
   componentAboutUsCollection?: Maybe<ComponentAboutUsCollection>;
   componentAdvertisementCollection?: Maybe<ComponentAdvertisementCollection>;
   componentAuthorCollection?: Maybe<ComponentAuthorCollection>;
+  componentHomeBannerCollection?: Maybe<ComponentHomeBannerCollection>;
   componentRichImageCollection?: Maybe<ComponentRichImageCollection>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
   entryCollection?: Maybe<EntryCollection>;
@@ -200,6 +201,14 @@ export type AssetLinkingCollectionsComponentAdvertisementCollectionArgs = {
 
 
 export type AssetLinkingCollectionsComponentAuthorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsComponentHomeBannerCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -740,6 +749,101 @@ export enum ComponentAuthorOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentHomeBanner) */
+export type ComponentHomeBanner = Entry & _Node & {
+  __typename?: 'ComponentHomeBanner';
+  _id: Scalars['ID'];
+  contentfulMetadata: ContentfulMetadata;
+  image?: Maybe<Asset>;
+  linkedFrom?: Maybe<ComponentHomeBannerLinkingCollections>;
+  redirectUrl?: Maybe<Scalars['String']>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentHomeBanner) */
+export type ComponentHomeBannerImageArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentHomeBanner) */
+export type ComponentHomeBannerLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentHomeBanner) */
+export type ComponentHomeBannerRedirectUrlArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentHomeBanner) */
+export type ComponentHomeBannerTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentHomeBannerCollection = {
+  __typename?: 'ComponentHomeBannerCollection';
+  items: Array<Maybe<ComponentHomeBanner>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type ComponentHomeBannerFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ComponentHomeBannerFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ComponentHomeBannerFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  image_exists?: InputMaybe<Scalars['Boolean']>;
+  redirectUrl?: InputMaybe<Scalars['String']>;
+  redirectUrl_contains?: InputMaybe<Scalars['String']>;
+  redirectUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  redirectUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  redirectUrl_not?: InputMaybe<Scalars['String']>;
+  redirectUrl_not_contains?: InputMaybe<Scalars['String']>;
+  redirectUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']>;
+  title_contains?: InputMaybe<Scalars['String']>;
+  title_exists?: InputMaybe<Scalars['Boolean']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not?: InputMaybe<Scalars['String']>;
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentHomeBannerLinkingCollections = {
+  __typename?: 'ComponentHomeBannerLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ComponentHomeBannerLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum ComponentHomeBannerOrder {
+  RedirectUrlAsc = 'redirectUrl_ASC',
+  RedirectUrlDesc = 'redirectUrl_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 /** To describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentRichImage) */
@@ -2122,6 +2226,8 @@ export type Query = {
   componentAdvertisementCollection?: Maybe<ComponentAdvertisementCollection>;
   componentAuthor?: Maybe<ComponentAuthor>;
   componentAuthorCollection?: Maybe<ComponentAuthorCollection>;
+  componentHomeBanner?: Maybe<ComponentHomeBanner>;
+  componentHomeBannerCollection?: Maybe<ComponentHomeBannerCollection>;
   componentRichImage?: Maybe<ComponentRichImage>;
   componentRichImageCollection?: Maybe<ComponentRichImageCollection>;
   componentSeo?: Maybe<ComponentSeo>;
@@ -2212,6 +2318,23 @@ export type QueryComponentAuthorCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ComponentAuthorFilter>;
+};
+
+
+export type QueryComponentHomeBannerArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryComponentHomeBannerCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<ComponentHomeBannerOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ComponentHomeBannerFilter>;
 };
 
 
@@ -2599,6 +2722,25 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
     & ImageFieldsFragment
   ) | null };
 
+export type ComponentHomeBannerPostFieldFragment = { __typename: 'ComponentHomeBanner', redirectUrl?: string | null, image?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null };
+
+export type HomeBannerQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Array<InputMaybe<ComponentHomeBannerOrder>> | InputMaybe<ComponentHomeBannerOrder>>;
+  where?: InputMaybe<ComponentHomeBannerFilter>;
+}>;
+
+
+export type HomeBannerQuery = { __typename?: 'Query', componentHomeBannerCollection?: { __typename?: 'ComponentHomeBannerCollection', items: Array<(
+      { __typename?: 'ComponentHomeBanner' }
+      & ComponentHomeBannerPostFieldFragment
+    ) | null> } | null };
+
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
 export type PageOurPartnersPostFieldsFragment = { __typename: 'PageOurPartners', url?: string | null, image?: (
@@ -2637,7 +2779,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, featuredImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | (
+  ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
@@ -2724,10 +2866,10 @@ export type GalleryCollectionQuery = { __typename?: 'Query', galleryCollection?:
 export type ReferenceComponentAboutUsFragment = { __typename: 'ComponentAboutUs', title?: string | null, videoUrl?: string | null, image?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null, description?: { __typename?: 'ComponentAboutUsDescription', json: any, links: { __typename?: 'ComponentAboutUsDescriptionLinks', entries: { __typename?: 'ComponentAboutUsDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | (
+  ) | null, description?: { __typename?: 'ComponentAboutUsDescription', json: any, links: { __typename?: 'ComponentAboutUsDescriptionLinks', entries: { __typename?: 'ComponentAboutUsDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, shortDescription?: { __typename?: 'ComponentAboutUsShortDescription', json: any, links: { __typename?: 'ComponentAboutUsShortDescriptionLinks', entries: { __typename?: 'ComponentAboutUsShortDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | (
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, shortDescription?: { __typename?: 'ComponentAboutUsShortDescription', json: any, links: { __typename?: 'ComponentAboutUsShortDescriptionLinks', entries: { __typename?: 'ComponentAboutUsShortDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null };
@@ -2805,6 +2947,15 @@ export const PageAdvertisementFieldsFragmentDoc = gql`
     fragment PageAdvertisementFields on ComponentAdvertisement {
   __typename
   title
+  redirectUrl
+  image {
+    ...ImageFields
+  }
+}
+    `;
+export const ComponentHomeBannerPostFieldFragmentDoc = gql`
+    fragment componentHomeBannerPostField on ComponentHomeBanner {
+  __typename
   redirectUrl
   image {
     ...ImageFields
@@ -3028,6 +3179,22 @@ export const PageAdvertisementDocument = gql`
 }
     ${PageAdvertisementFieldsFragmentDoc}
 ${ImageFieldsFragmentDoc}`;
+export const HomeBannerDocument = gql`
+    query homeBanner($locale: String, $preview: Boolean, $limit: Int, $order: [ComponentHomeBannerOrder], $where: ComponentHomeBannerFilter) {
+  componentHomeBannerCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...componentHomeBannerPostField
+    }
+  }
+}
+    ${ComponentHomeBannerPostFieldFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const OurPartnersDocument = gql`
     query ourPartners($locale: String, $preview: Boolean, $limit: Int, $order: [PageOurPartnersOrder], $where: PageOurPartnersFilter) {
   pageOurPartnersCollection(
@@ -3175,6 +3342,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     pageAdvertisement(variables?: PageAdvertisementQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageAdvertisementQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageAdvertisementQuery>(PageAdvertisementDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageAdvertisement', 'query', variables);
+    },
+    homeBanner(variables?: HomeBannerQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<HomeBannerQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HomeBannerQuery>(HomeBannerDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'homeBanner', 'query', variables);
     },
     ourPartners(variables?: OurPartnersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<OurPartnersQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<OurPartnersQuery>(OurPartnersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ourPartners', 'query', variables);
