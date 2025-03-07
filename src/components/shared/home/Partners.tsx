@@ -4,6 +4,7 @@ import { CtfImage } from '@src/components/features/contentful';
 import { PageOurPartnersPostFieldsFragment } from '@src/lib/__generated/sdk';
 /* eslint-disable import/no-unresolved */
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Link from 'next/link';
 
 interface props {
     partners: PageOurPartnersPostFieldsFragment[]
@@ -45,12 +46,14 @@ const Partners = (props: props) => {
                     partners.map((partner, index) => (
                         partner.image && 
                             <SwiperSlide key={index}>
-                                <CtfImage
-                                    nextImageProps={{
-                                        className: 'object-contain aspect-[16/9] h-full w-full',
-                                    }}
-                                    {...partner.image}
-                                />
+                                <Link href={partner.url ? partner.url : ''} target={partner.url ? '_blank' : '_self'}>
+                                    <CtfImage
+                                        nextImageProps={{
+                                            className: 'object-contain aspect-[16/9] h-full w-full',
+                                        }}
+                                        {...partner.image}
+                                    />
+                                </Link>
                             </SwiperSlide>
                     ))
                 }

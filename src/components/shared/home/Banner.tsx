@@ -2,11 +2,7 @@
 import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
 /* eslint-disable import/no-unresolved */
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/image';
 import Link from 'next/link';
-
-import Banner1 from './slider-01.jpg'
-import Banner2 from './slider-2.jpg'
 import { CtfImage } from '@src/components/features/contentful';
 import { ComponentHomeBannerPostFieldFragment } from '@src/lib/__generated/sdk';
 
