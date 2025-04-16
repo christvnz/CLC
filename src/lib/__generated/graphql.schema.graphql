@@ -1431,6 +1431,7 @@ type PageOurPartners implements Entry & _Node {
   image(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): PageOurPartnersLinkingCollections
   sys: Sys!
+  title(locale: String): String
   url(locale: String): String
 }
 
@@ -1447,6 +1448,13 @@ input PageOurPartnersFilter {
   contentfulMetadata: ContentfulMetadataFilter
   image_exists: Boolean
   sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
   url: String
   url_contains: String
   url_exists: Boolean
@@ -1469,6 +1477,8 @@ enum PageOurPartnersOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
   url_ASC
   url_DESC
 }
@@ -1480,6 +1490,7 @@ scalar Quality
 
 type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
+  _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
   componentAboutUs(id: String!, locale: String, preview: Boolean): ComponentAboutUs

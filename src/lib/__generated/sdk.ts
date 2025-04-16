@@ -2144,6 +2144,7 @@ export type PageOurPartners = Entry & _Node & {
   image?: Maybe<Asset>;
   linkedFrom?: Maybe<PageOurPartnersLinkingCollections>;
   sys: Sys;
+  title?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
 
@@ -2158,6 +2159,12 @@ export type PageOurPartnersImageArgs = {
 /** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners) */
 export type PageOurPartnersLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners) */
+export type PageOurPartnersTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -2180,6 +2187,13 @@ export type PageOurPartnersFilter = {
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   image_exists?: InputMaybe<Scalars['Boolean']>;
   sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']>;
+  title_contains?: InputMaybe<Scalars['String']>;
+  title_exists?: InputMaybe<Scalars['Boolean']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not?: InputMaybe<Scalars['String']>;
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   url?: InputMaybe<Scalars['String']>;
   url_contains?: InputMaybe<Scalars['String']>;
   url_exists?: InputMaybe<Scalars['Boolean']>;
@@ -2211,6 +2225,8 @@ export enum PageOurPartnersOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
   UrlAsc = 'url_ASC',
   UrlDesc = 'url_DESC'
 }
@@ -2218,6 +2234,7 @@ export enum PageOurPartnersOrder {
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
+  _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   componentAboutUs?: Maybe<ComponentAboutUs>;
@@ -2248,6 +2265,13 @@ export type Query = {
 
 export type Query_NodeArgs = {
   id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type Query_NodesArgs = {
+  ids: Array<Scalars['ID']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
 };
@@ -2803,12 +2827,13 @@ export type PageBlogPostCollectionQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
   limit?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<Array<InputMaybe<PageBlogPostOrder>> | InputMaybe<PageBlogPostOrder>>;
   where?: InputMaybe<PageBlogPostFilter>;
 }>;
 
 
-export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<(
+export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', total: number, items: Array<(
       { __typename?: 'PageBlogPost' }
       & PageBlogPostFieldsFragment
     ) | null> } | null };
@@ -3231,14 +3256,16 @@ ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
 export const PageBlogPostCollectionDocument = gql`
-    query pageBlogPostCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageBlogPostOrder], $where: PageBlogPostFilter) {
+    query pageBlogPostCollection($locale: String, $preview: Boolean, $limit: Int, $skip: Int, $order: [PageBlogPostOrder], $where: PageBlogPostFilter) {
   pageBlogPostCollection(
     limit: $limit
+    skip: $skip
     locale: $locale
     preview: $preview
     order: $order
     where: $where
   ) {
+    total
     items {
       ...PageBlogPostFields
     }
