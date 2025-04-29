@@ -106,7 +106,7 @@ const Header = () => {
               Events
             </div>
           </Link>
-          <Link href="/app" className="hidden lg:block">
+          {/* <Link href="/app" className="hidden lg:block">
             <div
               aria-label="Navigate to about page"
               className={`${HeaderStyles.header__logoContainerLinkWord} ${
@@ -114,7 +114,7 @@ const Header = () => {
               }`}>
               App
             </div>
-          </Link>
+          </Link> */}
           <div className="flex flex-row">
             <div className="mr-3">
               <HamburgerMenu />
