@@ -21,49 +21,48 @@ const Page = () => {
       <h1 className="mb-4 text-center text-4xl font-bold md:text-5xl">ChowLuckCard</h1>
 
       <h2 className="text-gray-600 mb-8 text-center text-xl font-medium">
-        How to Delete Your ChowLuckCard Account
+        Account Deletion Request
       </h2>
 
       <div className="space-y-6">
         <p className="text-base">
-          If you wish to delete your ChowLuckCard account, please follow the steps below:
+        We respect your privacy and give you control over your data. If you no longer wish to use our services, you can delete your account and all associated data at any time.
         </p>
 
         <div>
-          <h3 className="text-gray-500 mb-3 text-lg font-bold">Option 1: In-app Deletion</h3>
+          <h3 className="font-bold">How to Delete Your Account</h3>
+          <p className="text-base my-2">
+            To Delete your account directly from the app, follow these steps:
+          </p>
           <ul className="list-disc space-y-2 pl-10">
-            <li>Open the ChowLuckCard app.</li>
+            <li>Open the app.</li>
             <li>
-              Navigate to <span className="font-bold">My Profile</span> &gt;{' '}
-              <span className="font-bold">Delete Account</span>.
+              Go to <span className="font-bold">Profile</span>.
             </li>
             <li>
-              Tap on <span className="font-bold">Delete Account</span>.
+              Select  <span className="font-bold">Delete Account</span>.
             </li>
-            <li>Confirm your deletion request.</li>
+            <li>Confirm the deletion when prompted.</li>
           </ul>
           <p className="mt-4">
-            This will permanently delete your account and all associated data from our servers.
+            <span className="font-bold">Note:</span>This action is permanent and cannot be undone.
           </p>
         </div>
 
         <div>
-          <h3 className="text-gray-500 mb-3 text-lg font-bold">Option 2: Request via Email</h3>
+          <h3 className="font-bold">Need Help ?</h3>
           <p>
-            If you cannot access the app, email us at{' '}
-            <span className="font-bold"><a href="mailto:app@chowluckcard.com">app@chowluckcard.com</a></span> with the subject:
-            <span className="italic">&quot;Account Deletion Request&quot;</span>. Include your registered
-            email ID in the message. Your account will be deleted within 7 working days.
+            If you are unable to access the app or need assistance, you can request account. deletion manually by contacting us:
+          </p>
+          <p className="my-2">
+            <a href="mailto:info@chowluckclub.com">
+              info@chowluckclub.com
+            </a>
+          </p>
+          <p>
+          Please include your registered email address or account ID so we can verify your identity and process the deletion request.
           </p>
         </div>
-
-        <p>
-          For more information, view our
-          <Link href="/privacy-policy" className="text-blue-600 underline ml-2">
-            Privacy Policy
-          </Link>
-          .
-        </p>
       </div>
     </div>
   );

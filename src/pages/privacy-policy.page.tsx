@@ -122,9 +122,9 @@ const Page = () => {
             aggregate. If you&quot;d like the Service Provider to delete User Provided Data that you have
             provided via the Application, please contact them at{' '}
             <a
-              href="mailto:omjha@galacticitsolutions.co.nz"
+              href="mailto:app@chowluckclub.com"
               className="text-primary hover:underline">
-              omjha@galacticitsolutions.co.nz
+              app@chowluckclub.com
             </a>{' '}
             and we will respond in a reasonable time. Please note that some or all of the User
             Provided Data may be required in order for the Application to function properly.
@@ -140,9 +140,9 @@ const Page = () => {
             servers. If you are a parent or guardian and you are aware that your child has provided
             personal information, please contact the Service Provider at{' '}
             <a
-              href="mailto:omjha@galacticitsolutions.co.nz"
+              href="mailto:app@chowluckclub.com"
               className="text-primary hover:underline">
-              omjha@galacticitsolutions.co.nz
+              app@chowluckclub.com
             </a>
             .
           </p>
@@ -186,9 +186,9 @@ const Page = () => {
             If you have any questions regarding privacy while using the Application, or have
             questions about the practices, please contact the Service Provider via email at
             <a
-              href="mailto:omjha@galacticitsolutions.co.nz"
+              href="mailto:app@chowluckclub.com"
               className="text-primary hover:underline">
-              omjha@galacticitsolutions.co.nz
+              app@chowluckclub.com
             </a>
             .
           </p>
