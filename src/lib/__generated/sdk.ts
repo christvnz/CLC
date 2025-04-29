@@ -20,6 +20,200 @@ export type Scalars = {
   Quality: any;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type App = Entry & _Node & {
+  __typename?: 'App';
+  _id: Scalars['ID'];
+  androidAppIcon?: Maybe<Asset>;
+  androidAppUrl?: Maybe<Scalars['String']>;
+  appleAppUrl?: Maybe<Scalars['String']>;
+  appleIcon?: Maybe<Asset>;
+  contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<AppDescription>;
+  linkedFrom?: Maybe<AppLinkingCollections>;
+  sideImage?: Maybe<Asset>;
+  sys: Sys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppAndroidAppIconArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppAndroidAppUrlArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppAppleAppUrlArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppAppleIconArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app) */
+export type AppSideImageArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type AppCollection = {
+  __typename?: 'AppCollection';
+  items: Array<Maybe<App>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type AppDescription = {
+  __typename?: 'AppDescription';
+  json: Scalars['JSON'];
+  links: AppDescriptionLinks;
+};
+
+export type AppDescriptionAssets = {
+  __typename?: 'AppDescriptionAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type AppDescriptionEntries = {
+  __typename?: 'AppDescriptionEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type AppDescriptionLinks = {
+  __typename?: 'AppDescriptionLinks';
+  assets: AppDescriptionAssets;
+  entries: AppDescriptionEntries;
+  resources: AppDescriptionResources;
+};
+
+export type AppDescriptionResources = {
+  __typename?: 'AppDescriptionResources';
+  block: Array<AppDescriptionResourcesBlock>;
+  hyperlink: Array<AppDescriptionResourcesHyperlink>;
+  inline: Array<AppDescriptionResourcesInline>;
+};
+
+export type AppDescriptionResourcesBlock = ResourceLink & {
+  __typename?: 'AppDescriptionResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type AppDescriptionResourcesHyperlink = ResourceLink & {
+  __typename?: 'AppDescriptionResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type AppDescriptionResourcesInline = ResourceLink & {
+  __typename?: 'AppDescriptionResourcesInline';
+  sys: ResourceSys;
+};
+
+export type AppFilter = {
+  AND?: InputMaybe<Array<InputMaybe<AppFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<AppFilter>>>;
+  androidAppIcon_exists?: InputMaybe<Scalars['Boolean']>;
+  androidAppUrl?: InputMaybe<Scalars['String']>;
+  androidAppUrl_contains?: InputMaybe<Scalars['String']>;
+  androidAppUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  androidAppUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  androidAppUrl_not?: InputMaybe<Scalars['String']>;
+  androidAppUrl_not_contains?: InputMaybe<Scalars['String']>;
+  androidAppUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  appleAppUrl?: InputMaybe<Scalars['String']>;
+  appleAppUrl_contains?: InputMaybe<Scalars['String']>;
+  appleAppUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  appleAppUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  appleAppUrl_not?: InputMaybe<Scalars['String']>;
+  appleAppUrl_not_contains?: InputMaybe<Scalars['String']>;
+  appleAppUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  appleIcon_exists?: InputMaybe<Scalars['Boolean']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description_contains?: InputMaybe<Scalars['String']>;
+  description_exists?: InputMaybe<Scalars['Boolean']>;
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  sideImage_exists?: InputMaybe<Scalars['Boolean']>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type AppLinkingCollections = {
+  __typename?: 'AppLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageLandingCollection?: Maybe<PageLandingCollection>;
+};
+
+
+export type AppLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AppLinkingCollectionsPageLandingCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<AppLinkingCollectionsPageLandingCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum AppLinkingCollectionsPageLandingCollectionOrder {
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export enum AppOrder {
+  AndroidAppUrlAsc = 'androidAppUrl_ASC',
+  AndroidAppUrlDesc = 'androidAppUrl_DESC',
+  AppleAppUrlAsc = 'appleAppUrl_ASC',
+  AppleAppUrlDesc = 'appleAppUrl_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 /** Represents a binary file in a space. An asset can be any file type. */
 export type Asset = {
   __typename?: 'Asset';
@@ -170,6 +364,7 @@ export type AssetFilter = {
 
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
+  appCollection?: Maybe<AppCollection>;
   componentAboutUsCollection?: Maybe<ComponentAboutUsCollection>;
   componentAdvertisementCollection?: Maybe<ComponentAdvertisementCollection>;
   componentAuthorCollection?: Maybe<ComponentAuthorCollection>;
@@ -181,6 +376,14 @@ export type AssetLinkingCollections = {
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageEventCollection?: Maybe<PageEventCollection>;
   pageOurPartnersCollection?: Maybe<PageOurPartnersCollection>;
+};
+
+
+export type AssetLinkingCollectionsAppCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -2038,6 +2241,7 @@ export type PageLanding = Entry & _Node & {
   __typename?: 'PageLanding';
   _id: Scalars['ID'];
   aboutUs?: Maybe<ComponentAboutUs>;
+  app?: Maybe<App>;
   contentfulMetadata: ContentfulMetadata;
   featuredBlogPost?: Maybe<PageBlogPost>;
   internalName?: Maybe<Scalars['String']>;
@@ -2052,6 +2256,14 @@ export type PageLandingAboutUsArgs = {
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ComponentAboutUsFilter>;
+};
+
+
+/** To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageLanding) */
+export type PageLandingAppArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  where?: InputMaybe<AppFilter>;
 };
 
 
@@ -2095,6 +2307,8 @@ export type PageLandingFilter = {
   OR?: InputMaybe<Array<InputMaybe<PageLandingFilter>>>;
   aboutUs?: InputMaybe<CfComponentAboutUsNestedFilter>;
   aboutUs_exists?: InputMaybe<Scalars['Boolean']>;
+  app?: InputMaybe<CfAppNestedFilter>;
+  app_exists?: InputMaybe<Scalars['Boolean']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   featuredBlogPost?: InputMaybe<CfPageBlogPostNestedFilter>;
   featuredBlogPost_exists?: InputMaybe<Scalars['Boolean']>;
@@ -2235,6 +2449,8 @@ export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
   _nodes: Array<Maybe<_Node>>;
+  app?: Maybe<App>;
+  appCollection?: Maybe<AppCollection>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   componentAboutUs?: Maybe<ComponentAboutUs>;
@@ -2274,6 +2490,23 @@ export type Query_NodesArgs = {
   ids: Array<Scalars['ID']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryAppArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryAppCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<AppOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<AppFilter>;
 };
 
 
@@ -2562,6 +2795,33 @@ export type _Node = {
   _id: Scalars['ID'];
 };
 
+export type CfAppNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfAppNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfAppNestedFilter>>>;
+  androidAppIcon_exists?: InputMaybe<Scalars['Boolean']>;
+  androidAppUrl?: InputMaybe<Scalars['String']>;
+  androidAppUrl_contains?: InputMaybe<Scalars['String']>;
+  androidAppUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  androidAppUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  androidAppUrl_not?: InputMaybe<Scalars['String']>;
+  androidAppUrl_not_contains?: InputMaybe<Scalars['String']>;
+  androidAppUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  appleAppUrl?: InputMaybe<Scalars['String']>;
+  appleAppUrl_contains?: InputMaybe<Scalars['String']>;
+  appleAppUrl_exists?: InputMaybe<Scalars['Boolean']>;
+  appleAppUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  appleAppUrl_not?: InputMaybe<Scalars['String']>;
+  appleAppUrl_not_contains?: InputMaybe<Scalars['String']>;
+  appleAppUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  appleIcon_exists?: InputMaybe<Scalars['Boolean']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description_contains?: InputMaybe<Scalars['String']>;
+  description_exists?: InputMaybe<Scalars['Boolean']>;
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  sideImage_exists?: InputMaybe<Scalars['Boolean']>;
+  sys?: InputMaybe<SysFilter>;
+};
+
 export type CfComponentAboutUsNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfComponentAboutUsNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfComponentAboutUsNestedFilter>>>;
@@ -2803,7 +3063,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, featuredImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
+  ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'App' } | { __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
@@ -2891,13 +3151,27 @@ export type GalleryCollectionQuery = { __typename?: 'Query', galleryCollection?:
 export type ReferenceComponentAboutUsFragment = { __typename: 'ComponentAboutUs', title?: string | null, videoUrl?: string | null, image?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null, description?: { __typename?: 'ComponentAboutUsDescription', json: any, links: { __typename?: 'ComponentAboutUsDescriptionLinks', entries: { __typename?: 'ComponentAboutUsDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
+  ) | null, description?: { __typename?: 'ComponentAboutUsDescription', json: any, links: { __typename?: 'ComponentAboutUsDescriptionLinks', entries: { __typename?: 'ComponentAboutUsDescriptionEntries', block: Array<{ __typename?: 'App' } | { __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, shortDescription?: { __typename?: 'ComponentAboutUsShortDescription', json: any, links: { __typename?: 'ComponentAboutUsShortDescriptionLinks', entries: { __typename?: 'ComponentAboutUsShortDescriptionEntries', block: Array<{ __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, shortDescription?: { __typename?: 'ComponentAboutUsShortDescription', json: any, links: { __typename?: 'ComponentAboutUsShortDescriptionLinks', entries: { __typename?: 'ComponentAboutUsShortDescriptionEntries', block: Array<{ __typename?: 'App' } | { __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null };
+
+export type ReferenceComponentAppFragment = { __typename: 'App', appleAppUrl?: string | null, androidAppUrl?: string | null, sideImage?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null, description?: { __typename?: 'AppDescription', json: any, links: { __typename?: 'AppDescriptionLinks', entries: { __typename?: 'AppDescriptionEntries', block: Array<{ __typename?: 'App' } | { __typename?: 'ComponentAboutUs' } | { __typename?: 'ComponentAdvertisement' } | { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentHomeBanner' } | (
+          { __typename?: 'ComponentRichImage' }
+          & RichImageFieldsFragment
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Gallery' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageEvent' } | { __typename?: 'PageLanding' } | { __typename?: 'PageOurPartners' } | null> } } } | null, appleIcon?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null, androidAppIcon?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null };
 
 export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalName?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
     { __typename?: 'ComponentSeo' }
@@ -2908,6 +3182,9 @@ export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalNam
   ) | null, aboutUs?: (
     { __typename?: 'ComponentAboutUs' }
     & ReferenceComponentAboutUsFragment
+  ) | null, app?: (
+    { __typename?: 'App' }
+    & ReferenceComponentAppFragment
   ) | null };
 
 export type PageLandingQueryVariables = Exact<{
@@ -3156,6 +3433,32 @@ export const ReferenceComponentAboutUsFragmentDoc = gql`
   videoUrl
 }
     `;
+export const ReferenceComponentAppFragmentDoc = gql`
+    fragment ReferenceComponentApp on App {
+  __typename
+  sideImage {
+    ...ImageFields
+  }
+  description {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  appleIcon {
+    ...ImageFields
+  }
+  androidAppIcon {
+    ...ImageFields
+  }
+  appleAppUrl
+  androidAppUrl
+}
+    `;
 export const PageLandingFieldsFragmentDoc = gql`
     fragment PageLandingFields on PageLanding {
   __typename
@@ -3172,6 +3475,9 @@ export const PageLandingFieldsFragmentDoc = gql`
   }
   aboutUs {
     ...ReferenceComponentAboutUs
+  }
+  app {
+    ...ReferenceComponentApp
   }
 }
     `;
@@ -3338,7 +3644,8 @@ ${ImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${ReferenceComponentAboutUsFragmentDoc}
-${RichImageFieldsFragmentDoc}`;
+${RichImageFieldsFragmentDoc}
+${ReferenceComponentAppFragmentDoc}`;
 export const PageLandingCollectionDocument = gql`
     query pageLandingCollection($locale: String, $preview: Boolean) {
   pageLandingCollection(limit: 100, locale: $locale, preview: $preview) {
@@ -3353,7 +3660,8 @@ ${ImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${ReferenceComponentAboutUsFragmentDoc}
-${RichImageFieldsFragmentDoc}`;
+${RichImageFieldsFragmentDoc}
+${ReferenceComponentAppFragmentDoc}`;
 export const SitemapPagesDocument = gql`
     query sitemapPages($locale: String!) {
   ...sitemapPagesFields

@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactNode } from 'react';
-import Footer from '../footer';
 import Header from '../header';
 import V2Footer from '../footer/v2_footer'
 import GoogleAnalytics from '@src/components/GoogleAnalytics';

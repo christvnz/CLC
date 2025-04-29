@@ -106,6 +106,15 @@ const Header = () => {
               Events
             </div>
           </Link>
+          <Link href="/app" className="hidden lg:block">
+            <div
+              aria-label="Navigate to about page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/app' ? HeaderStyles.active : ''
+              }`}>
+              App
+            </div>
+          </Link>
           <div className="flex flex-row">
             <div className="mr-3">
               <HamburgerMenu />

@@ -27,6 +27,31 @@ fragment ReferenceComponentAboutUs on ComponentAboutUs {
   videoUrl
 }
 
+fragment ReferenceComponentApp on App {
+  __typename
+  sideImage {
+    ...ImageFields
+  }
+  description {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  appleIcon {
+    ...ImageFields
+  }
+  androidAppIcon {
+    ...ImageFields
+  }
+  appleAppUrl
+  androidAppUrl
+}
+
 fragment PageLandingFields on PageLanding {
   __typename
   sys {
@@ -43,9 +68,9 @@ fragment PageLandingFields on PageLanding {
   aboutUs {
     ...ReferenceComponentAboutUs
   }
-  # Tutorial: contentful-and-the-starter-template.md
-  # Uncomment the line below to add the Greeting field to the query
-  # greeting
+  app {
+    ...ReferenceComponentApp
+  }
 }
 
 query pageLanding($locale: String, $preview: Boolean) {

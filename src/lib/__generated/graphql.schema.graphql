@@ -1,5 +1,128 @@
 directive @contentSourceMaps on QUERY
 
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app)
+"""
+type App implements Entry & _Node {
+  _id: ID!
+  androidAppIcon(locale: String, preview: Boolean): Asset
+  androidAppUrl(locale: String): String
+  appleAppUrl(locale: String): String
+  appleIcon(locale: String, preview: Boolean): Asset
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): AppDescription
+  linkedFrom(allowedLocales: [String]): AppLinkingCollections
+  sideImage(locale: String, preview: Boolean): Asset
+  sys: Sys!
+}
+
+type AppCollection {
+  items: [App]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type AppDescription {
+  json: JSON!
+  links: AppDescriptionLinks!
+}
+
+type AppDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type AppDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type AppDescriptionLinks {
+  assets: AppDescriptionAssets!
+  entries: AppDescriptionEntries!
+  resources: AppDescriptionResources!
+}
+
+type AppDescriptionResources {
+  block: [AppDescriptionResourcesBlock!]!
+  hyperlink: [AppDescriptionResourcesHyperlink!]!
+  inline: [AppDescriptionResourcesInline!]!
+}
+
+type AppDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type AppDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type AppDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input AppFilter {
+  AND: [AppFilter]
+  OR: [AppFilter]
+  androidAppIcon_exists: Boolean
+  androidAppUrl: String
+  androidAppUrl_contains: String
+  androidAppUrl_exists: Boolean
+  androidAppUrl_in: [String]
+  androidAppUrl_not: String
+  androidAppUrl_not_contains: String
+  androidAppUrl_not_in: [String]
+  appleAppUrl: String
+  appleAppUrl_contains: String
+  appleAppUrl_exists: Boolean
+  appleAppUrl_in: [String]
+  appleAppUrl_not: String
+  appleAppUrl_not_contains: String
+  appleAppUrl_not_in: [String]
+  appleIcon_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  sideImage_exists: Boolean
+  sys: SysFilter
+}
+
+type AppLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [AppLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+}
+
+enum AppLinkingCollectionsPageLandingCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum AppOrder {
+  androidAppUrl_ASC
+  androidAppUrl_DESC
+  appleAppUrl_ASC
+  appleAppUrl_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
 """Represents a binary file in a space. An asset can be any file type."""
 type Asset {
   contentType(locale: String): String
@@ -92,6 +215,7 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  appCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AppCollection
   componentAboutUsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAboutUsCollection
   componentAdvertisementCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAdvertisementCollection
   componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAuthorCollection
@@ -1370,6 +1494,7 @@ To have an entry point for the app (e.g. Homepage) [See type definition](https:/
 type PageLanding implements Entry & _Node {
   _id: ID!
   aboutUs(locale: String, preview: Boolean, where: ComponentAboutUsFilter): ComponentAboutUs
+  app(locale: String, preview: Boolean, where: AppFilter): App
   contentfulMetadata: ContentfulMetadata!
   featuredBlogPost(locale: String, preview: Boolean, where: PageBlogPostFilter): PageBlogPost
   internalName(locale: String): String
@@ -1390,6 +1515,8 @@ input PageLandingFilter {
   OR: [PageLandingFilter]
   aboutUs: cfComponentAboutUsNestedFilter
   aboutUs_exists: Boolean
+  app: cfAppNestedFilter
+  app_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
   featuredBlogPost: cfPageBlogPostNestedFilter
   featuredBlogPost_exists: Boolean
@@ -1491,6 +1618,8 @@ scalar Quality
 type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
   _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
+  app(id: String!, locale: String, preview: Boolean): App
+  appCollection(limit: Int = 100, locale: String, order: [AppOrder], preview: Boolean, skip: Int = 0, where: AppFilter): AppCollection
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
   componentAboutUs(id: String!, locale: String, preview: Boolean): ComponentAboutUs
@@ -1586,6 +1715,33 @@ type TaxonomyConcept {
 
 interface _Node {
   _id: ID!
+}
+
+input cfAppNestedFilter {
+  AND: [cfAppNestedFilter]
+  OR: [cfAppNestedFilter]
+  androidAppIcon_exists: Boolean
+  androidAppUrl: String
+  androidAppUrl_contains: String
+  androidAppUrl_exists: Boolean
+  androidAppUrl_in: [String]
+  androidAppUrl_not: String
+  androidAppUrl_not_contains: String
+  androidAppUrl_not_in: [String]
+  appleAppUrl: String
+  appleAppUrl_contains: String
+  appleAppUrl_exists: Boolean
+  appleAppUrl_in: [String]
+  appleAppUrl_not: String
+  appleAppUrl_not_contains: String
+  appleAppUrl_not_in: [String]
+  appleIcon_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  sideImage_exists: Boolean
+  sys: SysFilter
 }
 
 input cfComponentAboutUsNestedFilter {
