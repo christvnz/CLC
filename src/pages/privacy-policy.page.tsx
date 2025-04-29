@@ -23,8 +23,8 @@ const Page = () => {
       <div className="space-y-6">
         <p className="leading-relaxed">
           This privacy policy is applicable to the ChowLuckCard app (hereinafter referred to as
-          "Application") for mobile devices, which was developed by Chow Luck Club (hereinafter
-          referred to as "Service Provider") as a Free service. This service is provided "AS IS".
+            &quot;Application&quot;) for mobile devices, which was developed by Chow Luck Club (hereinafter
+          referred to as &quot;Service Provider&quot;) as a Free service. This service is provided &quot;AS IS&quot;.
         </p>
 
         <section className="space-y-3">
@@ -48,7 +48,7 @@ const Page = () => {
           <h3 className="mt-4 text-xl font-medium">Automatically Collected Information</h3>
           <p className="leading-relaxed">
             The Application may collect certain information automatically, including, but not
-            limited to, the type of mobile device you use, your mobile device's unique device ID,
+            limited to, the type of mobile device you use, your mobile device&quot;s unique device ID,
             the IP address of your mobile device, your mobile operating system, the type of mobile
             Internet browsers you use, and information about the way you use the Application.
           </p>
@@ -119,7 +119,7 @@ const Page = () => {
             The Service Provider will retain User Provided data for as long as you use the
             Application and for a reasonable time thereafter. The Service Provider will retain
             Automatically Collected information for up to 24 months and thereafter may store it in
-            aggregate. If you'd like the Service Provider to delete User Provided Data that you have
+            aggregate. If you&quot;d like the Service Provider to delete User Provided Data that you have
             provided via the Application, please contact them at{' '}
             <a
               href="mailto:omjha@galacticitsolutions.co.nz"
@@ -172,9 +172,9 @@ const Page = () => {
         <section className="space-y-3">
           <h2 className="text-primary text-2xl font-semibold">Your Consent</h2>
           <p className="leading-relaxed">
-            By using the Application, you are giving your consent to the Service Provider's
+            By using the Application, you are giving your consent to the Service Provider&quot;s
             processing of your information as set forth in this Privacy Policy now and as amended.
-            "Processing" means using cookies on a computer/handheld device or using or touching
+            &quot;Processing&quot; means using cookies on a computer/handheld device or using or touching
             information in any way, including, but not limited to, collecting, storing, deleting,
             using, combining, and disclosing information.
           </p>

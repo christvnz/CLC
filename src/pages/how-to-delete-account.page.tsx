@@ -51,7 +51,7 @@ const Page = () => {
           <p>
             If you cannot access the app, email us at{' '}
             <span className="font-bold"><a href="mailto:app@chowluckcard.com">app@chowluckcard.com</a></span> with the subject:
-            <span className="italic">"Account Deletion Request"</span>. Include your registered
+            <span className="italic">&quot;Account Deletion Request&quot;</span>. Include your registered
             email ID in the message. Your account will be deleted within 7 working days.
           </p>
         </div>
