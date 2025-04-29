@@ -1,5 +1,6 @@
 import { Container } from "@src/components/shared/container";
 import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -58,9 +59,9 @@ const Page = () => {
 
         <p>
           For more information, view our
-          <a href="#" className="text-blue-600 underline ml-2">
+          <Link href="/privacy-policy" className="text-blue-600 underline ml-2">
             Privacy Policy
-          </a>
+          </Link>
           .
         </p>
       </div>
