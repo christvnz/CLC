@@ -9,6 +9,7 @@ import Image from 'next/image';
 import facebook from '@src/components/templates/footer/facebook.png';
 import instagram from '@src/components/templates/footer/instagram.png';
 import { SeoFields } from '@src/components/features/seo';
+import Link from 'next/link';
 
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -43,33 +44,39 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                       Click the icons on the right to discover more about our restaurant partners,
                       their exciting deals, and ongoing special promotions.
                       <div className="flex gap-x-2 mt-3">
-                        <a href="https://www.facebook.com/chowluckclub" target="_blank" rel="noopener noreferrer">
+                        <Link href="https://www.facebook.com/chowluckclub">
                           <Image src={facebook} width={25} height={25} alt="facebook" />
-                        </a>
-                        <a href="https://www.instagram.com/chowluckclub" target="_blank" rel="noopener noreferrer"> 
+                        </Link>
+                        <Link href="https://www.instagram.com/chowluckclub"> 
                           <Image src={instagram} width={25} height={25} alt="instagram" />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="text-gray-600 mt-4 flex max-w-xl flex-col items-center space-y-6 lg:max-w-none lg:flex-row lg:space-x-6 lg:space-y-0">
-                  <a href={app.appleAppUrl} target="_blank" rel="noopener noreferrer">
-                    <CtfImage
-                      nextImageProps={{
-                          className: 'h-40 w-60 object-contain',
-                      }}
-                      {...app.appleIcon}
-                    />
-                  </a>
-                  <a href={app.androidAppUrl} target="_blank" rel="noopener noreferrer">
-                    <CtfImage
-                      nextImageProps={{
-                          className: 'h-40 w-60 object-contain',
-                      }}
-                      {...app.androidAppIcon}
-                    />
-                  </a>
+                  {
+                    app.appleAppUrl && app.androidAppUrl && (
+                      <>
+                        <Link href={app.appleAppUrl}>
+                          <CtfImage
+                            nextImageProps={{
+                                className: 'h-40 w-60 object-contain',
+                            }}
+                            {...app.appleIcon}
+                          />
+                        </Link>
+                        <Link href={app.androidAppUrl}>
+                          <CtfImage
+                            nextImageProps={{
+                                className: 'h-40 w-60 object-contain',
+                            }}
+                            {...app.androidAppIcon}
+                          />
+                        </Link>
+                      </>
+                    )
+                  }
                 </div>
               </div>
             </div>
