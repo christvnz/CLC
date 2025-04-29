@@ -26,7 +26,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <CtfImage
                 nextImageProps={{
-                    className: 'ring-gray-400/10 w-[30rem] rounded-xl shadow-xl ring-1 sm:w-[57rem] md:-ml-4 lg:-ml-0',
+                    className: 'w-[30rem] rounded-xl sm:w-[57rem] md:-ml-4 lg:-ml-0',
                 }}
                 {...app.sideImage}
               />
