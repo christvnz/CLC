@@ -187,7 +187,7 @@ const Page = () => {
             questions about the practices, please contact the Service Provider via email at
             <a
               href="mailto:app@chowluckclub.com"
-              className="text-primary hover:underline">
+              className="text-primary hover:underline ml-2">
               app@chowluckclub.com
             </a>
             .
