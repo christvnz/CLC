@@ -41,7 +41,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <div className="text-base/6.5 text-gray-600 mt-3 max-w-xl space-y-8 lg:max-w-none">
                   <div className="relative items-center justify-between">
                     <div className="flex flex-col text-gray-900 font-semibold">
-                      Click the icons on the below to discover more about our restaurant partners,
+                      Click the icons below to discover more about our restaurant partners,
                       their exciting deals, and ongoing special promotions.
                       <div className="flex gap-x-2 mt-3">
                         <Link href="https://www.facebook.com/chowluckclub">
