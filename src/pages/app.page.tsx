@@ -34,7 +34,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <p className="text-[#0C141C] text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">
                   ChowLuckCard
                 </p>
-                <p className=" text-yellow-600 text-lg/8"><span className='text-[#FEAB01]'>Power by</span> Chow Luck Club</p>
+                <p className=" text-yellow-600 text-lg/8"><span className='text-[#FEAB01]'>Powered by</span> Chow Luck Club</p>
                 <div className='my-2'>
                   <CtfRichText json={app.description?.json} links={app.description?.links} />
                 </div>
