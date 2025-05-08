@@ -105,7 +105,10 @@ const V2Footer = () => {
                         <div className='flex justify-center'>
                             <div className="inline-flex items-center gap-3 rounded-xl px-4 py-2">
                                 <a href="https://apps.apple.com/nz/app/chowluckcard/id6744236704">
-                                    <Image src="/appstore.svg" width={200} height={50} alt="appstore" />
+                                    <Image src="/appstore.svg" width={200} height={50} alt="appstore" className='object-contain'/>
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.chowluckclub">
+                                    <Image src="/googleplay.webp" width={200} height={50} alt="googleplay" className='object-contain'/>
                                 </a>
                             </div>
                         </div>
