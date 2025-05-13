@@ -5,7 +5,7 @@ import { endpoint } from 'codegen';
 
 const graphQlClient = new GraphQLClient(endpoint, {
   headers: {
-    Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+    Authorization: `Bearer 3d03j_MK1wUZRGUGH1quZ6tH9vNZt6DdQPPhYbI2cpI`,
   },
 });
 

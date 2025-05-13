@@ -1,8 +1,8 @@
 import { CodegenConfig } from '@graphql-codegen/cli';
 
 const endpointOverride = process.env.CONTENTFUL_GRAPHQL_ENDPOINT;
-const productionEndpoint = 'https://graphql.contentful.com/content/v1/spaces';
-export const endpoint = `${endpointOverride || productionEndpoint}/${process.env.CONTENTFUL_SPACE_ID}`;
+const productionEndpoint = 'https://graphql.contentful.com/content/v1/spaces/k6cg0ahe7dc0';
+export const endpoint = `${endpointOverride || productionEndpoint}`;
 export const config: CodegenConfig = {
   overwrite: true,
   ignoreNoDocuments: true,
@@ -10,7 +10,7 @@ export const config: CodegenConfig = {
     {
       [endpoint || '']: {
         headers: {
-          Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_CONTENTFUL_ACCESS_TOKEN}`,
         },
       },
     },

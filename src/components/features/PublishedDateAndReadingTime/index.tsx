@@ -23,10 +23,10 @@ export default function PublishedDate(props) {
           </p>
         </span>
       )}
-      <span className={Styles.divider}>•</span>
-      <span className={Styles.readingTime}>
+      {/* <span className={Styles.divider}>•</span> */}
+      {/* <span className={Styles.readingTime}>
         {readingTime} min {timeSuffix}
-      </span>
+      </span> */}
     </div>
   );
 }
