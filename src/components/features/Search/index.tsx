@@ -31,7 +31,7 @@ const CustomSearchBox = ({ currentRefinement, refine }) => {
 
 const CustomHits = ({ searchResults, isSearching }) => {
   if (isSearching) {
-    return <div className={Styles.instantSearch__loading}>Searching...</div>;
+    return <p className={Styles.instantSearch__loading}>Searching...</p>;
   }
 
   if (!searchResults?.length) {
