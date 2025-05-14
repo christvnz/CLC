@@ -17,7 +17,7 @@ export default function RecentPost({ post }) {
         <div className="text-gray-500 flex items-center space-x-2 text-sm">
           <p><PublishedDateAndReadingTime date={post.publishedDate} /></p>
         </div>
-        <p className="text-orange-500 mt-1 text-[15px] font-semibold group-hover:underline">
+        <p className="text-orange-500 mt-1 text-[15px] group-hover:underline">
           {post.title}
         </p>
       </div>
