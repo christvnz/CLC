@@ -15,11 +15,11 @@ export default function RecentPost({ post }) {
       />
       <div className="flex flex-col group">
         <div className="text-gray-500 flex items-center space-x-2 text-sm">
-          <span><PublishedDateAndReadingTime date={post.publishedDate} /></span>
+          <p><PublishedDateAndReadingTime date={post.publishedDate} /></p>
         </div>
-        <div className="text-orange-500 mt-1 text-[15px] font-semibold group-hover:underline">
+        <p className="text-orange-500 mt-1 text-[15px] font-semibold group-hover:underline">
           {post.title}
-        </div>
+        </p>
       </div>
     </a>
   );
