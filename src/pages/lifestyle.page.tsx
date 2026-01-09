@@ -49,6 +49,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const page = landingPageData.pageLandingCollection?.items[0];
 
     const blogPostsData = await gqlClient.pageBlogPostCollection({
+      limit: 100,
       locale,
       order: PageBlogPostOrder.PublishedDateDesc,
       where: {
