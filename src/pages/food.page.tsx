@@ -1,79 +1,74 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { groupArticlesByCuisineType } from './utils/groupArticles';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 
 import { getServerSideTranslations } from './utils/get-serverside-translations';
 
-import { ArticleHero, ArticleTileGrid } from '@src/components/features/article';
+import { ArticleTileGrid } from '@src/components/features/article';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
-import { revalidateDuration } from '@src/pages/utils/constants';
+import NoData from '@src/components/features/noData'
 
-const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Page = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
+  const { currentPage, totalPages, totalPosts } = props.pagination;
 
-  const foodPosts = posts.filter(post => {
-    return post.blogPostType === 'food';
-  });
-
-  if (!page?.featuredBlogPost || !posts) return null;
-  3;
-
-  const groupedArticles = groupArticlesByCuisineType(foodPosts);
-  const foodCategories = Object.keys(groupedArticles);
-
+  if (!page || !posts) return null;
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
 
       <Container className="navMargin flex flex-col items-center">
         <h1>Food</h1>
-        <p>{posts.length} results</p>
+        <p>{totalPosts} results</p>
       </Container>
-      {foodCategories.map(cuisineType => {
-        if (groupedArticles[cuisineType].length === 0) {
-          return null;
-        }
-        return (
-          <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
-            <h2 className="mb-4 md:mb-6">
-              {cuisineType.charAt(0).toUpperCase() + cuisineType.slice(1)}
-            </h2>
-            <ArticleTileGrid
-              className="md:grid-cols-2 lg:grid-cols-3"
-              articles={groupedArticles[cuisineType]}
-            />
-          </Container>
-        );
-      })}
-      {/* {cuisineTypes.map(cuisineType => (
-        <Container key={cuisineType} className="my-8 md:mb-10 lg:mb-16">
-          <h2 className="mb-4 md:mb-6">{cuisineType}</h2>
-          <ArticleTileGrid
-            className="md:grid-cols-2 lg:grid-cols-3"
-            articles={categorizedPosts[cuisineType]}
-          />
-        </Container>
-      ))}
-
       <Container className="my-8 md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">Others</h2>
+        {
+          posts.length === 0 && (
+            <NoData 
+              text="There is no food post found"   
+            />
+          )
+        }
         <ArticleTileGrid
           className="md:grid-cols-2 lg:grid-cols-3"
-          articles={categorizedPosts['Others']}
+          articles={posts}
         />
-      </Container> */}
+        
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-8 gap-2">
+            {currentPage > 1 && (
+              <Link href={`/food?page=${currentPage - 1}`} className="px-4 py-2 border rounded hover:bg-gray-100">
+                Previous
+              </Link>
+            )}
+            
+            <span className="px-4 py-2">
+              Page {currentPage} of {totalPages}
+            </span>
+            
+            {currentPage < totalPages && (
+              <Link href={`/food?page=${currentPage + 1}`} className="px-4 py-2 border rounded hover:bg-gray-100">
+                Next
+              </Link>
+            )}
+          </div>
+        )}
+      </Container>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ locale, draftMode: preview }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale, draftMode: preview, query }) => {
   try {
     const gqlClient = preview ? previewClient : client;
+    
+    const currentPage = query.page ? Number(query.page) : 1;
+    const postsPerPage = 50;
+    const skip = (currentPage - 1) * postsPerPage;
 
     const landingPageData = await gqlClient.pageLanding({ locale, preview });
     const page = landingPageData.pageLandingCollection?.items[0];
@@ -81,33 +76,43 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const blogPostsData = await gqlClient.pageBlogPostCollection({
       limit: 100,
       locale,
+      limit: postsPerPage,
+      skip: skip,
       order: PageBlogPostOrder.PublishedDateDesc,
       where: {
+        blogPostType: "food",
         slug_not: page?.featuredBlogPost?.slug,
       },
       preview,
     });
-    const posts = blogPostsData.pageBlogPostCollection?.items;
 
-    if (!page) {
+    const posts = blogPostsData.pageBlogPostCollection?.items || [];
+    const totalPosts = blogPostsData.pageBlogPostCollection?.total || 0;
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+    if (!page || currentPage < 1 || (totalPages > 0 && currentPage > totalPages)) {
       return {
-        revalidate: revalidateDuration,
         notFound: true,
       };
     }
 
     return {
-      revalidate: revalidateDuration,
       props: {
         previewActive: !!preview,
         ...(await getServerSideTranslations(locale)),
         page,
         posts,
+        pagination: {
+          currentPage,
+          totalPages,
+          postsPerPage,
+          totalPosts
+        }
       },
     };
-  } catch {
+  } catch (error) {
+    console.error("Error fetching data:", error);
     return {
-      revalidate: revalidateDuration,
       notFound: true,
     };
   }

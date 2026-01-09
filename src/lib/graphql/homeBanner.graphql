@@ -1,0 +1,21 @@
+fragment componentHomeBannerPostField on ComponentHomeBanner {
+    __typename
+    redirectUrl,
+    image {
+      ...ImageFields
+    }
+}
+
+query homeBanner(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [ComponentHomeBannerOrder]
+  $where: ComponentHomeBannerFilter
+) {
+  componentHomeBannerCollection(limit: $limit, locale: $locale, preview: $preview, order: $order where: $where) {
+    items {
+      ...componentHomeBannerPostField
+    }
+  }
+}

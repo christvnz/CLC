@@ -1,3 +1,128 @@
+directive @contentSourceMaps on QUERY
+
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/app)
+"""
+type App implements Entry & _Node {
+  _id: ID!
+  androidAppIcon(locale: String, preview: Boolean): Asset
+  androidAppUrl(locale: String): String
+  appleAppUrl(locale: String): String
+  appleIcon(locale: String, preview: Boolean): Asset
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): AppDescription
+  linkedFrom(allowedLocales: [String]): AppLinkingCollections
+  sideImage(locale: String, preview: Boolean): Asset
+  sys: Sys!
+}
+
+type AppCollection {
+  items: [App]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type AppDescription {
+  json: JSON!
+  links: AppDescriptionLinks!
+}
+
+type AppDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type AppDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type AppDescriptionLinks {
+  assets: AppDescriptionAssets!
+  entries: AppDescriptionEntries!
+  resources: AppDescriptionResources!
+}
+
+type AppDescriptionResources {
+  block: [AppDescriptionResourcesBlock!]!
+  hyperlink: [AppDescriptionResourcesHyperlink!]!
+  inline: [AppDescriptionResourcesInline!]!
+}
+
+type AppDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type AppDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type AppDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input AppFilter {
+  AND: [AppFilter]
+  OR: [AppFilter]
+  androidAppIcon_exists: Boolean
+  androidAppUrl: String
+  androidAppUrl_contains: String
+  androidAppUrl_exists: Boolean
+  androidAppUrl_in: [String]
+  androidAppUrl_not: String
+  androidAppUrl_not_contains: String
+  androidAppUrl_not_in: [String]
+  appleAppUrl: String
+  appleAppUrl_contains: String
+  appleAppUrl_exists: Boolean
+  appleAppUrl_in: [String]
+  appleAppUrl_not: String
+  appleAppUrl_not_contains: String
+  appleAppUrl_not_in: [String]
+  appleIcon_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  sideImage_exists: Boolean
+  sys: SysFilter
+}
+
+type AppLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [AppLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+}
+
+enum AppLinkingCollectionsPageLandingCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum AppOrder {
+  androidAppUrl_ASC
+  androidAppUrl_DESC
+  appleAppUrl_ASC
+  appleAppUrl_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
 """Represents a binary file in a space. An asset can be any file type."""
 type Asset {
   contentType(locale: String): String
@@ -90,11 +215,18 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  appCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AppCollection
+  componentAboutUsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAboutUsCollection
+  componentAdvertisementCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAdvertisementCollection
   componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAuthorCollection
+  componentHomeBannerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentHomeBannerCollection
   componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRichImageCollection
   componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  galleryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): GalleryCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  pageEventCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageEventCollection
+  pageOurPartnersCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageOurPartnersCollection
 }
 
 enum AssetOrder {
@@ -118,6 +250,230 @@ enum AssetOrder {
   url_DESC
   width_ASC
   width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentAboutUs)
+"""
+type ComponentAboutUs implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): ComponentAboutUsDescription
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): ComponentAboutUsLinkingCollections
+  shortDescription(locale: String): ComponentAboutUsShortDescription
+  sys: Sys!
+  title(locale: String): String
+  videoUrl(locale: String): String
+}
+
+type ComponentAboutUsCollection {
+  items: [ComponentAboutUs]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type ComponentAboutUsDescription {
+  json: JSON!
+  links: ComponentAboutUsDescriptionLinks!
+}
+
+type ComponentAboutUsDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentAboutUsDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentAboutUsDescriptionLinks {
+  assets: ComponentAboutUsDescriptionAssets!
+  entries: ComponentAboutUsDescriptionEntries!
+  resources: ComponentAboutUsDescriptionResources!
+}
+
+type ComponentAboutUsDescriptionResources {
+  block: [ComponentAboutUsDescriptionResourcesBlock!]!
+  hyperlink: [ComponentAboutUsDescriptionResourcesHyperlink!]!
+  inline: [ComponentAboutUsDescriptionResourcesInline!]!
+}
+
+type ComponentAboutUsDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input ComponentAboutUsFilter {
+  AND: [ComponentAboutUsFilter]
+  OR: [ComponentAboutUsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  image_exists: Boolean
+  shortDescription_contains: String
+  shortDescription_exists: Boolean
+  shortDescription_not_contains: String
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  videoUrl: String
+  videoUrl_contains: String
+  videoUrl_exists: Boolean
+  videoUrl_in: [String]
+  videoUrl_not: String
+  videoUrl_not_contains: String
+  videoUrl_not_in: [String]
+}
+
+type ComponentAboutUsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentAboutUsLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+}
+
+enum ComponentAboutUsLinkingCollectionsPageLandingCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentAboutUsOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  videoUrl_ASC
+  videoUrl_DESC
+}
+
+type ComponentAboutUsShortDescription {
+  json: JSON!
+  links: ComponentAboutUsShortDescriptionLinks!
+}
+
+type ComponentAboutUsShortDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentAboutUsShortDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentAboutUsShortDescriptionLinks {
+  assets: ComponentAboutUsShortDescriptionAssets!
+  entries: ComponentAboutUsShortDescriptionEntries!
+  resources: ComponentAboutUsShortDescriptionResources!
+}
+
+type ComponentAboutUsShortDescriptionResources {
+  block: [ComponentAboutUsShortDescriptionResourcesBlock!]!
+  hyperlink: [ComponentAboutUsShortDescriptionResourcesHyperlink!]!
+  inline: [ComponentAboutUsShortDescriptionResourcesInline!]!
+}
+
+type ComponentAboutUsShortDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsShortDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentAboutUsShortDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentAdvertisement)
+"""
+type ComponentAdvertisement implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): ComponentAdvertisementLinkingCollections
+  redirectUrl(locale: String): String
+  sys: Sys!
+  title(locale: String): String
+}
+
+type ComponentAdvertisementCollection {
+  items: [ComponentAdvertisement]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentAdvertisementFilter {
+  AND: [ComponentAdvertisementFilter]
+  OR: [ComponentAdvertisementFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  image_exists: Boolean
+  redirectUrl: String
+  redirectUrl_contains: String
+  redirectUrl_exists: Boolean
+  redirectUrl_in: [String]
+  redirectUrl_not: String
+  redirectUrl_not_contains: String
+  redirectUrl_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type ComponentAdvertisementLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum ComponentAdvertisementOrder {
+  redirectUrl_ASC
+  redirectUrl_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """
@@ -203,6 +559,67 @@ enum ComponentAuthorOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/componentHomeBanner)
+"""
+type ComponentHomeBanner implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): ComponentHomeBannerLinkingCollections
+  redirectUrl(locale: String): String
+  sys: Sys!
+  title(locale: String): String
+}
+
+type ComponentHomeBannerCollection {
+  items: [ComponentHomeBanner]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentHomeBannerFilter {
+  AND: [ComponentHomeBannerFilter]
+  OR: [ComponentHomeBannerFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  image_exists: Boolean
+  redirectUrl: String
+  redirectUrl_contains: String
+  redirectUrl_exists: Boolean
+  redirectUrl_in: [String]
+  redirectUrl_not: String
+  redirectUrl_not_contains: String
+  redirectUrl_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type ComponentHomeBannerLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum ComponentHomeBannerOrder {
+  redirectUrl_ASC
+  redirectUrl_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """
@@ -402,10 +819,26 @@ enum ComponentSeoOrder {
 }
 
 type ContentfulMetadata {
+  concepts: [TaxonomyConcept]!
   tags: [ContentfulTag]!
 }
 
+input ContentfulMetadataConceptsDescendantsFilter {
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+input ContentfulMetadataConceptsFilter {
+  descendants: ContentfulMetadataConceptsDescendantsFilter
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
 input ContentfulMetadataFilter {
+  concepts: ContentfulMetadataConceptsFilter
+  concepts_exists: Boolean
   tags: ContentfulMetadataTagsFilter
   tags_exists: Boolean
 }
@@ -466,6 +899,79 @@ enum EntryOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/gallery)
+"""
+type Gallery implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  imagesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  linkedFrom(allowedLocales: [String]): GalleryLinkingCollections
+  order(locale: String): Int
+  slug(locale: String): String
+  sys: Sys!
+  title(locale: String): String
+}
+
+type GalleryCollection {
+  items: [Gallery]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input GalleryFilter {
+  AND: [GalleryFilter]
+  OR: [GalleryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  imagesCollection_exists: Boolean
+  order: Int
+  order_exists: Boolean
+  order_gt: Int
+  order_gte: Int
+  order_in: [Int]
+  order_lt: Int
+  order_lte: Int
+  order_not: Int
+  order_not_in: [Int]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type GalleryLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum GalleryOrder {
+  order_ASC
+  order_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """The 'HexColor' type represents color in `rgb:ffffff` string format."""
@@ -844,10 +1350,151 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageEvent)
+"""
+type PageEvent implements Entry & _Node {
+  _id: ID!
+  amount(locale: String): String
+  buttonLink(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  date(locale: String): String
+  description(locale: String): String
+  eventCta(locale: String): String
+  googleMapUrl(locale: String): String
+  linkedFrom(allowedLocales: [String]): PageEventLinkingCollections
+  location(locale: String): String
+  slug(locale: String): String
+  sys: Sys!
+  thumbnail(locale: String, preview: Boolean): Asset
+  time(locale: String): String
+  title(locale: String): String
+}
+
+type PageEventCollection {
+  items: [PageEvent]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageEventFilter {
+  AND: [PageEventFilter]
+  OR: [PageEventFilter]
+  amount: String
+  amount_contains: String
+  amount_exists: Boolean
+  amount_in: [String]
+  amount_not: String
+  amount_not_contains: String
+  amount_not_in: [String]
+  buttonLink: String
+  buttonLink_contains: String
+  buttonLink_exists: Boolean
+  buttonLink_in: [String]
+  buttonLink_not: String
+  buttonLink_not_contains: String
+  buttonLink_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  date: String
+  date_contains: String
+  date_exists: Boolean
+  date_in: [String]
+  date_not: String
+  date_not_contains: String
+  date_not_in: [String]
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  eventCta: String
+  eventCta_contains: String
+  eventCta_exists: Boolean
+  eventCta_in: [String]
+  eventCta_not: String
+  eventCta_not_contains: String
+  eventCta_not_in: [String]
+  googleMapUrl: String
+  googleMapUrl_contains: String
+  googleMapUrl_exists: Boolean
+  googleMapUrl_in: [String]
+  googleMapUrl_not: String
+  googleMapUrl_not_contains: String
+  googleMapUrl_not_in: [String]
+  location: String
+  location_contains: String
+  location_exists: Boolean
+  location_in: [String]
+  location_not: String
+  location_not_contains: String
+  location_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  thumbnail_exists: Boolean
+  time: String
+  time_contains: String
+  time_exists: Boolean
+  time_in: [String]
+  time_not: String
+  time_not_contains: String
+  time_not_in: [String]
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type PageEventLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageEventOrder {
+  amount_ASC
+  amount_DESC
+  buttonLink_ASC
+  buttonLink_DESC
+  date_ASC
+  date_DESC
+  eventCta_ASC
+  eventCta_DESC
+  googleMapUrl_ASC
+  googleMapUrl_DESC
+  location_ASC
+  location_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  time_ASC
+  time_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageLanding)
 """
 type PageLanding implements Entry & _Node {
   _id: ID!
+  aboutUs(locale: String, preview: Boolean, where: ComponentAboutUsFilter): ComponentAboutUs
+  app(locale: String, preview: Boolean, where: AppFilter): App
   contentfulMetadata: ContentfulMetadata!
   featuredBlogPost(locale: String, preview: Boolean, where: PageBlogPostFilter): PageBlogPost
   internalName(locale: String): String
@@ -866,6 +1513,10 @@ type PageLandingCollection {
 input PageLandingFilter {
   AND: [PageLandingFilter]
   OR: [PageLandingFilter]
+  aboutUs: cfComponentAboutUsNestedFilter
+  aboutUs_exists: Boolean
+  app: cfAppNestedFilter
+  app_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
   featuredBlogPost: cfPageBlogPostNestedFilter
   featuredBlogPost_exists: Boolean
@@ -899,25 +1550,101 @@ enum PageLandingOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/k6cg0ahe7dc0/content_types/pageOurPartners)
+"""
+type PageOurPartners implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  image(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): PageOurPartnersLinkingCollections
+  sys: Sys!
+  title(locale: String): String
+  url(locale: String): String
+}
+
+type PageOurPartnersCollection {
+  items: [PageOurPartners]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageOurPartnersFilter {
+  AND: [PageOurPartnersFilter]
+  OR: [PageOurPartnersFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  image_exists: Boolean
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+}
+
+type PageOurPartnersLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageOurPartnersOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  url_ASC
+  url_DESC
+}
+
+"""
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
 
 type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
+  _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
+  app(id: String!, locale: String, preview: Boolean): App
+  appCollection(limit: Int = 100, locale: String, order: [AppOrder], preview: Boolean, skip: Int = 0, where: AppFilter): AppCollection
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  componentAboutUs(id: String!, locale: String, preview: Boolean): ComponentAboutUs
+  componentAboutUsCollection(limit: Int = 100, locale: String, order: [ComponentAboutUsOrder], preview: Boolean, skip: Int = 0, where: ComponentAboutUsFilter): ComponentAboutUsCollection
+  componentAdvertisement(id: String!, locale: String, preview: Boolean): ComponentAdvertisement
+  componentAdvertisementCollection(limit: Int = 100, locale: String, order: [ComponentAdvertisementOrder], preview: Boolean, skip: Int = 0, where: ComponentAdvertisementFilter): ComponentAdvertisementCollection
   componentAuthor(id: String!, locale: String, preview: Boolean): ComponentAuthor
   componentAuthorCollection(limit: Int = 100, locale: String, order: [ComponentAuthorOrder], preview: Boolean, skip: Int = 0, where: ComponentAuthorFilter): ComponentAuthorCollection
+  componentHomeBanner(id: String!, locale: String, preview: Boolean): ComponentHomeBanner
+  componentHomeBannerCollection(limit: Int = 100, locale: String, order: [ComponentHomeBannerOrder], preview: Boolean, skip: Int = 0, where: ComponentHomeBannerFilter): ComponentHomeBannerCollection
   componentRichImage(id: String!, locale: String, preview: Boolean): ComponentRichImage
   componentRichImageCollection(limit: Int = 100, locale: String, order: [ComponentRichImageOrder], preview: Boolean, skip: Int = 0, where: ComponentRichImageFilter): ComponentRichImageCollection
   componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
   componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, where: ComponentSeoFilter): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  gallery(id: String!, locale: String, preview: Boolean): Gallery
+  galleryCollection(limit: Int = 100, locale: String, order: [GalleryOrder], preview: Boolean, skip: Int = 0, where: GalleryFilter): GalleryCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
+  pageEvent(id: String!, locale: String, preview: Boolean): PageEvent
+  pageEventCollection(limit: Int = 100, locale: String, order: [PageEventOrder], preview: Boolean, skip: Int = 0, where: PageEventFilter): PageEventCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
+  pageOurPartners(id: String!, locale: String, preview: Boolean): PageOurPartners
+  pageOurPartnersCollection(limit: Int = 100, locale: String, order: [PageOurPartnersOrder], preview: Boolean, skip: Int = 0, where: PageOurPartnersFilter): PageOurPartnersCollection
 }
 
 interface ResourceLink {
@@ -978,8 +1705,71 @@ input SysFilter {
   publishedVersion_not_in: [Float]
 }
 
+"""
+Represents a taxonomy concept entity for finding and organizing content easily.
+        Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
+"""
+type TaxonomyConcept {
+  id: String
+}
+
 interface _Node {
   _id: ID!
+}
+
+input cfAppNestedFilter {
+  AND: [cfAppNestedFilter]
+  OR: [cfAppNestedFilter]
+  androidAppIcon_exists: Boolean
+  androidAppUrl: String
+  androidAppUrl_contains: String
+  androidAppUrl_exists: Boolean
+  androidAppUrl_in: [String]
+  androidAppUrl_not: String
+  androidAppUrl_not_contains: String
+  androidAppUrl_not_in: [String]
+  appleAppUrl: String
+  appleAppUrl_contains: String
+  appleAppUrl_exists: Boolean
+  appleAppUrl_in: [String]
+  appleAppUrl_not: String
+  appleAppUrl_not_contains: String
+  appleAppUrl_not_in: [String]
+  appleIcon_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  sideImage_exists: Boolean
+  sys: SysFilter
+}
+
+input cfComponentAboutUsNestedFilter {
+  AND: [cfComponentAboutUsNestedFilter]
+  OR: [cfComponentAboutUsNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  image_exists: Boolean
+  shortDescription_contains: String
+  shortDescription_exists: Boolean
+  shortDescription_not_contains: String
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  videoUrl: String
+  videoUrl_contains: String
+  videoUrl_exists: Boolean
+  videoUrl_in: [String]
+  videoUrl_not: String
+  videoUrl_not_contains: String
+  videoUrl_not_in: [String]
 }
 
 input cfComponentAuthorNestedFilter {

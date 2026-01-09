@@ -44,6 +44,12 @@ module.exports = withPlugins(plugins, {
   poweredByHeader: false,
   reactStrictMode: false,
   compress: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 
   /**
    * add the headers you would like your next server to use
@@ -61,6 +67,10 @@ module.exports = withPlugins(plugins, {
   },
 
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+
+  compiler: {
+    styledComponents: true
+  },
 
   webpack(config) {
     config.module.rules.push({

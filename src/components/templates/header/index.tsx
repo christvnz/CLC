@@ -8,6 +8,11 @@ import Search from '@src/components/features/Search';
 import HamburgerMenu from './hamburgerMenu';
 import FollowUs from '../footer/FollowUs';
 import NewsLetter from './newsletter.png';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import { Urbanist } from 'next/font/google';
+
+const urbanist = Urbanist({ subsets: ['latin'], variable: '--font-urbanist' });
+
 const Header = () => {
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
 
@@ -36,24 +41,44 @@ const Header = () => {
               Home
             </div>
           </Link>
-          <Link href="/food" className="hidden lg:block">
-            <div
-              aria-label="Navigate to food page"
-              className={`${HeaderStyles.header__logoContainerLinkWord} ${
-                router.pathname === '/food' ? HeaderStyles.active : ''
-              }`}>
-              Food
-            </div>
-          </Link>
-          <Link href="/lifestyle" className="hidden lg:block">
-            <div
-              aria-label="Navigate to lifestyle page"
-              className={`${HeaderStyles.header__logoContainerLinkWord} ${
-                router.pathname === '/lifestyle' ? HeaderStyles.active : ''
-              }`}>
-              Lifestyle
-            </div>
-          </Link>
+          <Popover className="relative hidden lg:block">
+            {({ open, close }) => ( 
+              <>
+                <PopoverButton className={`flex gap-x-3 cursor-pointer !shadow-none ${HeaderStyles.header__logoContainerLinkWord} ${
+                    (router.pathname === '/food' || router.pathname === '/lifestyle') ? HeaderStyles.active : ''
+                  }`}>
+                  <span>Blogs</span>
+                    <svg className={'w-6 h-6 transition-transform' + (open ? ' rotate-180' : '') } fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </PopoverButton>
+                <PopoverPanel transition anchor="bottom" className={"flex flex-col z-10 mt-4 bg-colorWhite transition duration-300"}>
+                  <Link href="/food" className="hidden lg:block"
+                    onClick={close}
+                  >
+                    <div
+                      aria-label="Navigate to food page"
+                      className={`font-medium p-3 px-5 text-xl hover:bg-gray100 ${urbanist.variable} font-sans ${
+                        router.pathname === '/food' ? HeaderStyles.active : ''
+                      }`}>
+                      Food
+                    </div>
+                  </Link>
+                  <Link href="/lifestyle" className="hidden lg:block"
+                    onClick={close}
+                  >
+                    <div
+                      aria-label="Navigate to lifestyle page"
+                      className={`font-medium p-3 px-5 text-xl hover:bg-gray100 ${urbanist.variable} font-sans ${
+                        router.pathname === '/lifestyle' ? HeaderStyles.active : ''
+                      }`}>
+                      Lifestyle
+                    </div>
+                  </Link>
+                </PopoverPanel>
+              </>
+            )}
+          </Popover>
           <Link href="/about" className="hidden lg:block">
             <div
               aria-label="Navigate to about page"
@@ -61,6 +86,33 @@ const Header = () => {
                 router.pathname === '/about' ? HeaderStyles.active : ''
               }`}>
               About
+            </div>
+          </Link>
+          <Link href="/gallery" className="hidden lg:block">
+            <div
+              aria-label="Navigate to about page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/gallery' ? HeaderStyles.active : ''
+              }`}>
+              Gallery
+            </div>
+          </Link>
+          <Link href="/events" className="hidden lg:block">
+            <div
+              aria-label="Navigate to about page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/events' ? HeaderStyles.active : ''
+              }`}>
+              Events
+            </div>
+          </Link>
+          <Link href="/app" className="hidden lg:block">
+            <div
+              aria-label="Navigate to about page"
+              className={`${HeaderStyles.header__logoContainerLinkWord} ${
+                router.pathname === '/app' ? HeaderStyles.active : ''
+              }`}>
+              App
             </div>
           </Link>
           <div className="flex flex-row">

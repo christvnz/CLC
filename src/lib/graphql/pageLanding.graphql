@@ -1,3 +1,57 @@
+fragment ReferenceComponentAboutUs on ComponentAboutUs {
+  __typename
+  title
+  image {
+    ...ImageFields
+  }
+  description {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  shortDescription {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  videoUrl
+}
+
+fragment ReferenceComponentApp on App {
+  __typename
+  sideImage {
+    ...ImageFields
+  }
+  description {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  appleIcon {
+    ...ImageFields
+  }
+  androidAppIcon {
+    ...ImageFields
+  }
+  appleAppUrl
+  androidAppUrl
+}
+
 fragment PageLandingFields on PageLanding {
   __typename
   sys {
@@ -11,9 +65,12 @@ fragment PageLandingFields on PageLanding {
   featuredBlogPost {
     ...ReferencePageBlogPostFields
   }
-  # Tutorial: contentful-and-the-starter-template.md
-  # Uncomment the line below to add the Greeting field to the query
-  # greeting
+  aboutUs {
+    ...ReferenceComponentAboutUs
+  }
+  app {
+    ...ReferenceComponentApp
+  }
 }
 
 query pageLanding($locale: String, $preview: Boolean) {

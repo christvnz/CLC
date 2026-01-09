@@ -1,3 +1,9 @@
+@import 'yet-another-react-lightbox/styles.css';
+@import 'swiper/css';
+@import 'swiper/css/effect-fade';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,4 +45,15 @@
   p {
     @apply font-normal text-xl leading-snug tracking-snug text-gray600 md:leading-normal;
   }
+
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-primary) !important;
+}
+#mc_embed_signup {
+  background: #fff;
+  clear: left;
+  font: 14px Helvetica, Arial, sans-serif;
+  width: 600px;
 }

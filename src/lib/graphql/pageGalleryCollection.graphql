@@ -1,0 +1,13 @@
+query galleryCollection(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [GalleryOrder]
+  $where: GalleryFilter
+) {
+  galleryCollection(limit: $limit, locale: $locale, preview: $preview, order: $order where: $where) {
+    items {
+      ...PageGalleryPostFields
+    }
+  }
+}

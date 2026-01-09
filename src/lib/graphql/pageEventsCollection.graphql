@@ -1,0 +1,30 @@
+fragment PageEventPostFields on PageEvent {
+    __typename
+    title,
+    slug,
+    description,
+    amount,
+    buttonLink,
+    thumbnail {
+        ...ImageFields
+    },
+    eventCta,
+    location,
+    date,
+    time,
+    googleMapUrl
+}
+
+query pageEventsCollection(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [PageEventOrder]
+  $where: PageEventFilter
+) {
+  pageEventCollection(limit: $limit, locale: $locale, preview: $preview, order: $order where: $where) {
+    items {
+      ...PageEventPostFields
+    }
+  }
+}

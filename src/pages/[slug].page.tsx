@@ -1,20 +1,22 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
-
 import { getServerSideTranslations } from './utils/get-serverside-translations';
-
+import { CtfImage } from '@src/components/features/contentful';
 import { ArticleContent, ArticleHero, ArticleTileGrid } from '@src/components/features/article';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
+import ArticleSocialShare from '@src/components/features/article/ArticleSocialShare';
+import Link from 'next/link';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
   const blogPost = useContentfulLiveUpdates(props.blogPost);
   const relatedPosts = blogPost?.relatedBlogPostsCollection?.items;
+  const advertisement = useContentfulLiveUpdates(props.advertisement);
 
   if (!blogPost || !relatedPosts) return null;
   return (
@@ -23,11 +25,26 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Container className="navMargin">
         <ArticleHero article={blogPost} isFeatured={props.isFeatured} isReversedLayout={true} />
       </Container>
-      <Container className="mt-8 max-w-4xl">
-        <ArticleContent article={blogPost} />
+      <Container className="mt-8 max-w-8xl">
+        <div className='relative flex justify-between flex-col xl:flex-row gap-y-4 xl:gap-y-0 gap-x-0 xl:gap-x-3'>
+          <div className='mx-auto max-w-4xl'>
+            <ArticleContent article={blogPost} />
+            <div className='mt-6'>
+              <ArticleSocialShare title={blogPost.title || ''} slug={blogPost.slug} />
+            </div>
+          </div>
+          {
+            advertisement && 
+              <div className='mx-auto max-w-4xl xl:max-w-full sticky top-44 h-fit w-[300px]'>
+                <Link href={advertisement.redirectUrl ? advertisement.redirectUrl : ''} target={advertisement.redirectUrl ? '_blank' : '_self'}>
+                  <CtfImage nextImageProps={{ className: 'w-full' }} {...advertisement.image} />
+                </Link>
+              </div>
+          }
+        </div>
       </Container>
       {relatedPosts.length ? (
-        <Container className="mt-8 max-w-5xl">
+        <Container className="my-8 max-w-5xl">
           <h2 className="mb-4 md:mb-6">{t('article.relatedArticles')}</h2>
           <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
         </Container>
@@ -47,13 +64,15 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
   const gqlClient = preview ? previewClient : client;
 
   try {
-    const [blogPageData, landingPageData] = await Promise.all([
+    const [blogPageData, landingPageData, advertisementPageData] = await Promise.all([
       gqlClient.pageBlogPost({ slug: params.slug.toString(), locale, preview }),
       gqlClient.pageLanding({ locale, preview }),
+      gqlClient.pageAdvertisement({ locale, preview }),
     ]);
 
     const blogPost = blogPageData.pageBlogPostCollection?.items[0];
     const landingPage = landingPageData.pageLandingCollection?.items[0];
+    const advertisement = advertisementPageData.componentAdvertisementCollection?.items.length ? advertisementPageData.componentAdvertisementCollection?.items[0] : null;
 
     const isFeatured = landingPage?.featuredBlogPost?.slug === blogPost?.slug;
 
@@ -71,6 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
         previewActive: !!preview,
         blogPost,
         isFeatured,
+        advertisement
       },
     };
   } catch {

@@ -20,6 +20,7 @@ const Title = styled.h4`
 const LinksGrid = styled.div`
   display: flex;
   gap: 10px;
+  justify-content: center;
   flex-direction: row;
 `;
 

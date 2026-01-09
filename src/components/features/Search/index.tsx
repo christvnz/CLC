@@ -1,20 +1,107 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, Hits, SearchBox } from 'react-instantsearch-dom';
 import Styles from '@src/styles/InstantSearch.module.css';
 import RecentPost from '@src/components/features/RecentPostList/RecentPost';
-import CustomSearchBox from './CustomSearchBox';
+import { client, previewClient } from '@src/lib/client';
+import { PageBlogPostFieldsFragment, PageBlogPostOrder } from '@src/lib/__generated/sdk';
 
-let searchClient;
-if (process.env.NEXT_PUBLIC_ALGOLIA_APP_ID && process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY) {
-  searchClient = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY,
+const CustomSearchBox = ({ currentRefinement, refine }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  
+  // Focus input when component mounts
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef?.current?.focus();
+    }
+  }, []);
+
+  return (
+    <form noValidate action="" role="search" className={Styles.searchForm}>
+      <input
+        ref={inputRef}
+        type="search"
+        value={currentRefinement}
+        onChange={e => refine(e.target.value)}
+        className={Styles.searchInput}
+        placeholder="Search articles..."
+      />
+    </form>
   );
-}
+};
+
+const CustomHits = ({ searchResults, isSearching }) => {
+  if (isSearching) {
+    return <p className={Styles.instantSearch__loading}>Searching...</p>;
+  }
+
+  if (!searchResults?.length) {
+    return (
+      <p className={Styles.instantSearch__noResults}>
+        Aw snap! No search results were found. Please try a different search.
+      </p>
+    );
+  }
+
+  return (
+    <div>
+      {searchResults.map((post) => (
+          <RecentPost post={post} key={post.sys.id}/>
+      ))}
+    </div>
+  );
+};
 
 const SearchModal = ({ isOpen, closeModal }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<PageBlogPostFieldsFragment[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const validQuery = searchQuery?.length >= 3;
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (!validQuery) {
+        setSearchResults([]);
+        return;
+      }
+
+      setIsSearching(true);
+      try {
+        const results = await client.pageBlogPostCollection({
+          locale: 'en-US',
+          limit: 10,
+          where: {
+            OR: [
+              { title_contains: searchQuery },
+            ],
+            blogPostType: "food"
+          },
+          order: [PageBlogPostOrder.PublishedDateDesc],
+        });
+
+        if (results.pageBlogPostCollection?.items) {
+          const filteredItems = results.pageBlogPostCollection.items.filter(
+            (item): item is PageBlogPostFieldsFragment => item !== null
+          );
+          setSearchResults(filteredItems);
+        } else {
+          setSearchResults([]);
+        }
+      } catch (error) {
+        console.error("Error searching posts:", error);
+        setSearchResults([]);
+      } finally {
+        setIsSearching(false);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      fetchResults();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery, validQuery]);
+
   useEffect(() => {
     const handleEscapeClose = event => {
       if (event.key === 'Escape') {
@@ -28,36 +115,67 @@ const SearchModal = ({ isOpen, closeModal }) => {
     };
   }, [closeModal]);
 
+  useEffect(() => {
+    // Handle clicking outside to close
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, closeModal]);
+
   if (!isOpen) return null;
 
-  const handleOverlayClick = event => {
-    if (event.target.id === 'modalOverlay') {
-      closeModal();
-    }
-  };
-
   return createPortal(
-    <button id="modalOverlay" className={Styles.modalOverlay} onClick={handleOverlayClick}>
-      <button className={Styles.modalContent} onClick={e => e.stopPropagation()}>
-        <button className={Styles.closeButton} onClick={closeModal}>
-          ✖
-        </button>
-        <InstantSearch searchClient={searchClient} indexName="lincolnstable">
-          <CustomSearchBox />
+    <div 
+      className={Styles.modalOverlay}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="search-modal-title"
+    >
+      <div 
+        ref={modalRef}
+        className={Styles.modalContent}
+      >
+        <header>
+          <h2 id="search-modal-title" className="sr-only">Search Articles</h2>
+          <button 
+            className={Styles.closeButton} 
+            onClick={closeModal} 
+            aria-label="Close search"
+            type="button"
+          >
+            ✖
+          </button>
+        </header>
+        
+        <div className={Styles.searchContainer}>
+          <CustomSearchBox 
+            currentRefinement={searchQuery} 
+            refine={setSearchQuery} 
+          />
+          
           <div className={Styles.searchResults}>
-            <Hits hitComponent={Hit} />
+            {validQuery && (
+              <CustomHits 
+                searchResults={searchResults} 
+                isSearching={isSearching} 
+              />
+            )}
           </div>
-        </InstantSearch>
-      </button>
-    </button>,
+        </div>
+      </div>
+    </div>,
     document.body,
   );
 };
-
-const Hit = ({ hit }) => (
-  <li key={hit.objectID} className={Styles.hitCard}>
-    <RecentPost post={hit} />
-  </li>
-);
 
 export default SearchModal;

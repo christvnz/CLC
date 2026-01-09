@@ -1,0 +1,18 @@
+fragment PageGalleryPostFields on Gallery {
+    __typename
+    title,
+    slug,
+    imagesCollection {
+        items {
+            ...ImageFields
+        }
+    }
+}
+
+query pageGallery($slug: String!, $locale: String, $preview: Boolean) {
+  galleryCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
+    items {
+      ...PageGalleryPostFields
+    }
+  }
+}
