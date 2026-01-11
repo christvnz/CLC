@@ -1,4 +1,3 @@
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 
@@ -12,11 +11,8 @@ import { client, previewClient } from '@src/lib/client';
 import NoData from '@src/components/features/noData'
 
 const Page = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const page = useContentfulLiveUpdates(props.page);
-  const posts = useContentfulLiveUpdates(props.posts);
-  const { currentPage, totalPages, totalPosts } = props.pagination;
-
-  console.log('page', posts);
+  const { page, posts, pagination } = props;
+  const { currentPage, totalPages, totalPosts } = pagination;
 
   if (!page || !posts) return null;
   return (
@@ -76,10 +72,9 @@ export const getServerSideProps: GetServerSideProps = async ({ locale, draftMode
     const page = landingPageData.pageLandingCollection?.items[0];
 
     const blogPostsData = await gqlClient.pageBlogPostCollection({
-      limit: 100,
-      locale,
       limit: postsPerPage,
       skip: skip,
+      locale,
       order: PageBlogPostOrder.PublishedDateDesc,
       where: {
         blogPostType_not: "food",
