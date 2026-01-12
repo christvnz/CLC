@@ -3,7 +3,6 @@ import { client, previewClient } from "@src/lib/client";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { revalidateDuration } from "./utils/constants";
 import { getServerSideTranslations } from "./utils/get-serverside-translations";
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
 import { PageEvent } from "@src/lib/__generated/sdk";
 import { CtfImage } from '@src/components/features/contentful';
@@ -12,8 +11,7 @@ import { formatDateForDisplay } from "@src/utils/Date";
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
-    const page = useContentfulLiveUpdates(props.page);
-    const events = useContentfulLiveUpdates(props.events);
+    const { page, events } = props;
     return (
         <>
             {page.seoFields && <SeoFields {...page.seoFields} />}

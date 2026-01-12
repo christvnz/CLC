@@ -5,7 +5,6 @@ import { getServerSideTranslations } from '@src/pages/utils/get-serverside-trans
 
 import styled from 'styled-components';
 import { revalidateDuration } from './utils/constants';
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
 import { CtfRichText } from '@src/components/features/contentful';
 
@@ -30,7 +29,7 @@ const Title = styled.h1`
 `;
 
 const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const page = useContentfulLiveUpdates(props.page);
+  const { page } = props;
   return (
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}

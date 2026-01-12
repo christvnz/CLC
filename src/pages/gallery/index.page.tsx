@@ -4,7 +4,6 @@ import { getServerSideTranslations } from '../utils/get-serverside-translations'
 import { revalidateDuration } from '../utils/constants';
 import { CtfImage } from '@src/components/features/contentful';
 import { client, previewClient } from '@src/lib/client';
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
 import Link from 'next/link';
 import NoData from '@src/components/features/noData'
@@ -17,8 +16,7 @@ interface ImageInterface {
 }
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const page = useContentfulLiveUpdates(props.page);
-    const gallery = useContentfulLiveUpdates(props.gallery);
+    const { page, gallery } = props;
     const [index, setIndex] = React.useState(-1);
     const [slides, setSlides] = React.useState([]);
     const [isOpen, setIsOpen] = React.useState(false);

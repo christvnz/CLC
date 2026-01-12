@@ -1,4 +1,3 @@
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 
@@ -16,10 +15,7 @@ import NewsLetter from '@src/components/shared/home/NewsLetter';
 import Partners from '@src/components/shared/home/Partners';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const page = useContentfulLiveUpdates(props.page);
-  const posts = useContentfulLiveUpdates(props.posts);
-  const partners = useContentfulLiveUpdates(props.partners);
-  const homeBanners = useContentfulLiveUpdates(props.homeBanners);
+  const { page, posts, partners, homeBanners } = props;
 
   if (!page?.featuredBlogPost || !posts) return;
 

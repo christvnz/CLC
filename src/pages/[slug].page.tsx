@@ -1,4 +1,3 @@
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
@@ -14,9 +13,8 @@ import Link from 'next/link';
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
-  const blogPost = useContentfulLiveUpdates(props.blogPost);
+  const { blogPost, advertisement } = props;
   const relatedPosts = blogPost?.relatedBlogPostsCollection?.items;
-  const advertisement = useContentfulLiveUpdates(props.advertisement);
 
   if (!blogPost || !relatedPosts) return null;
   return (

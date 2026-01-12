@@ -1,4 +1,3 @@
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
 import { Container } from '@src/components/shared/container';
@@ -14,7 +13,7 @@ import Link from 'next/link';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
-  const page = useContentfulLiveUpdates(props.page);
+  const { page } = props;
   const app = page.app
   
   return (

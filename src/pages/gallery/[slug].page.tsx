@@ -4,15 +4,13 @@ import { getServerSideTranslations } from '../utils/get-serverside-translations'
 import { revalidateDuration } from '../utils/constants';
 import { CtfImage } from '@src/components/features/contentful';
 import { client, previewClient } from '@src/lib/client';
-import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { SeoFields } from '@src/components/features/seo';
 import Lightbox from "yet-another-react-lightbox";
 import React from 'react';
 import { ImageFieldsFragment } from '@src/lib/__generated/sdk';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const page = useContentfulLiveUpdates(props.page);
-    const gallery = useContentfulLiveUpdates(props.gallery);
+    const { page, gallery } = props;
     const slides = gallery.imagesCollection.items.map((image: ImageFieldsFragment) => {
         return {
             src: image.url
