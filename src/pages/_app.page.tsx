@@ -7,6 +7,7 @@ import '@contentful/live-preview/style.css';
 import { useRouter } from 'next/router';
 
 import { Layout } from '@src/components/templates/layout';
+import GoogleAnalytics from '@src/components/GoogleAnalytics';
 
 const urbanist = Urbanist({ subsets: ['latin'], variable: '--font-urbanist' });
 
@@ -18,6 +19,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       enableLiveUpdates={pageProps.previewActive}
       locale={locale || 'en-US'}>
       <>
+        <GoogleAnalytics />
         <main className={`${urbanist.variable} font-sans`}>
           <Layout>
             <Component {...pageProps} />
