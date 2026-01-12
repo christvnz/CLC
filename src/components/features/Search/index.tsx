@@ -57,13 +57,23 @@ const SearchModal = ({ isOpen, closeModal }) => {
   const [isSearching, setIsSearching] = useState(false);
   const validQuery = searchQuery?.length >= 3;
   const modalRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     const fetchResults = async () => {
       if (!validQuery) {
         setSearchResults([]);
+        setIsSearching(false);
         return;
       }
+
+      // Cancel any pending request
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+
+      // Create new AbortController for this request
+      abortControllerRef.current = new AbortController();
 
       setIsSearching(true);
       try {
@@ -79,27 +89,44 @@ const SearchModal = ({ isOpen, closeModal }) => {
           order: [PageBlogPostOrder.PublishedDateDesc],
         });
 
-        if (results.pageBlogPostCollection?.items) {
-          const filteredItems = results.pageBlogPostCollection.items.filter(
-            (item): item is PageBlogPostFieldsFragment => item !== null
-          );
-          setSearchResults(filteredItems);
-        } else {
+        // Only update state if request wasn't aborted
+        if (!abortControllerRef.current?.signal.aborted) {
+          if (results.pageBlogPostCollection?.items) {
+            const filteredItems = results.pageBlogPostCollection.items.filter(
+              (item): item is PageBlogPostFieldsFragment => item !== null
+            );
+            setSearchResults(filteredItems);
+          } else {
+            setSearchResults([]);
+          }
+        }
+      } catch (error: unknown) {
+        // Don't log errors for aborted requests
+        if (error instanceof Error && error.name !== 'AbortError') {
+          console.error("Error searching posts:", error);
+        }
+        if (!abortControllerRef.current?.signal.aborted) {
           setSearchResults([]);
         }
-      } catch (error) {
-        console.error("Error searching posts:", error);
-        setSearchResults([]);
       } finally {
-        setIsSearching(false);
+        if (!abortControllerRef.current?.signal.aborted) {
+          setIsSearching(false);
+        }
       }
     };
 
+    // Increased debounce from 300ms to 600ms to reduce API calls
     const timeoutId = setTimeout(() => {
       fetchResults();
-    }, 300);
+    }, 600);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+      // Abort pending request on cleanup
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [searchQuery, validQuery]);
 
   useEffect(() => {
