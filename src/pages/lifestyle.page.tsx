@@ -1,4 +1,4 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 
 import { getServerSideTranslations } from './utils/get-serverside-translations';
@@ -8,11 +8,30 @@ import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
-import NoData from '@src/components/features/noData'
+import NoData from '@src/components/features/noData';
+import { revalidateDuration } from './utils/constants';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 
-const Page = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { page, posts, pagination } = props;
-  const { currentPage, totalPages, totalPosts } = pagination;
+const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const router = useRouter();
+  const { page, posts: allPosts } = props;
+
+  // Handle client-side pagination
+  const postsPerPage = 50;
+  const currentPage = router.query.page ? Number(router.query.page) : 1;
+
+  const { posts, totalPages, totalPosts } = useMemo(() => {
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const paginatedPosts = allPosts.slice(startIndex, endIndex);
+
+    return {
+      posts: paginatedPosts,
+      totalPages: Math.ceil(allPosts.length / postsPerPage),
+      totalPosts: allPosts.length
+    };
+  }, [allPosts, currentPage, postsPerPage]);
 
   if (!page || !posts) return null;
   return (
@@ -60,20 +79,16 @@ const Page = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => 
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ locale, draftMode: preview, query }) => {
+export const getStaticProps: GetStaticProps = async ({ locale, draftMode: preview }) => {
   try {
     const gqlClient = preview ? previewClient : client;
-    
-    const currentPage = query.page ? Number(query.page) : 1;
-    const postsPerPage = 50;
-    const skip = (currentPage - 1) * postsPerPage;
 
     const landingPageData = await gqlClient.pageLanding({ locale, preview });
     const page = landingPageData.pageLandingCollection?.items[0];
 
+    // Fetch all lifestyle posts at build time
     const blogPostsData = await gqlClient.pageBlogPostCollection({
-      limit: postsPerPage,
-      skip: skip,
+      limit: 100,
       locale,
       order: PageBlogPostOrder.PublishedDateDesc,
       where: {
@@ -84,12 +99,11 @@ export const getServerSideProps: GetServerSideProps = async ({ locale, draftMode
     });
 
     const posts = blogPostsData.pageBlogPostCollection?.items || [];
-    const totalPosts = blogPostsData.pageBlogPostCollection?.total || 0;
-    const totalPages = Math.ceil(totalPosts / postsPerPage);
 
-    if (!page || currentPage < 1 || (totalPages > 0 && currentPage > totalPages)) {
+    if (!page) {
       return {
         notFound: true,
+        revalidate: revalidateDuration,
       };
     }
 
@@ -99,18 +113,14 @@ export const getServerSideProps: GetServerSideProps = async ({ locale, draftMode
         ...(await getServerSideTranslations(locale)),
         page,
         posts,
-        pagination: {
-          currentPage,
-          totalPages,
-          postsPerPage,
-          totalPosts
-        }
       },
+      revalidate: revalidateDuration, // ISR: regenerate page every hour
     };
   } catch (error) {
     console.error("Error fetching data:", error);
     return {
       notFound: true,
+      revalidate: revalidateDuration,
     };
   }
 };
