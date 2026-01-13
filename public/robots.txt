@@ -1,7 +1,9 @@
-# As soon as you are ready to go public, change the `Disallow: /` to `Allow: /`
+# *
 User-agent: *
 Allow: /
 
-User-agent: facebookexternalhit
-Crawl-delay: 0
-Allow: /
+# Host
+Host: https://chowluckclub.com/
+
+# Sitemaps
+Sitemap: https://chowluckclub.com/sitemap.xml

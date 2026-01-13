@@ -7,7 +7,7 @@ import { client, previewClient } from '@src/lib/client';
 import { SeoFields } from '@src/components/features/seo';
 import Lightbox from "yet-another-react-lightbox";
 import React from 'react';
-import { ImageFieldsFragment, PageBlogPostOrder } from '@src/lib/__generated/sdk';
+import { ImageFieldsFragment, GalleryOrder } from '@src/lib/__generated/sdk';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     const { page, gallery } = props;
@@ -95,21 +95,21 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
     // Other galleries will be generated on-demand (fallback: 'blocking')
     const dataPerLocale = locales
         ? await Promise.all(
-            locales.map(locale => client.pageBlogPostCollection({
+            locales.map(locale => client.galleryCollection({
                 locale,
                 limit: 10,
-                order: [PageBlogPostOrder.PublishedDateDesc]
+                order: [GalleryOrder.SysPublishedAtDesc]
             })),
         )
         : [];
 
     const paths = dataPerLocale
         .flatMap((data, index) =>
-            data.pageBlogPostCollection?.items.map(blogPost =>
-                blogPost?.slug
+            data.galleryCollection?.items.map(gallery =>
+                gallery?.slug
                     ? {
                         params: {
-                            slug: blogPost.slug,
+                            slug: gallery.slug,
                         },
                         locale: locales?.[index],
                     }
