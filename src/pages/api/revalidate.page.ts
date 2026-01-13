@@ -7,8 +7,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Get the slug from the request
-    const slug = req.body?.slug || req.query.slug;
+    // Get the slug from the request or Contentful webhook payload
+    const body = req.body || {};
+    const fieldSlug = body?.fields?.slug;
+    const resolvedFieldSlug =
+      typeof fieldSlug === 'string'
+        ? fieldSlug
+        : fieldSlug && typeof fieldSlug === 'object'
+          ? Object.values(fieldSlug)[0]
+          : undefined;
+    const slug = body?.slug || req.query.slug || resolvedFieldSlug;
     
     if (slug) {
       // Revalidate specific page
