@@ -1,3 +1,4 @@
 // ISR revalidate duration in seconds
-// 3600 seconds = 1 hour (reduces Contentful API calls)
-export const revalidateDuration = 3600;
+// 86400 seconds = 24 hours (significantly reduces Contentful API calls)
+// Pages will refresh once per day unless manually revalidated
+export const revalidateDuration = 86400;
