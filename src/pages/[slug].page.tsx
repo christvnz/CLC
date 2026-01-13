@@ -9,6 +9,7 @@ import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import ArticleSocialShare from '@src/components/features/article/ArticleSocialShare';
 import Link from 'next/link';
+import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
@@ -100,9 +101,15 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
 };
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  // Only pre-render the 10 most recent posts at build time
+  // Other posts will be generated on-demand (fallback: 'blocking')
   const dataPerLocale = locales
     ? await Promise.all(
-        locales.map(locale => client.pageBlogPostCollection({ locale, limit: 100 })),
+        locales.map(locale => client.pageBlogPostCollection({
+          locale,
+          limit: 10,
+          order: [PageBlogPostOrder.PublishedDateDesc]
+        })),
       )
     : [];
 
